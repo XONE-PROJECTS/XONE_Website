@@ -101,6 +101,7 @@
   align-items: stretch;
   width: min(92vw, 22rem);
   height: auto;
+  cursor: default;
   opacity: 0.38;
   filter: brightness(0.72) saturate(0.85);
   transition:
@@ -143,6 +144,23 @@
   .projects-coverflow-swiper .project-carousel-shell {
     min-height: 0;
   }
+}
+
+/* Drag cursor only on head/body — footer stays default with pointer links */
+.projects-coverflow-swiper .project-carousel-drag {
+  cursor: grab;
+}
+
+.projects-coverflow-swiper .project-carousel-drag:active {
+  cursor: grabbing;
+}
+
+.projects-coverflow-swiper .project-carousel-footer {
+  cursor: default;
+}
+
+.projects-coverflow-swiper .project-carousel-footer a {
+  cursor: pointer;
 }
 
 .projects-coverflow-pagination {

@@ -13,12 +13,15 @@ import { getProjectTagClassName } from "@/features/projects/lib/project-tech-bad
 type ProjectCardProps = {
   project: Project;
   variant?: "compact" | "full";
+  /** Enables carousel drag zone (head/body only) and non-swipeable footer */
+  carousel?: boolean;
   className?: string;
 };
 
 export function ProjectCard({
   project,
   variant = "compact",
+  carousel = false,
   className,
 }: ProjectCardProps) {
   const isCompact = variant === "compact";
@@ -28,15 +31,8 @@ export function ProjectCard({
 
   const isFull = !isCompact;
 
-  return (
-    <article
-      className={cn(
-        "group flex h-full flex-col rounded-lg border border-border bg-background p-5 sm:p-6",
-        "motion-safe:transition-[border-color,box-shadow,transform] motion-safe:duration-200",
-        "motion-safe:hover:-translate-y-0.5 motion-safe:hover:border-xone-violet/40 motion-safe:hover:shadow-sm",
-        className,
-      )}
-    >
+  const headAndBody = (
+    <>
       <p className="text-xs font-medium uppercase tracking-wider text-xone-violet">
         {projectCategories[project.category]}
       </p>
@@ -146,70 +142,104 @@ export function ProjectCard({
           </p>
         )}
       </div>
+    </>
+  );
 
-      <div className={cn(isFull && "mt-auto pt-4")}>
-        <div className={cn(!isCompact && !hasPreview && "min-h-[5.75rem]")}>
-          {!isCompact ? (
-            <p className="text-xs font-medium uppercase tracking-wider text-xone-violet">
-              Tech Stack
-            </p>
-          ) : null}
-          <ul
-            className={cn(
-              "flex flex-wrap gap-2",
-              isCompact
-                ? "mt-4"
-                : hasPreview
-                  ? "mt-2"
-                  : "mt-2 min-h-[4.75rem] content-start",
-            )}
-          >
-            {project.tags.slice(0, maxTags).map((tag) => (
-              <li
-                key={tag}
-                className={cn(
-                  "rounded-md border px-2 py-0.5 text-xs font-medium",
-                  getProjectTagClassName(tag),
-                )}
-              >
-                {tag}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div
+  const footer = (
+    <>
+      <div className={cn(!isCompact && !hasPreview && "min-h-[5.75rem]")}>
+        {!isCompact ? (
+          <p className="text-xs font-medium uppercase tracking-wider text-xone-violet">
+            Tech Stack
+          </p>
+        ) : null}
+        <ul
           className={cn(
-            isCompact ? "mt-4" : "mt-4 min-h-12",
-            !isCompact &&
-              (project.href || project.liveHref) &&
-              "flex flex-wrap items-center gap-x-4 gap-y-2",
+            "flex flex-wrap gap-2",
+            isCompact
+              ? "mt-4"
+              : hasPreview
+                ? "mt-2"
+                : "mt-2 min-h-[4.75rem] content-start",
           )}
         >
-          {project.liveHref ? (
-            <a
-              href={project.liveHref}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-sm font-medium text-xone-violet hover:underline"
+          {project.tags.slice(0, maxTags).map((tag) => (
+            <li
+              key={tag}
+              className={cn(
+                "rounded-md border px-2 py-0.5 text-xs font-medium",
+                getProjectTagClassName(tag),
+              )}
             >
-              View {project.liveLinkLabel ?? "live site"}
-              <ArrowUpRight className="size-4" aria-hidden />
-            </a>
-          ) : null}
-          {project.href ? (
-            <a
-              href={project.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 text-sm font-medium text-xone-violet hover:underline"
-            >
-              View repository
-              <ArrowUpRight className="size-4" aria-hidden />
-            </a>
-          ) : null}
-        </div>
+              {tag}
+            </li>
+          ))}
+        </ul>
       </div>
+
+      <div
+        className={cn(
+          isCompact ? "mt-4" : "mt-4 min-h-12",
+          !isCompact &&
+            (project.href || project.liveHref) &&
+            "flex flex-wrap items-center gap-x-4 gap-y-2",
+        )}
+      >
+        {project.liveHref ? (
+          <a
+            href={project.liveHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-sm font-medium text-xone-violet hover:underline"
+          >
+            View {project.liveLinkLabel ?? "live site"}
+            <ArrowUpRight className="size-4" aria-hidden />
+          </a>
+        ) : null}
+        {project.href ? (
+          <a
+            href={project.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 text-sm font-medium text-xone-violet hover:underline"
+          >
+            View repository
+            <ArrowUpRight className="size-4" aria-hidden />
+          </a>
+        ) : null}
+      </div>
+    </>
+  );
+
+  return (
+    <article
+      className={cn(
+        "group flex h-full flex-col rounded-lg border border-border bg-background p-5 sm:p-6",
+        "motion-safe:transition-[border-color,box-shadow,transform] motion-safe:duration-200",
+        "motion-safe:hover:-translate-y-0.5 motion-safe:hover:border-xone-violet/40 motion-safe:hover:shadow-sm",
+        className,
+      )}
+    >
+      {carousel && isFull ? (
+        <div className="project-carousel-drag flex min-h-0 flex-1 flex-col">
+          {headAndBody}
+        </div>
+      ) : (
+        headAndBody
+      )}
+
+      {isCompact ? (
+        footer
+      ) : (
+        <footer
+          className={cn(
+            "mt-auto pt-4",
+            carousel && "project-carousel-footer swiper-no-swiping",
+          )}
+        >
+          {footer}
+        </footer>
+      )}
     </article>
   );
 }

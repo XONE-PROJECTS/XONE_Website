@@ -34,7 +34,6 @@ export function ProjectsCarousel({ items = projects }: ProjectsCarouselProps) {
         watchSlidesProgress
         speed={550}
         loop={canLoop}
-        grabCursor
         spaceBetween={12}
         coverflowEffect={{
           rotate: 0,
@@ -72,6 +71,7 @@ export function ProjectsCarousel({ items = projects }: ProjectsCarouselProps) {
             <ProjectCard
               project={project}
               variant="full"
+              carousel
               className="project-carousel-shell w-full"
             />
           </SwiperSlide>
