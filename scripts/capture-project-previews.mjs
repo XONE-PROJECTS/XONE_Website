@@ -8,7 +8,7 @@ const VIEWPORT = { width: 1280, height: 720 };
 const TARGETS = [
   {
     id: "lightbox-studio-website",
-    url: "https://lightbox-studio.vercel.app/",
+    url: "https://www.thelightboxstudios.com/",
     file: "lightbox-studio-preview.png",
   },
   {

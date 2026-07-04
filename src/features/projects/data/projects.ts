@@ -125,7 +125,7 @@ export const projects: readonly Project[] = [
         role: "Full Stack Developer (Frontend & API)",
       },
     ],
-    liveHref: "https://lightbox-studio.vercel.app/",
+    liveHref: "https://www.thelightboxstudios.com/",
     previewImageSrc: "/assets/projects/lightbox-studio-preview.png",
     mobileSummary:
       "Full-stack studio website for photography and videography on Vercel. The mockup covers services, portfolio galleries, session booking, and partnerships — with a feature-based Next.js layout ready for Calendly, MongoDB, and Cloudinary integrations.",

@@ -285,3 +285,4 @@ When modifying this project:
 - keep explanations concise and educational so a junior fullstack developer can follow the reasoning
 - consider mobile view by default when creating frontend UI
 - port from `xone-swe-web` source files — do not reimplement from memory
+- after every feature or content change, end with a **brief commit message** (1 line, repo style: `type(scope): summary`) for the user to commit manually — do not run `git commit` unless explicitly asked
