@@ -12,6 +12,7 @@ const securityHeaders = [
 ] as const;
 
 const nextConfig: NextConfig = {
+  allowedDevOrigins: ["192.168.1.2"],
   async redirects() {
     return [
       {

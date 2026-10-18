@@ -5,13 +5,16 @@ import Image from "next/image";
 import { PreflightObjectivesStep } from "@/features/preflight/components/PreflightObjectivesStep";
 import { PreflightReasonsStep } from "@/features/preflight/components/PreflightReasonsStep";
 import { PreFlightStep } from "@/features/preflight/components/PreFlightStep";
+import {
+  DEFAULT_PREFLIGHT_CONTENT,
+  type PreflightContent,
+} from "@/features/preflight/data/preflight-content";
 import { usePreflightSequence } from "@/features/preflight/hooks/usePreflightSequence";
-import { brandAssets } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 
 const logoClassName = "h-auto w-60 max-w-[85vw] sm:w-72 md:w-80";
 
-export function PreFlightIntro() {
+export function PreFlightIntro({ content }: { content?: PreflightContent }) {
   const {
     mounted,
     step,
@@ -28,6 +31,7 @@ export function PreFlightIntro() {
   }
 
   const isOverlayVisible = backgroundVisible && step !== "exiting";
+  const intro = content ?? DEFAULT_PREFLIGHT_CONTENT;
 
   return (
     <div
@@ -35,7 +39,7 @@ export function PreFlightIntro() {
       aria-modal="true"
       aria-labelledby="preflight-heading"
       className={cn(
-        "fixed inset-0 z-[100] flex flex-col items-center justify-center bg-xone-navy px-4 py-10 text-xone-light sm:px-6",
+        "fixed inset-0 z-[100] flex h-dvh min-h-dvh w-screen flex-col items-center justify-center bg-xone-navy px-4 py-10 text-xone-light sm:px-6",
         "motion-safe:transition-opacity motion-safe:duration-1000 motion-safe:ease-in-out",
         isOverlayVisible ? "opacity-100" : "opacity-0",
       )}
@@ -55,8 +59,8 @@ export function PreFlightIntro() {
       {step === "logo" && (
         <PreFlightStep visible={stepVisible} className="flex justify-center">
           <Image
-            src={brandAssets.logoInverse}
-            alt="Xone Software Development"
+            src={intro.logoSrc}
+            alt={intro.logoAlt}
             width={320}
             height={88}
             priority
@@ -70,6 +74,7 @@ export function PreFlightIntro() {
           <PreflightObjectivesStep
             onComplete={completeObjectives}
             prefersReducedMotion={prefersReducedMotion}
+            objectives={intro.objectives}
           />
         </div>
       )}
@@ -82,8 +87,8 @@ export function PreFlightIntro() {
         >
           {prefersReducedMotion ? (
             <Image
-              src={brandAssets.logoInverse}
-              alt="Xone Software Development"
+              src={intro.logoSrc}
+              alt={intro.logoAlt}
               width={320}
               height={88}
               priority
@@ -94,6 +99,7 @@ export function PreFlightIntro() {
           <PreflightReasonsStep
             onDismiss={dismiss}
             prefersReducedMotion={prefersReducedMotion}
+            content={intro}
           />
         </PreFlightStep>
       )}

@@ -63,7 +63,7 @@ describe("createPageMetadata", () => {
     expect(metadata.title).toBe("Projects");
     expect(metadata.description).toBe("Portfolio showcase");
     expect(metadata.openGraph?.url).toBe("https://example.com/projects");
-    expect(metadata.twitter?.card).toBe("summary");
+    expect(metadata.twitter).toMatchObject({ card: "summary" });
   });
 
   it("defaults description when omitted", () => {

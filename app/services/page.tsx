@@ -9,7 +9,6 @@ export const metadata: Metadata = createPageMetadata({
   description: `${BRAND_NAME} delivers automation, UI/UX, web, and mobile development.`,
   path: "/services",
 });
-
 export default function ServicesPage() {
   return <ServicesPageContent />;
 }

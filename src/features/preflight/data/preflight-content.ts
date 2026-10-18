@@ -25,6 +25,22 @@ export const PREFLIGHT_REASONS = [
 
 export const PREFLIGHT_CTA_LABEL = "Start Building with XONE";
 
+export type PreflightContent = {
+  logoSrc: string;
+  logoAlt: string;
+  objectives: readonly string[];
+  reasons: readonly { title: string; description: string }[];
+  ctaLabel: string;
+};
+
+export const DEFAULT_PREFLIGHT_CONTENT: PreflightContent = {
+  logoSrc: "/assets/XONE/xone_brand_kit/xone_logo_inverse.svg",
+  logoAlt: "Xone Software Development",
+  objectives: PREFLIGHT_OBJECTIVES,
+  reasons: PREFLIGHT_REASONS,
+  ctaLabel: PREFLIGHT_CTA_LABEL,
+};
+
 export const PREFLIGHT_TIMING = {
   logoTotalMs: 3200,
   fadeInMs: 850,

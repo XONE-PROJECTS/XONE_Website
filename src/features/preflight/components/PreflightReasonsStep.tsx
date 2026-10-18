@@ -8,6 +8,7 @@ import {
   PREFLIGHT_CTA_LABEL,
   PREFLIGHT_REASONS,
   PREFLIGHT_TIMING,
+  type PreflightContent,
 } from "@/features/preflight/data/preflight-content";
 import { cn } from "@/lib/utils";
 
@@ -17,15 +18,19 @@ const fadeTransitionClass =
 type PreflightReasonsStepProps = {
   onDismiss: () => void;
   prefersReducedMotion?: boolean;
+  content?: PreflightContent;
 };
 
 export function PreflightReasonsStep({
   onDismiss,
   prefersReducedMotion = false,
+  content,
 }: PreflightReasonsStepProps) {
+  const reasons = content?.reasons ?? PREFLIGHT_REASONS;
+  const ctaLabel = content?.ctaLabel ?? PREFLIGHT_CTA_LABEL;
   const [headingVisible, setHeadingVisible] = useState(prefersReducedMotion);
   const [reasonVisible, setReasonVisible] = useState<boolean[]>(() =>
-    PREFLIGHT_REASONS.map(() => prefersReducedMotion),
+    reasons.map(() => prefersReducedMotion),
   );
   const [ctaVisible, setCtaVisible] = useState(prefersReducedMotion);
   const [isLoading, setIsLoading] = useState(false);
@@ -51,7 +56,7 @@ export function PreflightReasonsStep({
 
     const reasonsStartMs = reasonHeadingFadeInMs + reasonStaggerMs;
 
-    PREFLIGHT_REASONS.forEach((_, index) => {
+    reasons.forEach((_, index) => {
       timers.push(
         window.setTimeout(
           () => {
@@ -68,8 +73,8 @@ export function PreflightReasonsStep({
 
     const reasonsEndMs =
       reasonsStartMs +
-      PREFLIGHT_REASONS.length * reasonItemFadeInMs +
-      (PREFLIGHT_REASONS.length - 1) * reasonStaggerMs;
+      reasons.length * reasonItemFadeInMs +
+      (reasons.length - 1) * reasonStaggerMs;
 
     timers.push(
       window.setTimeout(() => {
@@ -82,7 +87,7 @@ export function PreflightReasonsStep({
         window.clearTimeout(timer);
       }
     };
-  }, [prefersReducedMotion]);
+  }, [prefersReducedMotion, reasons]);
 
   const handleCtaClick = () => {
     if (isLoading) {
@@ -113,7 +118,7 @@ export function PreflightReasonsStep({
           Why XONE
         </h2>
         <ul className="space-y-4">
-          {PREFLIGHT_REASONS.map((reason, index) => (
+          {reasons.map((reason, index) => (
             <li
               key={reason.title}
               className={cn(
@@ -154,7 +159,7 @@ export function PreflightReasonsStep({
             Starting…
           </>
         ) : (
-          PREFLIGHT_CTA_LABEL
+          ctaLabel
         )}
       </Button>
     </div>

@@ -10,11 +10,15 @@ import { createPageMetadata } from "@/lib/metadata";
 export const metadata: Metadata = createPageMetadata({
   path: "",
 });
-
-export default function HomePage() {
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ adminPreview?: string }>;
+}) {
+  const params = await searchParams;
   return (
     <>
-      <PreFlightIntro />
+      {params.adminPreview !== "1" && <PreFlightIntro />}
       <HomeHero />
       <FeaturedProjectsSection />
       <TeamStripSection />

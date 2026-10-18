@@ -16,17 +16,11 @@ import {
 } from "@/components/ui/sheet";
 import { brandAssets, BRAND_NAME } from "@/lib/brand";
 import { cn } from "@/lib/utils";
-
-/** Primary nav — Process lives in footer to reduce noise (B + C). */
-const navLinks = [
-  { href: "/projects", label: "Projects" },
-  { href: "/services", label: "Services" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
-] as const;
+import type { SiteSettings } from "@/features/admin/lib/content";
 
 type NavbarProps = {
   className?: string;
+  links?: SiteSettings["navLinks"];
 };
 
 function navLinkClass(isActive: boolean, mobile = false) {
@@ -47,11 +41,18 @@ function navLinkClass(isActive: boolean, mobile = false) {
   );
 }
 
-export function Navbar({ className }: NavbarProps) {
+export function Navbar({ className, links }: NavbarProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const isHome = pathname === "/";
+  const isAdmin = pathname.startsWith("/admin");
+  const navLinks = (links ?? [
+    { href: "/projects", label: "Projects", visible: true },
+    { href: "/services", label: "Services", visible: true },
+    { href: "/about", label: "About", visible: true },
+    { href: "/contact", label: "Contact", visible: true },
+  ]).filter((link) => link.visible);
 
   return (
     <header
@@ -76,28 +77,13 @@ export function Navbar({ className }: NavbarProps) {
           />
         </Link>
 
+        {!isAdmin && <>
         <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={navLinkClass(pathname === link.href)}
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) => <Link key={link.href} href={link.href} className={navLinkClass(pathname === link.href)}>{link.label}</Link>)}
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link
-            href="/projects"
-            className={cn(
-              buttonVariants({ size: "default" }),
-              "hidden border border-white/20 bg-xone-violet text-white hover:bg-xone-violet/90 sm:inline-flex",
-            )}
-          >
-            View projects
-          </Link>
+          <Link href="/projects" className={cn(buttonVariants({ size: "default" }), "hidden border border-white/20 bg-xone-violet text-white hover:bg-xone-violet/90 sm:inline-flex")}>View projects</Link>
 
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger
@@ -151,6 +137,7 @@ export function Navbar({ className }: NavbarProps) {
             </SheetContent>
           </Sheet>
         </div>
+        </>}
       </div>
     </header>
   );

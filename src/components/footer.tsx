@@ -1,14 +1,26 @@
+"use client";
+
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 import { brandAssets, BRAND_NAME } from "@/lib/brand";
 import { cn } from "@/lib/utils";
+import type { CmsBlock } from "@/features/admin/lib/content";
 
 type FooterProps = {
   className?: string;
+  content?: Extract<CmsBlock, { type: "footer" }>;
 };
 
-export function Footer({ className }: FooterProps) {
+export function Footer({ className, content }: FooterProps) {
+  const pathname = usePathname();
+  const isAdmin = pathname.startsWith("/admin");
+
+  if (isAdmin) {
+    return null;
+  }
+
   return (
     <footer
       className={cn(
@@ -26,8 +38,7 @@ export function Footer({ className }: FooterProps) {
             className="h-8 w-auto"
           />
           <p className="text-sm text-xone-gray-light/90">
-            Custom software development for teams that need clarity, speed, and
-            reliable delivery.
+            {content?.description ?? "Custom software development for teams that need clarity, speed, and reliable delivery."}
           </p>
         </div>
 
@@ -35,23 +46,7 @@ export function Footer({ className }: FooterProps) {
           <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-white">
             Services
           </h2>
-          <ul className="space-y-2 text-sm text-xone-gray-light/90">
-            <li>
-              <Link href="/projects" className="hover:text-white">
-                Our Projects
-              </Link>
-            </li>
-            <li>
-              <Link href="/services" className="hover:text-white">
-                Web &amp; Mobile Apps
-              </Link>
-            </li>
-            <li>
-              <Link href="/process" className="hover:text-white">
-                Our Process
-              </Link>
-            </li>
-          </ul>
+          <ul className="space-y-2 text-sm text-xone-gray-light/90">{(content?.links ?? [{ label: "Our Projects", href: "/projects" }, { label: "Web & Mobile Apps", href: "/services" }, { label: "Our Process", href: "/process" }]).slice(0, 3).map((link) => <li key={link.href}><Link href={link.href} className="hover:text-white">{link.label}</Link></li>)}</ul>
         </div>
 
         <div>
@@ -59,22 +54,7 @@ export function Footer({ className }: FooterProps) {
             Company
           </h2>
           <ul className="space-y-2 text-sm text-xone-gray-light/90">
-            <li>
-              <Link
-                href="/about"
-                className="flex min-h-11 items-center hover:text-white"
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/contact"
-                className="flex min-h-11 items-center hover:text-white"
-              >
-                Contact
-              </Link>
-            </li>
+            {(content?.links ?? [{ label: "About", href: "/about" }, { label: "Contact", href: "/contact" }]).slice(0, 4).map((link) => <li key={link.href}><Link href={link.href} className="flex min-h-11 items-center hover:text-white">{link.label}</Link></li>)}
             <li>
               <Link
                 href="/privacy"

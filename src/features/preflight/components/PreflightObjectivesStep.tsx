@@ -13,14 +13,16 @@ type ObjectiveItemState = "hidden" | "visible" | "hiddenAgain";
 type PreflightObjectivesStepProps = {
   onComplete: () => void;
   prefersReducedMotion?: boolean;
+  objectives?: readonly string[];
 };
 
 export function PreflightObjectivesStep({
   onComplete,
   prefersReducedMotion = false,
+  objectives = PREFLIGHT_OBJECTIVES,
 }: PreflightObjectivesStepProps) {
   const [itemStates, setItemStates] = useState<ObjectiveItemState[]>(() =>
-    PREFLIGHT_OBJECTIVES.map(() =>
+    objectives.map(() =>
       prefersReducedMotion ? "visible" : "hidden",
     ),
   );
@@ -39,7 +41,7 @@ export function PreflightObjectivesStep({
       objectiveItemFadeOutMs,
     } = PREFLIGHT_TIMING;
 
-    PREFLIGHT_OBJECTIVES.forEach((_, index) => {
+    objectives.forEach((_, index) => {
       timers.push(
         window.setTimeout(
           () => {
@@ -55,10 +57,10 @@ export function PreflightObjectivesStep({
     });
 
     const fadeInPhase =
-      PREFLIGHT_OBJECTIVES.length * objectiveItemFadeInMs +
-      (PREFLIGHT_OBJECTIVES.length - 1) * objectiveStaggerMs;
+      objectives.length * objectiveItemFadeInMs +
+      (objectives.length - 1) * objectiveStaggerMs;
 
-    PREFLIGHT_OBJECTIVES.forEach((_, index) => {
+    objectives.forEach((_, index) => {
       timers.push(
         window.setTimeout(
           () => {
@@ -76,8 +78,8 @@ export function PreflightObjectivesStep({
     });
 
     const fadeOutPhase =
-      PREFLIGHT_OBJECTIVES.length * objectiveItemFadeOutMs +
-      (PREFLIGHT_OBJECTIVES.length - 1) * objectiveStaggerMs;
+      objectives.length * objectiveItemFadeOutMs +
+      (objectives.length - 1) * objectiveStaggerMs;
 
     timers.push(
       window.setTimeout(
@@ -91,11 +93,11 @@ export function PreflightObjectivesStep({
         window.clearTimeout(timer);
       }
     };
-  }, [onComplete, prefersReducedMotion]);
+  }, [objectives, onComplete, prefersReducedMotion]);
 
   return (
     <ul className="space-y-6 text-center sm:text-left" aria-live="polite">
-      {PREFLIGHT_OBJECTIVES.map((objective, index) => (
+      {objectives.map((objective, index) => (
         <li
           key={objective}
           className={cn(

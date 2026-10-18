@@ -9,7 +9,6 @@ export const metadata: Metadata = createPageMetadata({
   description: `Learn about ${BRAND_NAME} — our story, values, and approach.`,
   path: "/about",
 });
-
 export default function AboutPage() {
   return <AboutPageContent />;
 }
