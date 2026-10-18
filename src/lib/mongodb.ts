@@ -11,6 +11,7 @@ let dnsConfigured = false;
 
 function configureMongoDns(): void {
   if (dnsConfigured) return;
+  // shortcut: public DNS availability, when to upgrade: use a VPN/local resolver explicitly.
   setServers(["1.1.1.1", "8.8.8.8"]);
   dnsConfigured = true;
 }

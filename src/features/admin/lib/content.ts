@@ -237,7 +237,34 @@ export const blockSchema = z.discriminatedUnion("type", [
   }),
 ]);
 
-export const pageContentSchema = z.object({ blocks: z.array(blockSchema).max(40) });
+const builderElementBase = { id: z.string().trim().min(1).max(100) };
+const builderElementSchema = z.discriminatedUnion("type", [
+  z.object({ ...builderElementBase, type: z.literal("text"), text: z.string().trim().max(3000) }),
+  z.object({ ...builderElementBase, type: z.literal("heading"), text: z.string().trim().min(1).max(240), level: z.enum(["h2", "h3", "h4"]).default("h2") }),
+  z.object({ ...builderElementBase, type: z.literal("image"), src: z.string().trim().max(500), alt: z.string().trim().max(240) }),
+  z.object({ ...builderElementBase, type: z.literal("button"), label: z.string().trim().min(1).max(120), href: hrefSchema }),
+  z.object({ ...builderElementBase, type: z.literal("link"), label: z.string().trim().min(1).max(120), href: hrefSchema }),
+  z.object({ ...builderElementBase, type: z.literal("block"), block: blockSchema }),
+]);
+const builderColumnSchema = z.object({
+  id: z.string().trim().min(1).max(100),
+  elements: z.array(builderElementSchema).max(40),
+});
+const builderRowSchema = z.object({
+  id: z.string().trim().min(1).max(100),
+  columns: z.array(builderColumnSchema).min(1).max(4),
+});
+const builderSectionSchema = z.object({
+  id: z.string().trim().min(1).max(100),
+  label: z.string().trim().min(1).max(160),
+  rows: z.array(builderRowSchema).min(1).max(20),
+  visible: z.boolean().default(true),
+});
+
+export const pageContentSchema = z.object({
+  blocks: z.array(blockSchema).max(40),
+  sections: z.array(builderSectionSchema).max(40).default([]),
+});
 const customPageDefinitionSchema = z.object({
   id: z.string().trim().min(1).max(100),
   name: z.string().trim().min(1).max(120),
@@ -282,12 +309,41 @@ export const siteContentSchema = z.object({
 });
 
 export type CmsBlock = z.infer<typeof blockSchema>;
+export type CmsBuilderElement = z.infer<typeof builderElementSchema>;
+export type CmsBuilderColumn = z.infer<typeof builderColumnSchema>;
+export type CmsBuilderRow = z.infer<typeof builderRowSchema>;
+export type CmsBuilderSection = z.infer<typeof builderSectionSchema>;
+export type CmsPageContent = z.infer<typeof pageContentSchema>;
 export type SiteContent = z.infer<typeof siteContentSchema>;
 export type PageKey = (typeof pageKeys)[number];
 export type CustomPageDefinition = z.infer<typeof customPageDefinitionSchema>;
 export type SiteSettings = z.infer<typeof settingsSchema>;
 export type CmsVisualAsset = z.infer<typeof visualAssetSchema>;
 export type CmsComponentKind = z.infer<typeof componentKindSchema>;
+
+function sectionsFromBlocks(blocks: readonly CmsBlock[]): CmsBuilderSection[] {
+  return blocks.map((block) => ({
+    id: `section-${block.id}`,
+    label: block.type.replace(/([A-Z])/g, " $1").replace(/^./, (value) => value.toUpperCase()),
+    visible: block.visible !== false,
+    rows: [{
+      id: `row-${block.id}`,
+      columns: [{ id: `column-${block.id}`, elements: [{ id: `element-${block.id}`, type: "block", block }] }],
+    }],
+  }));
+}
+
+function normalizePage(page: z.infer<typeof pageContentSchema>): z.infer<typeof pageContentSchema> {
+  return page.sections.length ? page : { ...page, sections: sectionsFromBlocks(page.blocks) };
+}
+
+function normalizeContent(content: SiteContent): SiteContent {
+  return {
+    ...content,
+    pages: Object.fromEntries(Object.entries(content.pages).map(([key, page]) => [key, normalizePage(page)])) as SiteContent["pages"],
+    customPages: Object.fromEntries(Object.entries(content.customPages).map(([key, page]) => [key, normalizePage(page)])),
+  };
+}
 
 export const defaultContent = {
   pages: {
@@ -361,7 +417,7 @@ export const defaultContent = {
 
 export function parseSiteContent(value: unknown): SiteContent {
   const current = siteContentSchema.safeParse(value);
-  if (current.success) return current.data;
+  if (current.success) return normalizeContent(current.data);
 
   const legacy = z.object({
     pages: z.object({
@@ -375,8 +431,8 @@ export function parseSiteContent(value: unknown): SiteContent {
   }).safeParse(value);
   if (!legacy.success) throw current.error;
 
-  return siteContentSchema.parse({
+  return normalizeContent(siteContentSchema.parse({
     ...defaultContent,
     pages: { ...defaultContent.pages, ...legacy.data.pages },
-  });
+  }));
 }

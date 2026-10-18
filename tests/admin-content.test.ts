@@ -124,4 +124,25 @@ describe("admin content schema", () => {
     expect(parsed.pages.projects.blocks[1]).toMatchObject({ items: expect.any(Array) });
     expect(parsed.pages.projects.blocks[1].type === "projectCollection" ? parsed.pages.projects.blocks[1].items[0].image : undefined).toMatchObject({ assetId: "asset-project" });
   });
+
+  it("migrates legacy flat pages into editable sections, rows, and columns", () => {
+    const parsed = parseSiteContent(defaultContent);
+    const section = parsed.pages.home.sections[0];
+    expect(section.rows[0]?.columns[0]?.elements[0]).toMatchObject({
+      type: "block",
+      block: { id: "home-preflight" },
+    });
+  });
+
+  it("validates links on nested builder elements", () => {
+    const content = structuredClone(defaultContent);
+    const parsed = parseSiteContent(content);
+    parsed.pages.home.sections[0]?.rows[0]?.columns[0]?.elements.push({
+      id: "unsafe-link",
+      type: "button",
+      label: "Unsafe",
+      href: "javascript:alert(1)",
+    });
+    expect(siteContentSchema.safeParse(parsed).success).toBe(false);
+  });
 });

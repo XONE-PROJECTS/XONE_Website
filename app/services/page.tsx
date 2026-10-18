@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { ServicesPageContent } from "@/features/services/components/ServicesPageContent";
+import { CmsPublicPage } from "@/features/admin/components/CmsPublicPage";
 import { createPageMetadata } from "@/lib/metadata";
 import { BRAND_NAME } from "@/lib/brand";
 
@@ -9,6 +9,4 @@ export const metadata: Metadata = createPageMetadata({
   description: `${BRAND_NAME} delivers automation, UI/UX, web, and mobile development.`,
   path: "/services",
 });
-export default function ServicesPage() {
-  return <ServicesPageContent />;
-}
+export default function ServicesPage() { return <CmsPublicPage page="services" />; }

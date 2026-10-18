@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 
 import { getPreviewContent } from "@/features/admin/lib/preview";
-import { RestoredPublicPage } from "@/features/admin/components/RestoredPublicPage";
+import { PreviewLiveSync } from "@/features/admin/components/PreviewLiveSync";
 import { pageKeys, type PageKey } from "@/features/admin/lib/content";
 
 export const dynamic = "force-dynamic";
@@ -15,5 +15,5 @@ export default async function AdminPreviewPage({ searchParams }: { searchParams:
   if (!content) notFound();
   const requestedPage = params.page ?? "home";
   const page: PageKey = pageKeys.includes(requestedPage as PageKey) ? requestedPage as PageKey : "home";
-  return <main className="min-h-screen bg-xone-section"><div className="sticky top-0 z-50 border-b bg-amber-100 px-4 py-3 text-center text-sm text-amber-950"><strong>Restored public preview</strong> · CMS edits are temporarily reset to the public baseline.</div><RestoredPublicPage page={page} /></main>;
+  return <main className="min-h-screen bg-xone-section"><PreviewLiveSync initialContent={content} initialPage={page} token={token} /></main>;
 }

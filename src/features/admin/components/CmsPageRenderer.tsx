@@ -7,10 +7,23 @@ import { TeamMemberSocialLinks } from "@/components/team-member-social-links";
 import { LegalPageLayout } from "@/features/legal/components/LegalPageLayout";
 import { PreFlightIntro } from "@/features/preflight/components/PreFlightIntro";
 import { ProjectsCarousel } from "@/features/projects/components/ProjectsCarousel";
-import type { CmsBlock, CmsVisualAsset } from "@/features/admin/lib/content";
+import type { CmsBlock, CmsBuilderElement, CmsBuilderSection, CmsVisualAsset } from "@/features/admin/lib/content";
 
-export function CmsPageRenderer({ blocks, includePreflight = true }: { blocks: readonly CmsBlock[]; includePreflight?: boolean }) {
-  return <div className="min-h-full w-full bg-xone-section px-4 py-12 sm:px-6 lg:px-8"><div className="mx-auto w-full max-w-6xl space-y-10">{blocks.filter((block) => block.visible !== false && (includePreflight || block.type !== "preflight")).map((block) => <Block key={block.id} block={block} />)}</div></div>;
+export function CmsPageRenderer({ blocks, sections, includePreflight = true }: { blocks?: readonly CmsBlock[]; sections?: readonly CmsBuilderSection[]; includePreflight?: boolean }) {
+  const renderedSections = sections ?? (blocks ?? []).map((block) => ({ id: block.id, label: block.type, visible: block.visible !== false, rows: [{ id: `${block.id}-row`, columns: [{ id: `${block.id}-column`, elements: [{ id: `${block.id}-element`, type: "block" as const, block }] }] }] }));
+  return <div className="min-h-full w-full bg-xone-section px-4 py-12 sm:px-6 lg:px-8"><div className="mx-auto w-full max-w-6xl space-y-10">{renderedSections.filter((section) => section.visible).map((section) => <section key={section.id} className="space-y-8">{section.rows.map((row) => <div key={row.id} className={`grid gap-6 ${row.columns.length === 1 ? "grid-cols-1" : row.columns.length === 2 ? "grid-cols-1 md:grid-cols-2" : row.columns.length === 3 ? "grid-cols-1 md:grid-cols-3" : "grid-cols-1 md:grid-cols-4"}`}>{row.columns.map((column) => <div key={column.id} className="min-w-0 space-y-8">{column.elements.map((element) => <BuilderElement key={element.id} element={element} includePreflight={includePreflight} />)}</div>)}</div>)}</section>)}</div></div>;
+}
+
+function BuilderElement({ element, includePreflight }: { element: CmsBuilderElement; includePreflight: boolean }) {
+  if (element.type === "block") return includePreflight || element.block.type !== "preflight" ? <Block block={element.block} /> : null;
+  if (element.type === "text") return <p className="break-words leading-relaxed text-muted-foreground">{element.text}</p>;
+  if (element.type === "heading") {
+    const Tag = element.level;
+    return <Tag className="break-words text-2xl font-semibold">{element.text}</Tag>;
+  }
+  if (element.type === "image") return <img src={element.src} alt={element.alt} className="max-h-[32rem] w-full rounded-xl object-contain" />;
+  if (element.type === "button") return <Link href={element.href} className="inline-flex min-h-11 items-center rounded-md bg-primary px-5 font-medium text-primary-foreground transition hover:opacity-90">{element.label}</Link>;
+  return <Link href={element.href} className="font-semibold text-xone-violet underline underline-offset-4">{element.label}</Link>;
 }
 
 function gridClass(columns: number): string {

@@ -14,6 +14,9 @@ import {
   pageKeys,
   parseSiteContent,
   type CmsBlock,
+  type CmsBuilderElement,
+  type CmsBuilderSection,
+  type CmsPageContent,
   type CmsComponentKind,
   type CmsVisualAsset,
   type PageKey,
@@ -36,6 +39,7 @@ type AddableBlockType =
   | "teamCollection"
   | "legal"
   | "component";
+type AddableElementType = "text" | "heading" | "image" | "button" | "link";
 const publicComponentKinds: CmsComponentKind[] = [
   "homeHero", "featuredProjects", "teamStrip", "homeCta", "services",
   "process", "projectsCarousel", "contact", "aboutStory", "values", "legal",
@@ -73,17 +77,6 @@ const deviceWidths: Record<Device, string> = {
   tablet: "768px",
   mobile: "390px",
 };
-const publicPreviewPaths: Partial<Record<PageKey, string>> = {
-  home: "/?adminPreview=1",
-  projects: "/projects",
-  services: "/services",
-  about: "/about",
-  contact: "/contact",
-  process: "/process",
-  privacy: "/privacy",
-  terms: "/terms",
-};
-
 function createClientId(): string {
   const randomUuid = globalThis.crypto?.randomUUID;
   if (typeof randomUuid === "function")
@@ -104,16 +97,16 @@ function customPageId(selection: SelectedPage): string | null {
 function getPage(
   content: SiteContent,
   selection: SelectedPage,
-): { blocks: CmsBlock[] } {
+): CmsPageContent {
   const id = customPageId(selection);
   return id
-    ? (content.customPages[id] ?? { blocks: [] as CmsBlock[] })
+    ? (content.customPages[id] ?? { blocks: [], sections: [] })
     : content.pages[selection as PageKey];
 }
 function replacePage(
   content: SiteContent,
   selection: SelectedPage,
-  page: { blocks: CmsBlock[] },
+  page: CmsPageContent,
 ): SiteContent {
   const id = customPageId(selection);
   return id
@@ -121,8 +114,49 @@ function replacePage(
     : { ...content, pages: { ...content.pages, [selection]: page } };
 }
 
+function findBlockElement(sections: readonly CmsBuilderSection[], blockId?: string | null): CmsBlock | null {
+  for (const section of sections) for (const row of section.rows) for (const column of row.columns) for (const element of column.elements) {
+    if (element.type === "block" && (!blockId || element.block.id === blockId)) return element.block;
+  }
+  return null;
+}
+
+function findBuilderElement(sections: readonly CmsBuilderSection[], elementId?: string | null): CmsBuilderElement | null {
+  for (const section of sections) for (const row of section.rows) for (const column of row.columns) for (const element of column.elements) if (element.id === elementId) return element;
+  return null;
+}
+
+function updateBlockInSections(sections: readonly CmsBuilderSection[], next: CmsBlock): CmsBuilderSection[] {
+  return sections.map((section) => ({ ...section, rows: section.rows.map((row) => ({ ...row, columns: row.columns.map((column) => ({ ...column, elements: column.elements.map((element) => element.type === "block" && element.block.id === next.id ? { ...element, block: next } : element) })) })) }));
+}
+
+function duplicateSection(section: CmsBuilderSection): CmsBuilderSection {
+  const copy = structuredClone(section);
+  return {
+    ...copy,
+    id: `${copy.id}-copy-${createClientId()}`,
+    label: `Copy of ${copy.label}`,
+    rows: copy.rows.map((row) => ({
+      ...row,
+      id: `${row.id}-copy-${createClientId()}`,
+      columns: row.columns.map((column) => ({
+        ...column,
+        id: `${column.id}-copy-${createClientId()}`,
+        elements: column.elements.map((element) => ({
+          ...element,
+          id: `${element.id}-copy-${createClientId()}`,
+          ...(element.type === "block"
+            ? { block: { ...element.block, id: `${element.block.id}-copy-${createClientId()}` } }
+            : {}),
+        })),
+      })),
+    })),
+  };
+}
+
 export function AdminDashboard({ email }: { email: string }) {
   const [content, setContent] = useState<SiteContent | null>(null);
+  const [publishedContent, setPublishedContent] = useState<SiteContent | null>(null);
   const [page, setPage] = useState<SelectedPage>("home");
   const [selectedBlockId, setSelectedBlockId] = useState<string | null>(null);
   const [device, setDevice] = useState<Device>("desktop");
@@ -145,7 +179,9 @@ export function AdminDashboard({ email }: { email: string }) {
         const payload: unknown = await response.json();
         if (!payload || typeof payload !== "object" || !("draft" in payload))
           throw new Error("Invalid CMS response");
+        if (!("published" in payload)) throw new Error("Invalid CMS response");
         setContent(parseSiteContent(payload.draft));
+        setPublishedContent(parseSiteContent(payload.published));
       })
       .catch((reason: unknown) =>
         setError(
@@ -167,10 +203,10 @@ export function AdminDashboard({ email }: { email: string }) {
   }, [history.length]);
 
   const currentPage = content ? getPage(content, page) : null;
+  const publishedPage = publishedContent ? getPage(publishedContent, page) : null;
   const selectedBlock =
-    currentPage?.blocks.find((block) => block.id === selectedBlockId) ??
-    currentPage?.blocks[0] ??
-    null;
+    currentPage ? findBlockElement(currentPage.sections, selectedBlockId) : null;
+  const selectedElement = currentPage ? findBuilderElement(currentPage.sections, selectedBlockId) : null;
   const updateContent = useCallback(
     (next: SiteContent) => {
       setContent((current) => {
@@ -191,24 +227,17 @@ export function AdminDashboard({ email }: { email: string }) {
     },
     [page],
   );
-  function updatePageBlocks(blocks: CmsBlock[]): void {
-    if (content) updateContent(replacePage(content, page, { blocks }));
-  }
   function updateBlock(next: CmsBlock): void {
-    if (currentPage)
-      updatePageBlocks(
-        currentPage.blocks.map((block) =>
-          block.id === next.id ? next : block,
-        ),
-      );
+    if (content && currentPage) updateContent(replacePage(content, page, { blocks: currentPage.blocks.map((block) => block.id === next.id ? next : block), sections: updateBlockInSections(currentPage.sections, next) }));
   }
-  function moveBlock(index: number, nextIndex: number): void {
-    if (!currentPage || nextIndex < 0 || nextIndex >= currentPage.blocks.length)
-      return;
-    const blocks = [...currentPage.blocks];
-    const [moved] = blocks.splice(index, 1);
-    blocks.splice(nextIndex, 0, moved);
-    updatePageBlocks(blocks);
+  function updatePageSections(sections: CmsBuilderSection[]): void {
+    if (!content || !currentPage) return;
+    const blocks = sections.flatMap((section) => section.rows.flatMap((row) => row.columns.flatMap((column) => column.elements.flatMap((element) => element.type === "block" ? [element.block] : []))));
+    updateContent(replacePage(content, page, { blocks, sections }));
+  }
+  function updateSelectedElement(next: CmsBuilderElement): void {
+    if (!currentPage) return;
+    updatePageSections(currentPage.sections.map((section) => ({ ...section, rows: section.rows.map((row) => ({ ...row, columns: row.columns.map((column) => ({ ...column, elements: column.elements.map((item) => item.id === next.id ? next : item) })) })) })));
   }
   function addBlock(
     type: AddableBlockType,
@@ -345,7 +374,28 @@ export function AdminDashboard({ email }: { email: string }) {
                       secondaryHref: "/projects",
                       visible: true,
                     };
-    updatePageBlocks([...currentPage.blocks, block]);
+    updatePageSections([...currentPage.sections, { id: `${id}-section`, label: blockLabel(block), visible: true, rows: [{ id: `${id}-row`, columns: [{ id: `${id}-column`, elements: [{ id, type: "block", block }] }] }] }]);
+    setSelectedBlockId(id);
+  }
+  function addElement(type: AddableElementType): void {
+    if (!currentPage) return;
+    const id = `${page}-${type}-${createClientId()}`;
+    const element: CmsBuilderElement = type === "text"
+      ? { id, type, text: "Edit this text." }
+      : type === "heading"
+        ? { id, type, text: "New heading", level: "h2" }
+        : type === "image"
+          ? { id, type, src: "/assets/XONE/xone_brand_kit/xone_logo.svg", alt: "Edit image description" }
+          : type === "button"
+            ? { id, type, label: "Learn more", href: "/contact" }
+            : { id, type, label: "Read more", href: "/projects" };
+    const sections = currentPage.sections.length ? structuredClone(currentPage.sections) : [{ id: `${id}-section`, label: "New section", visible: true, rows: [{ id: `${id}-row`, columns: [{ id: `${id}-column`, elements: [] }] }] }];
+    const last = sections.at(-1);
+    if (!last) return;
+    const row = last.rows[0];
+    if (!row) return;
+    row.columns[0]?.elements.push(element);
+    updatePageSections(sections);
     setSelectedBlockId(id);
   }
   function handleCanvasDrop(event: DragEvent<HTMLDivElement>): void {
@@ -440,6 +490,8 @@ export function AdminDashboard({ email }: { email: string }) {
           ((await response.json()) as { error?: string }).error ??
             "Unable to publish draft",
         );
+      const payload = (await response.json()) as { content?: unknown };
+      if (payload.content) setPublishedContent(parseSiteContent(payload.content));
       setMessage("Published successfully.");
     } catch (reason: unknown) {
       setError(
@@ -469,7 +521,7 @@ export function AdminDashboard({ email }: { email: string }) {
     const id = createClientId();
     updateContent({
       ...content,
-      customPages: { ...content.customPages, [id]: { blocks: [] } },
+      customPages: { ...content.customPages, [id]: { blocks: [], sections: [] } },
       customPageDefinitions: [
         ...content.customPageDefinitions,
         { id, name, slug, description: "", archived: false },
@@ -571,7 +623,7 @@ export function AdminDashboard({ email }: { email: string }) {
           </div>
         )}
       </header>
-      <div className="flex min-h-0 w-full flex-1 flex-col lg:grid lg:grid-cols-[220px_minmax(0,1fr)_300px_260px]">
+      <div className="flex min-h-0 w-full flex-1 flex-col lg:grid lg:grid-cols-[220px_minmax(0,1fr)_320px_360px]">
         <aside className="hidden min-h-0 overflow-hidden border-b bg-background p-4 lg:block lg:border-b-0 lg:border-r">
           <div className="mb-3 flex items-center justify-between">
             <h2 className="font-semibold">Pages</h2>
@@ -645,6 +697,8 @@ export function AdminDashboard({ email }: { email: string }) {
               type="button"
               onClick={() => setMobileWorkspace(workspace)}
               className={`min-h-10 flex-1 rounded-md px-3 text-sm capitalize ${mobileWorkspace === workspace ? "bg-primary text-primary-foreground" : "hover:bg-muted"}`}
+              title={`Show ${workspace === "add" ? "section tools" : `${workspace} workspace`}`}
+              aria-pressed={mobileWorkspace === workspace}
             >
               {workspace === "add" ? "Add section" : workspace}
             </button>
@@ -684,69 +738,46 @@ export function AdminDashboard({ email }: { email: string }) {
               <div className="border-b bg-xone-navy px-5 py-4 text-sm font-medium text-white">
                 Draft preview · {pageTitle}
               </div>
-              {publicPreviewPaths[page as PageKey] && (
+              {publishedPage && (
                 <div className="border-b bg-muted/30 p-3">
                   <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                     Current public page
                   </p>
-                  <iframe
-                    key={`${page}-${device}`}
-                    title={`Current public ${pageTitle} page`}
-                    src={publicPreviewPaths[page as PageKey]}
-                    onLoad={(event) => {
-                      const frame = event.currentTarget;
-                      const document = frame.contentDocument;
-                      if (!document) return;
-                      frame.style.height = `${Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)}px`;
-                    }}
-                    className="block w-full rounded-xl border bg-background"
-                    style={{ minHeight: device === "mobile" ? "844px" : device === "tablet" ? "1024px" : "900px" }}
-                  />
+                  <div className="max-h-[50rem] overflow-y-auto rounded-xl border bg-background" style={{ minHeight: device === "mobile" ? "844px" : device === "tablet" ? "1024px" : "900px" }}>
+                    <CmsPageRenderer sections={publishedPage.sections} blocks={publishedPage.blocks} includePreflight={false} />
+                  </div>
                 </div>
               )}
               <div className="space-y-4 p-4">
-                {currentPage?.blocks.map((block, index) => (
-                  <EditorBlock
-                    key={block.id}
-                    block={block}
+                {currentPage?.sections.map((section, index) => (
+                  <BuilderSection
+                    key={section.id}
+                    section={section}
                     index={index}
-                    total={currentPage.blocks.length}
-                    selected={selectedBlockId === block.id}
-                    onSelect={() => {
-                      setSelectedBlockId(block.id);
+                    total={currentPage.sections.length}
+                    selectedId={selectedBlockId}
+                    onSelect={(element) => {
+                      setSelectedBlockId(element.type === "block" ? element.block.id : element.id);
                       setPanel("editor");
                     }}
-                    onMove={(nextIndex) => moveBlock(index, nextIndex)}
-                    onDrop={(sourceIndex) => moveBlock(sourceIndex, index)}
+                    onChange={(next) => updatePageSections(currentPage.sections.map((item) => item.id === next.id ? next : item))}
                     onDuplicate={() => {
-                      const copy = {
-                        ...block,
-                        id: `${block.id}-copy-${createClientId()}`,
-                      };
-                      updatePageBlocks([
-                        ...currentPage.blocks.slice(0, index + 1),
-                        copy,
-                        ...currentPage.blocks.slice(index + 1),
-                      ]);
-                      setSelectedBlockId(copy.id);
+                      const copy = duplicateSection(section);
+                      updatePageSections([...currentPage.sections.slice(0, index + 1), copy, ...currentPage.sections.slice(index + 1)]);
+                      setSelectedBlockId(copy.rows[0]?.columns[0]?.elements[0]?.id ?? null);
+                      setMobileWorkspace("edit");
                     }}
-                    onDelete={() =>
-                      updatePageBlocks(
-                        currentPage.blocks.filter(
-                          (item) => item.id !== block.id,
-                        ),
-                      )
-                    }
-                    onToggle={() =>
-                      updateBlock({
-                        ...block,
-                        visible: block.visible === false,
-                      })
-                    }
+                    onMove={(nextIndex) => {
+                      const sections = [...currentPage.sections];
+                      const [moved] = sections.splice(index, 1);
+                      sections.splice(nextIndex, 0, moved);
+                      updatePageSections(sections);
+                    }}
+                    onDelete={() => updatePageSections(currentPage.sections.filter((item) => item.id !== section.id))}
                   />
                 ))}
                 <div className="rounded-xl border border-dashed border-primary/40 bg-primary/5 p-6 text-center text-sm text-muted-foreground">
-                  {currentPage?.blocks.length
+                  {currentPage?.sections.length
                     ? "Drop a section here to add it to the bottom"
                     : "This page is empty. Drop a section here or use Add section in the sidebar."}
                 </div>
@@ -755,7 +786,7 @@ export function AdminDashboard({ email }: { email: string }) {
           </div>
         </section>
         <aside className={`min-h-0 overflow-y-auto border-t bg-background p-4 lg:border-l lg:border-t-0 ${mobileWorkspace === "add" ? "block" : "hidden lg:block"}`}>
-          <AddSectionPanel onAdd={addBlock} />
+          <AddSectionPanel onAdd={addBlock} onAddElement={addElement} />
         </aside>
         <aside className={`min-h-0 overflow-y-auto border-t bg-background p-4 lg:border-l lg:border-t-0 ${mobileWorkspace === "edit" ? "block" : "hidden lg:block"}`}>
           <div className="mb-4 flex rounded-md border p-1">
@@ -778,6 +809,8 @@ export function AdminDashboard({ email }: { email: string }) {
             <SiteSettings content={content} onChange={updateContent} />
           ) : selectedBlock ? (
             <BlockSettings block={selectedBlock} onChange={updateBlock} />
+          ) : selectedElement ? (
+            <BuilderElementSettings element={selectedElement} onChange={updateSelectedElement} />
           ) : (
             <p className="text-sm text-muted-foreground">
               Select a section to edit its content and responsive settings.
@@ -907,10 +940,70 @@ function EditorBlock({
   );
 }
 
+function BuilderSection({
+  section,
+  index,
+  total,
+  selectedId,
+  onSelect,
+  onChange,
+  onDuplicate,
+  onMove,
+  onDelete,
+}: {
+  section: CmsBuilderSection;
+  index: number;
+  total: number;
+  selectedId: string | null;
+  onSelect: (element: CmsBuilderElement) => void;
+  onChange: (section: CmsBuilderSection) => void;
+  onDuplicate: () => void;
+  onMove: (index: number) => void;
+  onDelete: () => void;
+}) {
+  const patchElement = (elementId: string, next: CmsBuilderElement) => onChange({ ...section, rows: section.rows.map((row) => ({ ...row, columns: row.columns.map((column) => ({ ...column, elements: column.elements.map((element) => element.id === elementId ? next : element) })) })) });
+  return <article className="rounded-xl border bg-background p-4 shadow-sm">
+    <div className="mb-3 flex flex-wrap items-center gap-2">
+      <strong className="mr-auto text-sm">{section.label}</strong>
+      <span className="text-xs text-muted-foreground">Section {index + 1}</span>
+      <button type="button" aria-label="Move section up" title="Move section up" disabled={index === 0} onClick={() => onMove(index - 1)} className="rounded px-2 py-1 disabled:opacity-30">↑</button>
+      <button type="button" aria-label="Move section down" title="Move section down" disabled={index === total - 1} onClick={() => onMove(index + 1)} className="rounded px-2 py-1 disabled:opacity-30">↓</button>
+      <button type="button" aria-label="Duplicate section" title="Duplicate section" onClick={onDuplicate} className="rounded px-2 py-1">⧉</button>
+      <button type="button" aria-label="Delete section" title="Delete section" onClick={onDelete} className="rounded px-2 py-1 text-destructive">×</button>
+    </div>
+    {section.rows.map((row, rowIndex) => <div key={row.id} className="space-y-3 rounded-lg border border-dashed p-3">
+      <div className="flex items-center gap-2 text-xs font-medium text-muted-foreground"><span className="mr-auto">Row {rowIndex + 1}</span><button type="button" title="Move row up" disabled={rowIndex === 0} onClick={() => onChange({ ...section, rows: section.rows.map((item, itemIndex) => itemIndex === rowIndex ? section.rows[rowIndex - 1] : itemIndex === rowIndex - 1 ? row : item) })} className="disabled:opacity-30">↑</button><button type="button" title="Move row down" disabled={rowIndex === section.rows.length - 1} onClick={() => onChange({ ...section, rows: section.rows.map((item, itemIndex) => itemIndex === rowIndex ? section.rows[rowIndex + 1] : itemIndex === rowIndex + 1 ? row : item) })} className="disabled:opacity-30">↓</button></div>
+      <div className={`grid gap-3 ${row.columns.length === 1 ? "grid-cols-1" : row.columns.length === 2 ? "grid-cols-1 md:grid-cols-2" : row.columns.length === 3 ? "grid-cols-1 md:grid-cols-3" : "grid-cols-1 md:grid-cols-4"}`}>
+        {row.columns.map((column, columnIndex) => <div key={column.id} className="min-h-20 space-y-2 rounded-md bg-muted/30 p-2">
+          <div className="flex items-center text-[11px] text-muted-foreground"><span className="mr-auto">Column {columnIndex + 1}</span><button type="button" title="Move column left" disabled={columnIndex === 0} onClick={() => onChange({ ...section, rows: section.rows.map((item, itemIndex) => itemIndex === rowIndex ? { ...item, columns: item.columns.map((value, valueIndex) => valueIndex === columnIndex ? item.columns[columnIndex - 1] : valueIndex === columnIndex - 1 ? column : value) } : item) })} className="disabled:opacity-30">←</button><button type="button" title="Move column right" disabled={columnIndex === row.columns.length - 1} onClick={() => onChange({ ...section, rows: section.rows.map((item, itemIndex) => itemIndex === rowIndex ? { ...item, columns: item.columns.map((value, valueIndex) => valueIndex === columnIndex ? item.columns[columnIndex + 1] : valueIndex === columnIndex + 1 ? column : value) } : item) })} className="disabled:opacity-30">→</button></div>
+          {column.elements.map((element, elementIndex) => <div key={element.id} draggable onDragStart={(event) => event.dataTransfer.setData("text/x-xone-element", element.id)} onDragOver={(event) => event.preventDefault()} onDrop={(event) => { event.preventDefault(); const sourceId = event.dataTransfer.getData("text/x-xone-element"); const sourceIndex = column.elements.findIndex((item) => item.id === sourceId); if (sourceIndex < 0 || sourceIndex === elementIndex) return; const elements = [...column.elements]; const [moved] = elements.splice(sourceIndex, 1); elements.splice(elementIndex, 0, moved); onChange({ ...section, rows: section.rows.map((item, itemIndex) => itemIndex === rowIndex ? { ...item, columns: item.columns.map((value) => value.id === column.id ? { ...value, elements } : value) } : item) }); }}><BuilderElementEditor element={element} selected={selectedId === element.id || (element.type === "block" && selectedId === element.block.id)} onSelect={() => onSelect(element)} onChange={(next) => patchElement(element.id, next)} /></div>)}
+        </div>)}
+      </div>
+    </div>)}
+  </article>;
+}
+
+function BuilderElementEditor({ element, selected, onSelect, onChange }: { element: CmsBuilderElement; selected: boolean; onSelect: () => void; onChange: (element: CmsBuilderElement) => void }) {
+  if (element.type === "block") return <button type="button" onClick={onSelect} className={`block w-full text-left ${selected ? "rounded-md ring-2 ring-primary" : ""}`}><span className="pointer-events-none block"><CmsPageRenderer blocks={[element.block]} includePreflight={false} /></span></button>;
+  if (element.type === "image") return <div onClick={onSelect} className={`rounded-md border p-2 ${selected ? "ring-2 ring-primary" : ""}`}><img src={element.src} alt={element.alt} className="max-h-40 w-full object-contain" /></div>;
+  if (element.type === "heading") return <input aria-label="Edit heading" value={element.text} onChange={(event) => onChange({ ...element, text: event.target.value })} onFocus={onSelect} className={`w-full bg-transparent text-2xl font-semibold outline-none ${selected ? "ring-2 ring-primary" : ""}`} />;
+  if (element.type === "text") return <textarea aria-label="Edit text" value={element.text} onChange={(event) => onChange({ ...element, text: event.target.value })} onFocus={onSelect} rows={3} className={`w-full resize-y bg-transparent text-muted-foreground outline-none ${selected ? "ring-2 ring-primary" : ""}`} />;
+  return <input aria-label={`Edit ${element.type} label`} value={element.label} onChange={(event) => onChange({ ...element, label: event.target.value })} onFocus={onSelect} className={`min-h-10 w-full rounded-md ${element.type === "button" ? "bg-primary px-4 text-primary-foreground" : "text-xone-violet underline"} outline-none ${selected ? "ring-2 ring-primary" : ""}`} />;
+}
+
+function BuilderElementSettings({ element, onChange }: { element: CmsBuilderElement; onChange: (element: CmsBuilderElement) => void }) {
+  if (element.type === "text" || element.type === "heading") return <div className="space-y-4"><h2 className="font-semibold">Edit {element.type}</h2><TextField label="Text" value={element.text} onChange={(text) => onChange({ ...element, text })} />{element.type === "heading" && <label className="block text-sm font-medium">Level<select value={element.level} onChange={(event) => onChange({ ...element, level: event.target.value as typeof element.level })} className="mt-1 min-h-10 w-full rounded-md border bg-background px-3"><option value="h2">Heading 2</option><option value="h3">Heading 3</option><option value="h4">Heading 4</option></select></label>}</div>;
+  if (element.type === "image") return <div className="space-y-4"><h2 className="font-semibold">Edit image</h2><Field label="Image URL" value={element.src} onChange={(src) => onChange({ ...element, src })} /><Field label="Alt text" value={element.alt} onChange={(alt) => onChange({ ...element, alt })} /></div>;
+  if (element.type === "button" || element.type === "link") return <div className="space-y-4"><h2 className="font-semibold">Edit {element.type}</h2><Field label="Label" value={element.label} onChange={(label) => onChange({ ...element, label })} /><Field label="Link" value={element.href} onChange={(href) => onChange({ ...element, href })} /></div>;
+  return <BlockSettings block={element.block} onChange={(block) => onChange({ ...element, block })} />;
+}
+
 function AddSectionPanel({
   onAdd,
+  onAddElement,
 }: {
   onAdd: (type: AddableBlockType, componentKind?: CmsComponentKind) => void;
+  onAddElement: (type: AddableElementType) => void;
 }) {
   const addableNames = addableBlockTypes.filter((type) => type !== "component");
   const label = (value: string) => value.replace(/([A-Z])/g, " $1").trim();
@@ -919,6 +1012,12 @@ function AddSectionPanel({
       <h2 id="add-section-heading" className="mb-3 text-sm font-semibold">
         Add section
       </h2>
+      <div>
+        <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Basic elements</h3>
+        <div className="grid gap-2">
+          {(["text", "heading", "image", "button", "link"] as const).map((type) => <button key={type} type="button" onClick={() => onAddElement(type)} className="min-h-10 rounded-md border bg-background px-3 text-left text-sm capitalize hover:bg-muted">+ {type}</button>)}
+        </div>
+      </div>
       <div>
         <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Existing blocks</h3>
         <div className="grid gap-2">
