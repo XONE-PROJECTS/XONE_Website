@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { CmsPublicPage } from "@/features/admin/components/CmsPublicPage";
+import { TermsPageContent } from "@/features/legal/components/TermsPageContent";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
@@ -10,4 +10,6 @@ export const metadata: Metadata = createPageMetadata({
   path: "/terms",
 });
 
-export default function TermsPage() { return <CmsPublicPage page="terms" />; }
+export default function TermsPage() {
+  return <TermsPageContent />;
+}

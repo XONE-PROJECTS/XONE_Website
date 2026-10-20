@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { CmsPublicPage } from "@/features/admin/components/CmsPublicPage";
+import { ProcessPageContent } from "@/features/process/components/ProcessPageContent";
 import { createPageMetadata } from "@/lib/metadata";
 import { BRAND_NAME } from "@/lib/brand";
 
@@ -10,4 +10,6 @@ export const metadata: Metadata = createPageMetadata({
   path: "/process",
 });
 
-export default function ProcessPage() { return <CmsPublicPage page="process" />; }
+export default function ProcessPage() {
+  return <ProcessPageContent />;
+}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 
-import { CmsPublicPage } from "@/features/admin/components/CmsPublicPage";
+import { PrivacyPageContent } from "@/features/legal/components/PrivacyPageContent";
 import { createPageMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = createPageMetadata({
@@ -10,4 +10,6 @@ export const metadata: Metadata = createPageMetadata({
   path: "/privacy",
 });
 
-export default function PrivacyPage() { return <CmsPublicPage page="privacy" />; }
+export default function PrivacyPage() {
+  return <PrivacyPageContent />;
+}
