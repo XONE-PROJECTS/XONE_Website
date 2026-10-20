@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { imageUrlSchema, linkSchema, responsiveStyleSchema, seoSchema, themeSchema } from "./design";
 
 import { teamMembers } from "@/lib/team-members";
 
@@ -14,10 +15,7 @@ export const pageKeys = [
   "footer",
 ] as const;
 
-const hrefSchema = z.string().trim().max(500).refine(
-  (value) => value.startsWith("/") || /^https?:\/\//.test(value) || value.startsWith("mailto:"),
-  "Links must be relative, HTTP(S), or mailto links",
-);
+const hrefSchema = linkSchema;
 
 const itemSchema = z.object({
   title: z.string().trim().min(1).max(160),
@@ -36,7 +34,7 @@ const visualAssetSchema = z.discriminatedUnion("source", [
   z.object({
     source: z.literal("upload"),
     assetId: z.string().trim().min(1).max(120),
-    src: z.string().trim().max(500),
+    src: imageUrlSchema,
     alt: z.string().trim().max(240),
     width: z.number().int().min(1).max(2048).optional(),
     height: z.number().int().min(1).max(2048).optional(),
@@ -48,7 +46,7 @@ const visualAssetSchema = z.discriminatedUnion("source", [
 const projectSchema = itemSchema.extend({
   id: z.string().trim().min(1).max(100),
   href: hrefSchema.optional(),
-  imageSrc: z.string().trim().max(500).optional(),
+  imageSrc: imageUrlSchema.optional(),
   summary: z.string().trim().max(3000).optional(),
   challenge: z.string().trim().max(3000).default(""),
   outcomes: z.array(z.string().trim().max(500)).max(20).default([]),
@@ -57,7 +55,7 @@ const projectSchema = itemSchema.extend({
   teamCredits: z.array(z.object({ name: z.string().trim().max(160), role: z.string().trim().max(160) })).max(12).default([]),
   liveHref: hrefSchema.optional(),
   liveLinkLabel: z.string().trim().max(120).default("View live site"),
-  previewImageSrc: z.string().trim().max(500).optional(),
+  previewImageSrc: imageUrlSchema.optional(),
   image: visualAssetSchema.optional(),
   tags: z.array(z.string().trim().max(80)).max(30).default([]),
 });
@@ -75,7 +73,7 @@ const teamMemberSchema = z.object({
   name: z.string().trim().min(1).max(160),
   role: z.string().trim().min(1).max(160),
   initials: z.string().trim().min(1).max(8),
-  photoSrc: z.string().trim().max(500),
+  photoSrc: imageUrlSchema,
   photo: visualAssetSchema.optional(),
   linkedin: hrefSchema.optional(),
   github: hrefSchema.optional(),
@@ -106,7 +104,7 @@ export const blockSchema = z.discriminatedUnion("type", [
     body: z.string().trim().max(3000),
     ctaLabel: z.string().trim().max(120).optional(),
     ctaHref: hrefSchema.optional(),
-    imageSrc: z.string().trim().max(500).optional(),
+    imageSrc: imageUrlSchema.optional(),
     imageAlt: z.string().trim().max(240).optional(),
     imageFit: z.enum(["cover", "contain"]).default("cover"),
     columns: z.number().int().min(1).max(3).default(1),
@@ -133,7 +131,7 @@ export const blockSchema = z.discriminatedUnion("type", [
     type: z.literal("cards"),
     heading: z.string().trim().max(240).optional(),
     items: z.array(itemSchema.extend({
-      imageSrc: z.string().trim().max(500).optional(),
+      imageSrc: imageUrlSchema.optional(),
       imageAlt: z.string().trim().max(240).optional(),
       image: visualAssetSchema.optional(),
       icon: visualAssetSchema.optional(),
@@ -174,7 +172,7 @@ export const blockSchema = z.discriminatedUnion("type", [
   z.object({
     ...blockBase,
     type: z.literal("preflight"),
-    logoSrc: z.string().trim().max(500),
+    logoSrc: imageUrlSchema,
     logoAlt: z.string().trim().max(240),
     objectives: z.array(z.string().trim().min(1).max(300)).length(3),
     reasons: z.array(itemSchema).min(1).max(8),
@@ -237,24 +235,27 @@ export const blockSchema = z.discriminatedUnion("type", [
   }),
 ]);
 
-const builderElementBase = { id: z.string().trim().min(1).max(100) };
+const builderElementBase = { id: z.string().trim().min(1).max(100), styles: responsiveStyleSchema.optional() };
 const builderElementSchema = z.discriminatedUnion("type", [
   z.object({ ...builderElementBase, type: z.literal("text"), text: z.string().trim().max(3000) }),
   z.object({ ...builderElementBase, type: z.literal("heading"), text: z.string().trim().min(1).max(240), level: z.enum(["h2", "h3", "h4"]).default("h2") }),
-  z.object({ ...builderElementBase, type: z.literal("image"), src: z.string().trim().max(500), alt: z.string().trim().max(240) }),
+  z.object({ ...builderElementBase, type: z.literal("image"), src: imageUrlSchema, alt: z.string().trim().max(240) }),
   z.object({ ...builderElementBase, type: z.literal("button"), label: z.string().trim().min(1).max(120), href: hrefSchema }),
   z.object({ ...builderElementBase, type: z.literal("link"), label: z.string().trim().min(1).max(120), href: hrefSchema }),
   z.object({ ...builderElementBase, type: z.literal("block"), block: blockSchema }),
 ]);
 const builderColumnSchema = z.object({
+  styles: responsiveStyleSchema.optional(),
   id: z.string().trim().min(1).max(100),
   elements: z.array(builderElementSchema).max(40),
 });
 const builderRowSchema = z.object({
+  styles: responsiveStyleSchema.optional(),
   id: z.string().trim().min(1).max(100),
   columns: z.array(builderColumnSchema).min(1).max(4),
 });
 const builderSectionSchema = z.object({
+  styles: responsiveStyleSchema.optional(),
   id: z.string().trim().min(1).max(100),
   label: z.string().trim().min(1).max(160),
   rows: z.array(builderRowSchema).min(1).max(20),
@@ -263,7 +264,8 @@ const builderSectionSchema = z.object({
 
 export const pageContentSchema = z.object({
   blocks: z.array(blockSchema).max(40),
-  sections: z.array(builderSectionSchema).max(40).default([]),
+  sections: z.array(builderSectionSchema).max(40).optional(),
+  seo: seoSchema.optional(),
 });
 const customPageDefinitionSchema = z.object({
   id: z.string().trim().min(1).max(100),
@@ -272,10 +274,17 @@ const customPageDefinitionSchema = z.object({
   description: z.string().trim().max(240).default(""),
   archived: z.boolean().default(false),
 });
+const chromeSchema = z.object({
+  visible: z.boolean().default(true), styles: responsiveStyleSchema.optional(),
+  ctaLabel: z.string().trim().max(120).default("View projects"), ctaHref: hrefSchema.default("/projects"),
+  copyright: z.string().trim().max(240).default("All rights reserved."),
+  groups: z.array(z.object({ title: z.string().trim().min(1).max(120), links: z.array(z.object({ label: z.string().trim().min(1).max(120), href: hrefSchema })).max(30) })).max(6).optional(),
+});
 const settingsSchema = z.object({
+  theme: themeSchema.optional(), header: chromeSchema.optional(), footer: chromeSchema.optional(),
   siteName: z.string().trim().min(1).max(120).default("Xone Software Development"),
   contactEmail: z.string().trim().email().default("xonesoftware.marketing@gmail.com"),
-  logoUrl: z.string().trim().max(500).default("/assets/XONE/xone_brand_kit/xone_logo_inverse.svg"),
+  logoUrl: imageUrlSchema.default("/assets/XONE/xone_brand_kit/xone_logo_inverse.svg"),
   primaryColor: z.string().trim().regex(/^#[0-9a-fA-F]{6}$/).default("#533bda"),
   accentColor: z.string().trim().regex(/^#[0-9a-fA-F]{6}$/).default("#22d3ee"),
   defaultTitle: z.string().trim().max(160).default("Xone Software Development"),
@@ -306,6 +315,18 @@ export const siteContentSchema = z.object({
     defaultDescription: "Custom software development for teams that need clarity, speed, and reliable delivery.",
     navLinks: [{ label: "Projects", href: "/projects", visible: true }, { label: "Services", href: "/services", visible: true }, { label: "About", href: "/about", visible: true }, { label: "Contact", href: "/contact", visible: true }],
   }),
+}).superRefine((content, context) => {
+  const slugs = new Set<string>(), ids = new Set<string>();
+  const reserved = new Set<string>([...pageKeys, "admin", "api", "home", "get-started", "robots", "sitemap", "favicon", "_next", "assets"]);
+  for (const page of content.customPageDefinitions) {
+    if (reserved.has(page.slug) || slugs.has(page.slug) || ids.has(page.id) || !content.customPages[page.id]) context.addIssue({ code: "custom", message: "Custom pages need unique, non-reserved URLs and matching content", path: ["customPageDefinitions"] });
+    slugs.add(page.slug); ids.add(page.id);
+  }
+  for (const page of [...Object.values(content.pages), ...Object.values(content.customPages)]) {
+    const nodeIds = new Set<string>();
+    const check = (id: string) => { if (nodeIds.has(id)) context.addIssue({ code: "custom", message: "Page element IDs must be unique" }); nodeIds.add(id); };
+    for (const section of page.sections ?? []) { check(section.id); for (const row of section.rows) { check(row.id); for (const column of row.columns) { check(column.id); for (const element of column.elements) check(element.id); } } }
+  }
 });
 
 export type CmsBlock = z.infer<typeof blockSchema>;
@@ -313,8 +334,8 @@ export type CmsBuilderElement = z.infer<typeof builderElementSchema>;
 export type CmsBuilderColumn = z.infer<typeof builderColumnSchema>;
 export type CmsBuilderRow = z.infer<typeof builderRowSchema>;
 export type CmsBuilderSection = z.infer<typeof builderSectionSchema>;
-export type CmsPageContent = z.infer<typeof pageContentSchema>;
-export type SiteContent = z.infer<typeof siteContentSchema>;
+export type CmsPageContent = Omit<z.infer<typeof pageContentSchema>, "sections"> & { sections: CmsBuilderSection[] };
+export type SiteContent = Omit<z.infer<typeof siteContentSchema>, "pages" | "customPages"> & { pages: Record<PageKey, CmsPageContent>; customPages: Record<string, CmsPageContent> };
 export type PageKey = (typeof pageKeys)[number];
 export type CustomPageDefinition = z.infer<typeof customPageDefinitionSchema>;
 export type SiteSettings = z.infer<typeof settingsSchema>;
@@ -333,11 +354,13 @@ function sectionsFromBlocks(blocks: readonly CmsBlock[]): CmsBuilderSection[] {
   }));
 }
 
-function normalizePage(page: z.infer<typeof pageContentSchema>): z.infer<typeof pageContentSchema> {
-  return page.sections.length ? page : { ...page, sections: sectionsFromBlocks(page.blocks) };
+function normalizePage(page: z.infer<typeof pageContentSchema>): CmsPageContent {
+  const sections = page.sections ?? sectionsFromBlocks(page.blocks);
+  const blocks = sections.flatMap(section => section.rows.flatMap(row => row.columns.flatMap(column => column.elements.flatMap(element => element.type === "block" ? [element.block] : []))));
+  return { ...page, sections, blocks };
 }
 
-function normalizeContent(content: SiteContent): SiteContent {
+function normalizeContent(content: z.infer<typeof siteContentSchema>): SiteContent {
   return {
     ...content,
     pages: Object.fromEntries(Object.entries(content.pages).map(([key, page]) => [key, normalizePage(page)])) as SiteContent["pages"],
@@ -419,20 +442,8 @@ export function parseSiteContent(value: unknown): SiteContent {
   const current = siteContentSchema.safeParse(value);
   if (current.success) return normalizeContent(current.data);
 
-  const legacy = z.object({
-    pages: z.object({
-      home: pageContentSchema,
-      projects: pageContentSchema,
-      services: pageContentSchema,
-      about: pageContentSchema,
-      contact: pageContentSchema,
-      footer: pageContentSchema,
-    }),
-  }).safeParse(value);
+  if (!value || typeof value !== "object" || !("pages" in value) || !value.pages || typeof value.pages !== "object" || "process" in value.pages || "settings" in value) throw current.error;
+  const legacy = z.object({ pages: z.object({ home: pageContentSchema, projects: pageContentSchema, services: pageContentSchema, about: pageContentSchema, contact: pageContentSchema, footer: pageContentSchema }) }).safeParse(value);
   if (!legacy.success) throw current.error;
-
-  return normalizeContent(siteContentSchema.parse({
-    ...defaultContent,
-    pages: { ...defaultContent.pages, ...legacy.data.pages },
-  }));
+  return normalizeContent(siteContentSchema.parse({ ...defaultContent, pages: { ...defaultContent.pages, ...legacy.data.pages } }));
 }

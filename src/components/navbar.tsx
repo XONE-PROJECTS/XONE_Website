@@ -21,6 +21,8 @@ import type { SiteSettings } from "@/features/admin/lib/content";
 type NavbarProps = {
   className?: string;
   links?: SiteSettings["navLinks"];
+  settings?: SiteSettings;
+  preview?: boolean;
 };
 
 function navLinkClass(isActive: boolean, mobile = false) {
@@ -41,12 +43,12 @@ function navLinkClass(isActive: boolean, mobile = false) {
   );
 }
 
-export function Navbar({ className, links }: NavbarProps) {
+export function Navbar({ className, links, settings, preview = false }: NavbarProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const isHome = pathname === "/";
-  const isAdmin = pathname.startsWith("/admin");
+  const isAdmin = !preview && pathname.startsWith("/admin");
   const navLinks = (links ?? [
     { href: "/projects", label: "Projects", visible: true },
     { href: "/services", label: "Services", visible: true },
@@ -68,8 +70,8 @@ export function Navbar({ className, links }: NavbarProps) {
           aria-current={isHome ? "page" : undefined}
         >
           <Image
-            src={brandAssets.logoInverse}
-            alt={BRAND_NAME}
+            src={settings?.logoUrl || brandAssets.logoInverse} unoptimized
+            alt={settings?.siteName ?? BRAND_NAME}
             width={220}
             height={48}
             priority
@@ -83,7 +85,7 @@ export function Navbar({ className, links }: NavbarProps) {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Link href="/projects" className={cn(buttonVariants({ size: "default" }), "hidden border border-white/20 bg-xone-violet text-white hover:bg-xone-violet/90 sm:inline-flex")}>View projects</Link>
+          <Link href={settings?.header?.ctaHref ?? "/projects"} className={cn(buttonVariants({ size: "default" }), "hidden border border-white/20 bg-xone-violet text-white hover:bg-xone-violet/90 sm:inline-flex")}>{settings?.header?.ctaLabel ?? "View projects"}</Link>
 
           <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
             <SheetTrigger
@@ -124,7 +126,7 @@ export function Navbar({ className, links }: NavbarProps) {
                   </Link>
                 ))}
                 <Link
-                  href="/projects"
+                  href={settings?.header?.ctaHref ?? "/projects"}
                   className={cn(
                     buttonVariants({ size: "lg" }),
                     "mt-4 min-h-11 w-full bg-xone-violet text-white hover:bg-xone-violet/90",

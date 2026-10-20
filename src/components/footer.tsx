@@ -6,18 +6,23 @@ import { usePathname } from "next/navigation";
 
 import { brandAssets, BRAND_NAME } from "@/lib/brand";
 import { cn } from "@/lib/utils";
-import type { CmsBlock } from "@/features/admin/lib/content";
+import { CmsPageRenderer } from "@/features/admin/components/CmsPageRenderer";
+import type { CmsBlock, CmsPageContent, SiteSettings } from "@/features/admin/lib/content";
 
 type FooterProps = {
   className?: string;
+  settings?: SiteSettings;
+  page?: CmsPageContent;
+  preview?: boolean;
   content?: Extract<CmsBlock, { type: "footer" }>;
 };
 
-export function Footer({ className, content }: FooterProps) {
+export function Footer({ className, content, settings, page, preview = false }: FooterProps) {
   const pathname = usePathname();
-  const isAdmin = pathname.startsWith("/admin");
+  const isAdmin = !preview && pathname.startsWith("/admin");
+  const customLayout = Boolean(page?.sections?.length && !content);
 
-  if (isAdmin) {
+  if (isAdmin || settings?.footer?.visible === false || content?.visible === false) {
     return null;
   }
 
@@ -28,11 +33,11 @@ export function Footer({ className, content }: FooterProps) {
         className,
       )}
     >
-      <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
+      {customLayout ? <CmsPageRenderer sections={page?.sections} /> : <><div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:px-6 md:grid-cols-3">
         <div className="space-y-4">
           <Image
-            src={brandAssets.logoInverse}
-            alt={BRAND_NAME}
+            src={settings?.logoUrl || brandAssets.logoInverse} unoptimized
+            alt={settings?.siteName ?? BRAND_NAME}
             width={140}
             height={36}
             className="h-8 w-auto"
@@ -73,10 +78,10 @@ export function Footer({ className, content }: FooterProps) {
             </li>
           </ul>
         </div>
-      </div>
+      </div></>}
 
       <div className="border-t border-white/10 py-4 text-center text-xs text-xone-gray-light/70">
-        © {new Date().getFullYear()} {BRAND_NAME}. All rights reserved.
+        © {new Date().getFullYear()} {settings?.siteName ?? BRAND_NAME}. {settings?.footer?.copyright ?? "All rights reserved."}
       </div>
     </footer>
   );
