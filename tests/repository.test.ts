@@ -71,7 +71,7 @@ describe("CMS repository migration", () => {
 
     const state = await getContentState();
 
-    expect(state.draft.pages.home.blocks[1]).toMatchObject({ id: "home-hero", type: "hero" });
+    expect(state.draft.pages.home.blocks[0]).toMatchObject({ id: "home-hero", type: "hero" });
     expect(mocks.site.updateOne).toHaveBeenCalledTimes(1);
     expect(mocks.revisions.updateOne).toHaveBeenCalledTimes(2);
   });
@@ -88,7 +88,7 @@ describe("CMS repository migration", () => {
 
     const content = await getPublishedContent();
 
-    expect(content.pages.home.blocks[1]).toMatchObject({ id: "home-hero", type: "hero" });
+    expect(content.pages.home.blocks[0]).toMatchObject({ id: "home-hero", type: "hero" });
   });
 
   it("keeps revision conflicts protected", async () => {

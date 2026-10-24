@@ -9,10 +9,13 @@ import { ProjectsPageContent } from "@/features/projects/components/ProjectsPage
 import { ContactPageContent } from "@/features/contact/components/ContactPageContent";
 import { PrivacyPageContent } from "@/features/legal/components/PrivacyPageContent";
 import { TermsPageContent } from "@/features/legal/components/TermsPageContent";
+import { PreFlightIntro } from "@/features/preflight/components/PreFlightIntro";
 import type { PageKey } from "@/features/admin/lib/content";
 
 export function RestoredPublicPage({ page }: { page: PageKey }): ReactNode {
   switch (page) {
+    case "prehome":
+      return <PreFlightIntro />;
     case "home":
       return (
         <>

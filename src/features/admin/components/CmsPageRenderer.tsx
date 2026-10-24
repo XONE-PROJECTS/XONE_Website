@@ -1,3 +1,5 @@
+"use client";
+
 /* eslint-disable @next/next/no-img-element -- CMS image URLs may be external and are validated before rendering. */
 import Link from "next/link";
 import { responsiveCss } from "../lib/design";

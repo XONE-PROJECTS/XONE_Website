@@ -1,15 +1,14 @@
 import type { CmsBlock, CmsBuilderColumn, CmsBuilderElement, CmsBuilderRow, CmsBuilderSection, CmsPageContent, PageKey, SiteContent } from "./content";
 
-export type SelectedPage = PageKey | `custom:${string}`;
+export type SelectedPage = PageKey;
 export type BuilderNode = CmsBuilderSection | CmsBuilderRow | CmsBuilderColumn | CmsBuilderElement;
 export type NodeKind = "section" | "row" | "column" | "element";
 export type LocatedNode = { kind: NodeKind; node: BuilderNode; parent: string | null; siblings: BuilderNode[]; index: number };
 export const uid = (): string => globalThis.crypto.randomUUID();
-export function getPage(content: SiteContent, page: SelectedPage): CmsPageContent { return page.startsWith("custom:") ? content.customPages[page.slice(7)] ?? { blocks: [], sections: [] } : content.pages[page as PageKey]; }
+export function getPage(content: SiteContent, page: SelectedPage): CmsPageContent { return content.pages[page]; }
 export function replacePage(content: SiteContent, selection: SelectedPage, page: CmsPageContent): SiteContent {
   const blocks = page.sections.flatMap(section => section.rows.flatMap(row => row.columns.flatMap(column => column.elements.flatMap(element => element.type === "block" ? [element.block] : []))));
-  const next = { ...page, blocks };
-  return selection.startsWith("custom:") ? { ...content, customPages: { ...content.customPages, [selection.slice(7)]: next } } : { ...content, pages: { ...content.pages, [selection]: next } };
+  return { ...content, pages: { ...content.pages, [selection]: { ...page, blocks } } };
 }
 export function locate(page: CmsPageContent, id: string | null): LocatedNode | null {
   if (!id) return null;

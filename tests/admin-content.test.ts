@@ -9,7 +9,7 @@ describe("admin content schema", () => {
 
   it("includes the restored public-page blocks", () => {
     const content = parseSiteContent(defaultContent);
-    expect(content.pages.home.blocks[0]).toMatchObject({
+    expect(content.pages.prehome.blocks[0]).toMatchObject({
       type: "preflight",
       objectives: expect.arrayContaining([
         "Partner transparently from discovery through launch",
@@ -37,8 +37,10 @@ describe("admin content schema", () => {
     const content = parseSiteContent(defaultContent);
     for (const page of pageKeys) expect(content.pages[page].blocks.length).toBeGreaterThan(0);
 
+    expect(content.pages.prehome.blocks).toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: "prehome-preflight", type: "preflight" }),
+    ]));
     expect(content.pages.home.blocks).toEqual(expect.arrayContaining([
-      expect.objectContaining({ id: "home-preflight", type: "preflight" }),
       expect.objectContaining({ id: "home-hero", type: "hero" }),
       expect.objectContaining({ id: "home-projects", type: "projectCollection" }),
       expect.objectContaining({ id: "home-team", type: "teamCollection" }),
@@ -55,6 +57,29 @@ describe("admin content schema", () => {
     expect(content.pages.privacy.blocks[0]).toMatchObject({ type: "legal", sections: expect.arrayContaining([expect.objectContaining({ id: "cookies" })]) });
     expect(content.pages.terms.blocks[0]).toMatchObject({ type: "legal", sections: expect.arrayContaining([expect.objectContaining({ id: "limitation-of-liability" })]) });
     expect(content.pages.footer.blocks[0]).toMatchObject({ type: "footer", serviceLinks: expect.arrayContaining([expect.objectContaining({ label: "Web & Mobile Apps" })]), companyLinks: expect.arrayContaining([expect.objectContaining({ label: "Contact" })]) });
+  });
+
+  it("ignores legacy custom pages while retaining fixed public pages", () => {
+    const legacy = {
+      ...defaultContent,
+      customPages: { legacy: { blocks: [], sections: [], seo: { title: "Legacy", description: "", noIndex: false } } },
+      customPageDefinitions: [{ id: "legacy", name: "Legacy", slug: "legacy", description: "", archived: false }],
+    };
+    const parsed = parseSiteContent(legacy);
+    expect(parsed.pages.home.blocks).toHaveLength(defaultContent.pages.home.blocks.length);
+    expect(parsed).not.toHaveProperty("customPages");
+    expect(parsed).not.toHaveProperty("customPageDefinitions");
+  });
+
+  it("moves legacy home preflight content into the dedicated pre-home page", () => {
+    const legacy = structuredClone(defaultContent);
+    const preflight = legacy.pages.prehome.blocks[0];
+    legacy.pages.home.blocks.unshift(preflight);
+    delete (legacy.pages as Partial<typeof legacy.pages>).prehome;
+
+    const parsed = parseSiteContent(legacy);
+    expect(parsed.pages.prehome.blocks[0]).toMatchObject({ id: preflight.id, type: "preflight" });
+    expect(parsed.pages.home.blocks).not.toEqual(expect.arrayContaining([expect.objectContaining({ type: "preflight" })]));
   });
 
   it("rejects unsafe or malformed blocks", () => {
@@ -151,10 +176,10 @@ describe("admin content schema", () => {
 
   it("migrates legacy flat pages into editable sections, rows, and columns", () => {
     const parsed = parseSiteContent(defaultContent);
-    const section = parsed.pages.home.sections[0];
+    const section = parsed.pages.prehome.sections[0];
     expect(section.rows[0]?.columns[0]?.elements[0]).toMatchObject({
       type: "block",
-      block: { id: "home-preflight" },
+      block: { id: "prehome-preflight" },
     });
   });
 

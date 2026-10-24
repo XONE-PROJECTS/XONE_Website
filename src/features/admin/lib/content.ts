@@ -10,6 +10,7 @@ import { buildContactMailto, CONTACT_EMAIL, CONTACT_LOCATION, CONTACT_PHONE, CON
 import { DEFAULT_PREFLIGHT_CONTENT } from "@/features/preflight/data/preflight-content";
 
 export const pageKeys = [
+  "prehome",
   "home",
   "projects",
   "services",
@@ -284,13 +285,6 @@ export const pageContentSchema = z.object({
   sections: z.array(builderSectionSchema).max(40).optional(),
   seo: seoSchema.optional(),
 });
-const customPageDefinitionSchema = z.object({
-  id: z.string().trim().min(1).max(100),
-  name: z.string().trim().min(1).max(120),
-  slug: z.string().trim().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
-  description: z.string().trim().max(240).default(""),
-  archived: z.boolean().default(false),
-});
 const chromeSchema = z.object({
   visible: z.boolean().default(true), styles: responsiveStyleSchema.optional(),
   ctaLabel: z.string().trim().max(120).default("View projects"), ctaHref: hrefSchema.default("/projects"),
@@ -310,6 +304,7 @@ const settingsSchema = z.object({
 });
 export const siteContentSchema = z.object({
   pages: z.object({
+    prehome: pageContentSchema.optional(),
     home: pageContentSchema,
     projects: pageContentSchema,
     services: pageContentSchema,
@@ -320,8 +315,6 @@ export const siteContentSchema = z.object({
     terms: pageContentSchema,
     footer: pageContentSchema,
   }),
-  customPages: z.record(z.string(), pageContentSchema).default({}),
-  customPageDefinitions: z.array(customPageDefinitionSchema).max(100).default([]),
   settings: settingsSchema.default({
     siteName: "Xone Software Development",
     contactEmail: "xonesoftware.marketing@gmail.com",
@@ -333,13 +326,7 @@ export const siteContentSchema = z.object({
     navLinks: [{ label: "Projects", href: "/projects", visible: true }, { label: "Services", href: "/services", visible: true }, { label: "About", href: "/about", visible: true }, { label: "Contact", href: "/contact", visible: true }],
   }),
 }).superRefine((content, context) => {
-  const slugs = new Set<string>(), ids = new Set<string>();
-  const reserved = new Set<string>([...pageKeys, "admin", "api", "home", "get-started", "robots", "sitemap", "favicon", "_next", "assets"]);
-  for (const page of content.customPageDefinitions) {
-    if (reserved.has(page.slug) || slugs.has(page.slug) || ids.has(page.id) || !content.customPages[page.id]) context.addIssue({ code: "custom", message: "Custom pages need unique, non-reserved URLs and matching content", path: ["customPageDefinitions"] });
-    slugs.add(page.slug); ids.add(page.id);
-  }
-  for (const page of [...Object.values(content.pages), ...Object.values(content.customPages)]) {
+  for (const page of Object.values(content.pages)) {
     const nodeIds = new Set<string>();
     const check = (id: string) => { if (nodeIds.has(id)) context.addIssue({ code: "custom", message: "Page element IDs must be unique" }); nodeIds.add(id); };
     for (const section of page.sections ?? []) { check(section.id); for (const row of section.rows) { check(row.id); for (const column of row.columns) { check(column.id); for (const element of column.elements) check(element.id); } } }
@@ -352,9 +339,8 @@ export type CmsBuilderColumn = z.infer<typeof builderColumnSchema>;
 export type CmsBuilderRow = z.infer<typeof builderRowSchema>;
 export type CmsBuilderSection = z.infer<typeof builderSectionSchema>;
 export type CmsPageContent = Omit<z.infer<typeof pageContentSchema>, "sections"> & { sections: CmsBuilderSection[] };
-export type SiteContent = Omit<z.infer<typeof siteContentSchema>, "pages" | "customPages"> & { pages: Record<PageKey, CmsPageContent>; customPages: Record<string, CmsPageContent> };
+export type SiteContent = Omit<z.infer<typeof siteContentSchema>, "pages"> & { pages: Record<PageKey, CmsPageContent> };
 export type PageKey = (typeof pageKeys)[number];
-export type CustomPageDefinition = z.infer<typeof customPageDefinitionSchema>;
 export type SiteSettings = z.infer<typeof settingsSchema>;
 export type CmsVisualAsset = z.infer<typeof visualAssetSchema>;
 export type CmsComponentKind = z.infer<typeof componentKindSchema>;
@@ -377,11 +363,45 @@ function normalizePage(page: z.infer<typeof pageContentSchema>): CmsPageContent 
   return { ...page, sections, blocks };
 }
 
+function createDefaultPrehome(): z.infer<typeof pageContentSchema> {
+  return {
+    blocks: [{
+      id: "prehome-preflight",
+      type: "preflight" as const,
+      logoSrc: DEFAULT_PREFLIGHT_CONTENT.logoSrc,
+      logoAlt: DEFAULT_PREFLIGHT_CONTENT.logoAlt,
+      objectives: [...DEFAULT_PREFLIGHT_CONTENT.objectives],
+      reasons: DEFAULT_PREFLIGHT_CONTENT.reasons.map((reason) => ({ ...reason })),
+      ctaLabel: DEFAULT_PREFLIGHT_CONTENT.ctaLabel,
+      visible: true,
+    }],
+  };
+}
+
+function removePreflight(page: CmsPageContent): CmsPageContent {
+  const sections = page.sections.flatMap((section) => {
+    const rows = section.rows.flatMap((row) => {
+      const columns = row.columns.flatMap((column) => {
+        const elements = column.elements.filter((element) => element.type !== "block" || element.block.type !== "preflight");
+        return elements.length ? [{ ...column, elements }] : [];
+      });
+      return columns.length ? [{ ...row, columns }] : [];
+    });
+    return rows.length ? [{ ...section, rows }] : [];
+  });
+  const blocks = sections.flatMap((section) => section.rows.flatMap((row) => row.columns.flatMap((column) => column.elements.flatMap((element) => element.type === "block" ? [element.block] : []))));
+  return { ...page, sections, blocks };
+}
+
 function normalizeContent(content: z.infer<typeof siteContentSchema>): SiteContent {
   return {
     ...content,
-    pages: Object.fromEntries(Object.entries(content.pages).map(([key, page]) => [key, normalizePage(page)])) as SiteContent["pages"],
-    customPages: Object.fromEntries(Object.entries(content.customPages).map(([key, page]) => [key, normalizePage(page)])),
+    pages: (() => {
+      const pages = Object.fromEntries(Object.entries(content.pages).filter((entry): entry is [string, z.infer<typeof pageContentSchema>] => Boolean(entry[1])).map(([key, page]) => [key, normalizePage(page)])) as Partial<SiteContent["pages"]>;
+      const legacyPreflight = pages.home?.blocks.find((block) => block.type === "preflight");
+      const prehome = pages.prehome?.blocks.some((block) => block.type === "preflight") ? pages.prehome : normalizePage(legacyPreflight ? { blocks: [legacyPreflight] } : createDefaultPrehome());
+      return { ...pages, home: pages.home ? removePreflight(pages.home) : normalizePage({ blocks: [] }), prehome } as SiteContent["pages"];
+    })(),
   };
 }
 
@@ -398,8 +418,8 @@ const cmsServices = serviceOfferings.map((service, index) => ({ icon: serviceIco
 
 export const defaultContent = {
   pages: {
+    prehome: createDefaultPrehome(),
     home: { blocks: [
-      { id: "home-preflight", type: "preflight", ...DEFAULT_PREFLIGHT_CONTENT },
       { id: "home-hero", type: "hero", eyebrow: BRAND_NAME, heading: "Custom software for teams that need clarity and reliable delivery", body: "We design and build web apps, mobile experiences, and automation — with a direct line to the engineers who ship your product.", ctaLabel: "View our projects", ctaHref: "/projects" },
       { id: "home-projects", type: "projectCollection", display: "grid", columns: 3, heading: "Projects that show how we deliver", body: "Real problems, structured builds, measurable outcomes — explore case studies similar to what you need.", items: featuredProjects.map(cmsProject) },
       { id: "home-team", type: "teamCollection", columns: 3, heading: "Engineers you will work with", body: "Xone is a small, senior-led team — no hand-offs to anonymous contractors.", items: teamMembers.map(cmsTeamMember) },
@@ -427,8 +447,6 @@ export const defaultContent = {
     terms: { blocks: [{ id: "terms", type: "legal", ...termsContent }] },
     footer: { blocks: [{ id: "footer", type: "footer", description: "Custom software development for teams that need clarity, speed, and reliable delivery.", links: [], serviceLinks: [{ label: "Our Projects", href: "/projects" }, { label: "Web & Mobile Apps", href: "/services" }, { label: "Our Process", href: "/process" }], companyLinks: [{ label: "About", href: "/about" }, { label: "Contact", href: "/contact" }], visible: true }] },
   },
-  customPages: {},
-  customPageDefinitions: [],
   settings: {
     siteName: BRAND_NAME,
     contactEmail: CONTACT_EMAIL,
