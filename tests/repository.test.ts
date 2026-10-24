@@ -218,7 +218,7 @@ describe("CMS repository migration", () => {
       document({ draft: legacy, published: legacy }),
     );
     const state = await getContentState();
-    expect(state.draft.projectEstimator.systems).toHaveLength(32);
+    expect(state.draft.projectEstimator.systems).toHaveLength(33);
     expect(mocks.site.updateOne).not.toHaveBeenCalled();
   });
 });

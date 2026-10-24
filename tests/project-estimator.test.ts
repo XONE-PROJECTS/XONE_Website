@@ -30,7 +30,7 @@ describe("project estimator catalog", () => {
   it("contains the expanded system catalog and separate unpriced custom option", () => {
     expect(
       projectEstimatorSchema.parse(defaultEstimatorCatalog).systems,
-    ).toHaveLength(32);
+    ).toHaveLength(33);
     expect(systemDefinitions.map((item) => item.id)).toEqual(
       expect.arrayContaining([
         "procurement",
@@ -43,6 +43,7 @@ describe("project estimator catalog", () => {
         "finance",
         "hotel",
         "hris",
+        "learners",
         "wedding-web",
         "wedding-mobile",
         "photobooth",
@@ -53,6 +54,22 @@ describe("project estimator catalog", () => {
       defaultEstimatorCatalog.systems.find((item) => item.id === "other")
         ?.priceCents,
     ).toBeNull();
+  });
+
+  it("adds learners to older catalogs without changing existing prices", () => {
+    const catalog = structuredClone(defaultEstimatorCatalog);
+    catalog.systems = catalog.systems.filter((item) => item.id !== "learners");
+    catalog.systems[0].priceCents = 987_654;
+    const updated = projectEstimatorSchema.parse(catalog);
+    expect(updated.systems[0].priceCents).toBe(987_654);
+    expect(
+      updated.systems.find((item) => item.id === "learners"),
+    ).toMatchObject({
+      priceCents: 6_000_000,
+      enabled: true,
+    });
+    catalog.systems.pop();
+    expect(projectEstimatorSchema.safeParse(catalog).success).toBe(false);
   });
 
   it.each([-1, 1.5, Infinity, NaN, 1_000_000_000])(
@@ -102,6 +119,16 @@ describe("project estimator catalog", () => {
 });
 
 describe("project estimate calculations", () => {
+  it("prices learners with eligible notification add-ons", () => {
+    const estimate = calculateEstimate({
+      ...createEstimatorSelection(),
+      systemIds: ["learners"],
+      addons: { learners: ["notifications"] },
+    });
+    expect(estimate.totalCents).toBe(6_500_000);
+    expect(estimate.lines[0].label).toBe("Learners Module System (LMS)");
+  });
+
   it("adds several systems, scoped upgrades, and shared services once", () => {
     const selection = createEstimatorSelection();
     selection.systemIds = ["landing", "pos"];

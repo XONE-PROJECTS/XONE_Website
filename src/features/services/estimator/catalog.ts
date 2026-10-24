@@ -201,6 +201,18 @@ export const systemDefinitions = [
     ["Student records", "Enrollment", "Administrative reporting"],
   ),
   system(
+    "learners",
+    "operations",
+    "Learners Module System (LMS)",
+    60000,
+    "Manage learning modules, learner enrollment, assessments, and progress.",
+    [
+      "Learning modules",
+      "Learner enrollment",
+      "Assessments and progress tracking",
+    ],
+  ),
+  system(
     "restaurant",
     "operations",
     "Restaurant management",
@@ -449,7 +461,22 @@ const addonPriceSchema = z.object({
 
 export const projectEstimatorSchema = z
   .object({
-    systems: z.array(systemPriceSchema).length(systemDefinitions.length),
+    systems: z
+      .array(systemPriceSchema)
+      .transform((items) => {
+        // Older CMS catalogs predate the learners option; preserve their saved prices.
+        if (!items.some((item) => item.id === "learners")) {
+          const { id, label, description, priceCents } = systemDefinitions.find(
+            (item) => item.id === "learners",
+          )!;
+          items.push({ id, label, description, priceCents, enabled: true });
+        }
+        return items;
+      })
+      .refine(
+        (items) => items.length === systemDefinitions.length,
+        "Catalog must include every system.",
+      ),
     addons: z.array(addonPriceSchema).length(addonDefinitions.length),
   })
   .superRefine((catalog, ctx) => {

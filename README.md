@@ -16,6 +16,9 @@ multiple systems, scoped add-ons, a yearly domain, and independent hosting and
 maintenance terms of 1, 3, 6, or 12 months. Local/on-premise installation is a
 one-time setup on the customer's own PC/server; web hosting is monthly.
 
+**Learners Module System (LMS)** includes learning modules, enrollment,
+assessments, and progress tracking, with an editable sample estimate of ₱60,000.
+
 Prices are illustrative PHP estimates, not binding quotations. **Others / Custom
 system** requires a description and stays marked **Custom quote required** alongside
 the priced subtotal. Hardware, subscriptions, payment fees, and usage charges need

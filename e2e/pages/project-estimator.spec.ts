@@ -13,6 +13,28 @@ async function openEstimator(page: Page): Promise<void> {
   ).toBeVisible();
 }
 
+test("finds and prices the learners module system with eligible add-ons", async ({
+  page,
+}) => {
+  await openEstimator(page);
+  await page.getByLabel("Category", { exact: true }).selectOption("operations");
+  await page.getByLabel("Search systems").fill("learners");
+  await page
+    .getByRole("checkbox", {
+      name: "Learners Module System (LMS)",
+      exact: true,
+    })
+    .check();
+  await expect(page.getByTestId("estimate-total")).toContainText("₱60,000");
+  await page
+    .getByRole("checkbox", {
+      name: "Email/push notification integration for Learners Module System (LMS)",
+      exact: true,
+    })
+    .check();
+  await expect(page.getByTestId("estimate-total")).toContainText("₱65,000");
+});
+
 test("updates scoped upgrades, shared services, and mutually exclusive hosting", async ({
   page,
 }) => {
