@@ -12,7 +12,9 @@ type HomeCtaContent = {
 
 export function HomeCtaSection({ content }: { content?: HomeCtaContent }) {
   const heading = content?.heading ?? "Ready to talk about your project?";
-  const body = content?.body ?? "Tell us what you are building. We respond within one business day to schedule a discovery conversation.";
+  const body =
+    content?.body ??
+    "Tell us what you are building. We respond within one business day to schedule a discovery conversation.";
   const label = content?.label ?? "Email us";
   const href = content?.href ?? buildContactMailto("Project inquiry");
 
@@ -32,9 +34,25 @@ export function HomeCtaSection({ content }: { content?: HomeCtaContent }) {
           {body}
         </p>
         {href.startsWith("/") ? (
-          <Link href={href} className={cn(buttonVariants({ size: "lg" }), "mt-8 inline-flex w-full sm:w-auto")}>{label}</Link>
+          <Link
+            href={href}
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "mt-8 inline-flex w-full sm:w-auto",
+            )}
+          >
+            {label}
+          </Link>
         ) : (
-          <a href={href} className={cn(buttonVariants({ size: "lg" }), "mt-8 inline-flex w-full sm:w-auto")}>{label}</a>
+          <a
+            href={href}
+            className={cn(
+              buttonVariants({ size: "lg" }),
+              "mt-8 inline-flex w-full sm:w-auto",
+            )}
+          >
+            {label}
+          </a>
         )}
       </div>
     </section>

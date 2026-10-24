@@ -41,7 +41,9 @@ export type AboutContent = {
 
 export function AboutPageContent({ content }: { content?: AboutContent }) {
   const heading = content?.heading ?? `About ${BRAND_SHORT}`;
-  const intro = content?.intro ?? `${BRAND_NAME} is a forward-thinking software studio focused on system generation, UI/UX design, and web and mobile application development.`;
+  const intro =
+    content?.intro ??
+    `${BRAND_NAME} is a forward-thinking software studio focused on system generation, UI/UX design, and web and mobile application development.`;
   const logoSrc = content?.logoSrc ?? brandAssets.logo;
   const logoAlt = content?.logoAlt ?? BRAND_NAME;
   const storyHeading = content?.storyHeading ?? "Our story";
@@ -51,7 +53,9 @@ export function AboutPageContent({ content }: { content?: AboutContent }) {
   ];
   const aboutValues = content?.values ?? values;
   const ctaHeading = content?.ctaHeading ?? "Ready to work together?";
-  const ctaBody = content?.ctaBody ?? "Learn how we plan, build, and deliver — or reach out to discuss your next project.";
+  const ctaBody =
+    content?.ctaBody ??
+    "Learn how we plan, build, and deliver — or reach out to discuss your next project.";
   const processLabel = content?.processLabel ?? "See our process";
   const contactLabel = content?.contactLabel ?? "Contact us";
 
@@ -78,7 +82,18 @@ export function AboutPageContent({ content }: { content?: AboutContent }) {
           <h2 className="mb-4 text-2xl font-semibold text-foreground">
             {storyHeading}
           </h2>
-          {storyParagraphs.map((paragraph, index) => <p key={`${paragraph}-${index}`} className={index === 0 ? "mb-4 leading-relaxed text-muted-foreground" : "leading-relaxed text-muted-foreground"}>{paragraph}</p>)}
+          {storyParagraphs.map((paragraph, index) => (
+            <p
+              key={`${paragraph}-${index}`}
+              className={
+                index === 0
+                  ? "mb-4 leading-relaxed text-muted-foreground"
+                  : "leading-relaxed text-muted-foreground"
+              }
+            >
+              {paragraph}
+            </p>
+          ))}
         </section>
 
         <section className="mb-12">
@@ -103,9 +118,7 @@ export function AboutPageContent({ content }: { content?: AboutContent }) {
           <h2 className="mb-3 text-2xl font-semibold text-foreground">
             {ctaHeading}
           </h2>
-          <p className="mb-6 text-muted-foreground">
-            {ctaBody}
-          </p>
+          <p className="mb-6 text-muted-foreground">{ctaBody}</p>
           <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Link
               href="/process"

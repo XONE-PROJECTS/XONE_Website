@@ -16,7 +16,12 @@ export type LegalPageContent = {
   sections: readonly LegalSection[];
 };
 
-export function LegalPageLayout({ title, lastUpdated, intro, sections }: LegalPageContent) {
+export function LegalPageLayout({
+  title,
+  lastUpdated,
+  intro,
+  sections,
+}: LegalPageContent) {
   return (
     <article className="bg-xone-section px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-3xl">

@@ -22,15 +22,24 @@ type ProjectsContent = {
   asideSecondaryHref?: string;
 };
 
-export function ProjectsPageContent({ content }: { content?: ProjectsContent }) {
+export function ProjectsPageContent({
+  content,
+}: {
+  content?: ProjectsContent;
+}) {
   const eyebrow = content?.eyebrow ?? "Portfolio";
   const heading = content?.heading ?? "Our projects";
-  const body = content?.body ?? `Case studies from ${BRAND_NAME}. Swipe or use the dots to browse — the center card is in focus. Email us if something matches your needs.`;
+  const body =
+    content?.body ??
+    `Case studies from ${BRAND_NAME}. Swipe or use the dots to browse — the center card is in focus. Email us if something matches your needs.`;
   const emailLabel = content?.emailLabel ?? `Email ${CONTACT_EMAIL}`;
-  const emailHref = content?.emailHref ?? buildContactMailto("Project inquiry from portfolio");
+  const emailHref =
+    content?.emailHref ?? buildContactMailto("Project inquiry from portfolio");
   const items = content?.projects ?? projects;
   const asideHeading = content?.asideHeading ?? "Have a project in mind?";
-  const asideBody = content?.asideBody ?? "Tell us about your goals by email. We will follow up to schedule a discovery call.";
+  const asideBody =
+    content?.asideBody ??
+    "Tell us about your goals by email. We will follow up to schedule a discovery call.";
   const asidePrimaryLabel = content?.asidePrimaryLabel ?? "Send us an email";
   const asidePrimaryHref = content?.asidePrimaryHref ?? buildContactMailto();
   const asideSecondaryLabel = content?.asideSecondaryLabel ?? "Contact details";
@@ -63,7 +72,7 @@ export function ProjectsPageContent({ content }: { content?: ProjectsContent }) 
       </div>
 
       <div className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 overflow-x-hidden">
-          <ProjectsCarousel items={items} />
+        <ProjectsCarousel items={items} />
       </div>
 
       <div className="mx-auto max-w-6xl">

@@ -27,7 +27,9 @@ type ProcessContent = {
 
 export function ProcessPageContent({ content }: { content?: ProcessContent }) {
   const heading = content?.heading ?? "How We Work";
-  const body = content?.body ?? `${BRAND_NAME} follows a proven five-step process to deliver successful projects — from discovery through long-term support.`;
+  const body =
+    content?.body ??
+    `${BRAND_NAME} follows a proven five-step process to deliver successful projects — from discovery through long-term support.`;
   const items = content?.items ?? processSteps;
 
   return (

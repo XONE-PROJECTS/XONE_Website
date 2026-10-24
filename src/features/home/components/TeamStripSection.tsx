@@ -14,7 +14,9 @@ type TeamStripContent = {
 
 export function TeamStripSection({ content }: { content?: TeamStripContent }) {
   const heading = content?.heading ?? "Engineers you will work with";
-  const body = content?.body ?? `${BRAND_SHORT} is a small, senior-led team — no hand-offs to anonymous contractors.`;
+  const body =
+    content?.body ??
+    `${BRAND_SHORT} is a small, senior-led team — no hand-offs to anonymous contractors.`;
   const members = content?.members ?? teamMembers;
 
   return (

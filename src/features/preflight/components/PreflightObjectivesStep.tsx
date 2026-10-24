@@ -22,9 +22,7 @@ export function PreflightObjectivesStep({
   objectives = PREFLIGHT_OBJECTIVES,
 }: PreflightObjectivesStepProps) {
   const [itemStates, setItemStates] = useState<ObjectiveItemState[]>(() =>
-    objectives.map(() =>
-      prefersReducedMotion ? "visible" : "hidden",
-    ),
+    objectives.map(() => (prefersReducedMotion ? "visible" : "hidden")),
   );
 
   useEffect(() => {

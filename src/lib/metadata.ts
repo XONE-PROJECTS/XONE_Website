@@ -14,8 +14,16 @@ type PageMetadataOptions = {
   path?: string;
 };
 
-export type CmsSeo = { title?: string; description?: string; noIndex?: boolean };
-export type CmsSiteMetadata = { siteName?: string; defaultTitle?: string; defaultDescription?: string };
+export type CmsSeo = {
+  title?: string;
+  description?: string;
+  noIndex?: boolean;
+};
+export type CmsSiteMetadata = {
+  siteName?: string;
+  defaultTitle?: string;
+  defaultDescription?: string;
+};
 
 function resolveAbsoluteUrl(path: string): string {
   const base = getSiteUrl();
@@ -41,8 +49,10 @@ export function getDefaultOgImage(): NonNullable<
 
 export function createRootMetadata(settings?: CmsSiteMetadata): Metadata {
   const siteUrl = getSiteUrl();
-  const title = settings?.defaultTitle?.trim() || settings?.siteName?.trim() || BRAND_NAME;
-  const description = settings?.defaultDescription?.trim() || DEFAULT_SITE_DESCRIPTION;
+  const title =
+    settings?.defaultTitle?.trim() || settings?.siteName?.trim() || BRAND_NAME;
+  const description =
+    settings?.defaultDescription?.trim() || DEFAULT_SITE_DESCRIPTION;
 
   return {
     metadataBase: new URL(siteUrl),
@@ -73,13 +83,18 @@ export function createRootMetadata(settings?: CmsSiteMetadata): Metadata {
   };
 }
 
-export function createCmsPageMetadata(seo: CmsSeo | undefined, fallback: PageMetadataOptions): Metadata {
+export function createCmsPageMetadata(
+  seo: CmsSeo | undefined,
+  fallback: PageMetadataOptions,
+): Metadata {
   const metadata = createPageMetadata({
     ...fallback,
     title: seo?.title?.trim() || fallback.title,
     description: seo?.description?.trim() || fallback.description,
   });
-  return seo?.noIndex ? { ...metadata, robots: { index: false, follow: false } } : metadata;
+  return seo?.noIndex
+    ? { ...metadata, robots: { index: false, follow: false } }
+    : metadata;
 }
 
 export function createPageMetadata({

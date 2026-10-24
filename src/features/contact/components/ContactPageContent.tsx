@@ -28,16 +28,22 @@ type ContactContent = {
 
 export function ContactPageContent({ content }: { content?: ContactContent }) {
   const heading = content?.heading ?? `Contact ${BRAND_NAME}`;
-  const body = content?.body ?? "Email us about your project. We respond within one business day to schedule a discovery call.";
+  const body =
+    content?.body ??
+    "Email us about your project. We respond within one business day to schedule a discovery call.";
   const detailsHeading = content?.detailsHeading ?? "Get in touch";
   const email = content?.email ?? CONTACT_EMAIL;
-  const emailDescription = content?.emailDescription ?? "Primary way to reach us — click below to open your mail app.";
+  const emailDescription =
+    content?.emailDescription ??
+    "Primary way to reach us — click below to open your mail app.";
   const phone = content?.phone ?? CONTACT_PHONE;
   const phoneDisplay = content?.phoneDisplay ?? CONTACT_PHONE_DISPLAY;
   const location = content?.location ?? CONTACT_LOCATION;
   const secondaryLabel = content?.secondaryLabel ?? "View our projects";
   const secondaryHref = content?.secondaryHref ?? "/projects";
-  const note = content?.note ?? "Online contact forms are planned for a future release. For now, email is the fastest path to a qualified conversation.";
+  const note =
+    content?.note ??
+    "Online contact forms are planned for a future release. For now, email is the fastest path to a qualified conversation.";
 
   return (
     <div className="bg-xone-section px-4 py-12 sm:px-6 lg:px-8">
@@ -64,9 +70,7 @@ export function ContactPageContent({ content }: { content?: ContactContent }) {
               />
               <div>
                 <p className="font-medium text-foreground">Email</p>
-                <p className="mt-1 text-sm">
-                  {emailDescription}
-                </p>
+                <p className="mt-1 text-sm">{emailDescription}</p>
                 <a
                   href={buildContactMailto("Project inquiry", email)}
                   className="mt-2 block text-xone-violet transition-colors hover:underline"
@@ -119,9 +123,7 @@ export function ContactPageContent({ content }: { content?: ContactContent }) {
           </div>
         </div>
 
-        <p className="mt-6 text-center text-sm text-muted-foreground">
-          {note}
-        </p>
+        <p className="mt-6 text-center text-sm text-muted-foreground">{note}</p>
       </div>
     </div>
   );

@@ -9,4 +9,6 @@ export async function generateMetadata(): Promise<Metadata> {
   return createCmsPageMetadata(content.pages.home.seo, { path: "" });
 }
 
-export default function HomePage() { return <CmsPublicPage page="home" />; }
+export default function HomePage() {
+  return <CmsPublicPage page="home" />;
+}

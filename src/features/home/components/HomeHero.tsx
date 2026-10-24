@@ -14,8 +14,12 @@ type HomeHeroContent = {
 
 export function HomeHero({ content }: { content?: HomeHeroContent }) {
   const eyebrow = content?.eyebrow ?? BRAND_NAME;
-  const heading = content?.heading ?? "Custom software for teams that need clarity and reliable delivery";
-  const body = content?.body ?? "We design and build web apps, mobile experiences, and automation — with a direct line to the engineers who ship your product.";
+  const heading =
+    content?.heading ??
+    "Custom software for teams that need clarity and reliable delivery";
+  const body =
+    content?.body ??
+    "We design and build web apps, mobile experiences, and automation — with a direct line to the engineers who ship your product.";
   const ctaLabel = content?.ctaLabel ?? "View our projects";
   const ctaHref = content?.ctaHref ?? "/projects";
 
