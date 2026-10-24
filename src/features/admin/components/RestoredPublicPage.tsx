@@ -1,7 +1,6 @@
 import { FeaturedProjectsSection } from "@/features/home/components/FeaturedProjectsSection";
 import { HomeCtaSection } from "@/features/home/components/HomeCtaSection";
 import { HomeHero } from "@/features/home/components/HomeHero";
-import { TeamStripSection } from "@/features/home/components/TeamStripSection";
 import { ServicesPageContent } from "@/features/services/components/ServicesPageContent";
 import { AboutPageContent } from "@/features/about/components/AboutPageContent";
 import { ProcessPageContent } from "@/features/process/components/ProcessPageContent";
@@ -21,7 +20,6 @@ export function RestoredPublicPage({ page }: { page: PageKey }): ReactNode {
         <>
           <HomeHero />
           <FeaturedProjectsSection />
-          <TeamStripSection />
           <HomeCtaSection />
         </>
       );
@@ -44,4 +42,3 @@ export function RestoredPublicPage({ page }: { page: PageKey }): ReactNode {
   }
 }
 import type { ReactNode } from "react";
-

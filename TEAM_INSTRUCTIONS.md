@@ -190,6 +190,10 @@ Each teammate commits their own work to the **shared active branch**. Use **brie
 
 **Format:** `<type>: <short summary>` — types: `feat`, `fix`, `docs`, `chore`, `test`, `refactor`.
 
+Husky hooks are installed by `npm install`: `pre-commit` runs lint-staged to
+auto-fix ESLint and format staged files, while `pre-push` runs the full lint
+and formatting checks. Pushes are blocked until both checks pass.
+
 **Before every commit:**
 
 1. `git branch --show-current` — confirm you are on the team’s active branch

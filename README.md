@@ -21,6 +21,10 @@ cp .env.example .env.local   # Windows: copy .env.example .env.local
 npm run dev
 ```
 
+`npm install` also activates the Husky Git hooks. Before a commit, lint-staged
+auto-fixes ESLint issues and formats only staged files. Before a push, the full
+lint and formatting checks must pass.
+
 Open [http://localhost:5142](http://localhost:5142).
 
 Optional local env for SEO preview:
