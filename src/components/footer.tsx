@@ -51,7 +51,7 @@ export function Footer({ className, content, settings, page, preview = false }: 
           <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-white">
             Services
           </h2>
-          <ul className="space-y-2 text-sm text-xone-gray-light/90">{(content?.links ?? [{ label: "Our Projects", href: "/projects" }, { label: "Web & Mobile Apps", href: "/services" }, { label: "Our Process", href: "/process" }]).slice(0, 3).map((link) => <li key={link.href}><Link href={link.href} className="hover:text-white">{link.label}</Link></li>)}</ul>
+          <ul className="space-y-2 text-sm text-xone-gray-light/90">{(content?.serviceLinks.length ? content.serviceLinks : content?.links.length ? content.links.slice(0, 3) : [{ label: "Our Projects", href: "/projects" }, { label: "Web & Mobile Apps", href: "/services" }, { label: "Our Process", href: "/process" }]).map((link) => <li key={link.href}><Link href={link.href} className="hover:text-white">{link.label}</Link></li>)}</ul>
         </div>
 
         <div>
@@ -59,7 +59,7 @@ export function Footer({ className, content, settings, page, preview = false }: 
             Company
           </h2>
           <ul className="space-y-2 text-sm text-xone-gray-light/90">
-            {(content?.links ?? [{ label: "About", href: "/about" }, { label: "Contact", href: "/contact" }]).slice(0, 4).map((link) => <li key={link.href}><Link href={link.href} className="flex min-h-11 items-center hover:text-white">{link.label}</Link></li>)}
+            {(content?.companyLinks.length ? content.companyLinks : content?.links.length ? content.links.slice(0, 4) : [{ label: "About", href: "/about" }, { label: "Contact", href: "/contact" }]).map((link) => <li key={link.href}><Link href={link.href} className="flex min-h-11 items-center hover:text-white">{link.label}</Link></li>)}
             <li>
               <Link
                 href="/privacy"

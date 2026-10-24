@@ -1,9 +1,13 @@
-import { CmsPageRenderer } from "@/features/admin/components/CmsPageRenderer";
+import type { PageKey, SiteContent } from "@/features/admin/lib/content";
 import { getPublishedContent } from "@/features/admin/lib/repository";
-import type { PageKey } from "@/features/admin/lib/content";
+import { CmsPublicPageContent } from "./CmsPublicPageView";
 
-export async function CmsPublicPage({ page }: { page: Exclude<PageKey, "footer"> }) {
+type PublicPage = Exclude<PageKey, "footer">;
+
+export async function CmsPublicPage({ page }: { page: PublicPage }): Promise<React.ReactNode> {
   const content = await getPublishedContent();
-  const pageContent = content.pages[page];
-  return <CmsPageRenderer sections={pageContent.sections} blocks={pageContent.blocks} />;
+  return <CmsPublicPageContent content={content} page={page} />;
 }
+
+export { CmsPublicPageContent } from "./CmsPublicPageView";
+export type { SiteContent };

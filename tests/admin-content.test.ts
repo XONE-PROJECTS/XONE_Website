@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { defaultContent, parseSiteContent, siteContentSchema } from "@/features/admin/lib/content";
+import { defaultContent, pageKeys, parseSiteContent, siteContentSchema } from "@/features/admin/lib/content";
 
 describe("admin content schema", () => {
   it("accepts the built-in typed content", () => {
@@ -31,6 +31,30 @@ describe("admin content schema", () => {
       type: "projectCollection",
       display: "carousel",
     });
+  });
+
+  it("matches the current public-page baseline", () => {
+    const content = parseSiteContent(defaultContent);
+    for (const page of pageKeys) expect(content.pages[page].blocks.length).toBeGreaterThan(0);
+
+    expect(content.pages.home.blocks).toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: "home-preflight", type: "preflight" }),
+      expect.objectContaining({ id: "home-hero", type: "hero" }),
+      expect.objectContaining({ id: "home-projects", type: "projectCollection" }),
+      expect.objectContaining({ id: "home-team", type: "teamCollection" }),
+      expect.objectContaining({ id: "home-cta", type: "cta" }),
+    ]));
+    expect(content.pages.projects.blocks).toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: "projects-hero", type: "hero", eyebrow: "Portfolio" }),
+      expect.objectContaining({ id: "projects-list", type: "projectCollection", display: "carousel", items: expect.arrayContaining([expect.objectContaining({ id: "rahamen-digital-base44" })]) }),
+      expect.objectContaining({ id: "projects-cta", type: "cta", secondaryHref: "/contact" }),
+    ]));
+    expect(content.pages.services.blocks[0]).toMatchObject({ type: "serviceCollection", body: expect.stringContaining("end-to-end") });
+    expect(content.pages.process.blocks[0]).toMatchObject({ type: "processCollection", items: expect.arrayContaining([expect.objectContaining({ details: expect.arrayContaining(["Discovery workshops to align on business objectives"]) })]) });
+    expect(content.pages.contact.blocks[0]).toMatchObject({ type: "contact", detailsHeading: "Get in touch", phoneDisplay: "09533720594", note: expect.stringContaining("Online contact forms") });
+    expect(content.pages.privacy.blocks[0]).toMatchObject({ type: "legal", sections: expect.arrayContaining([expect.objectContaining({ id: "cookies" })]) });
+    expect(content.pages.terms.blocks[0]).toMatchObject({ type: "legal", sections: expect.arrayContaining([expect.objectContaining({ id: "limitation-of-liability" })]) });
+    expect(content.pages.footer.blocks[0]).toMatchObject({ type: "footer", serviceLinks: expect.arrayContaining([expect.objectContaining({ label: "Web & Mobile Apps" })]), companyLinks: expect.arrayContaining([expect.objectContaining({ label: "Contact" })]) });
   });
 
   it("rejects unsafe or malformed blocks", () => {

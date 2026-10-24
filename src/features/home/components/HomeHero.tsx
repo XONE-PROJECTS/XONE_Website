@@ -4,7 +4,21 @@ import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { BRAND_NAME, buildContactMailto } from "@/lib/brand";
 
-export function HomeHero() {
+type HomeHeroContent = {
+  eyebrow?: string;
+  heading: string;
+  body: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+};
+
+export function HomeHero({ content }: { content?: HomeHeroContent }) {
+  const eyebrow = content?.eyebrow ?? BRAND_NAME;
+  const heading = content?.heading ?? "Custom software for teams that need clarity and reliable delivery";
+  const body = content?.body ?? "We design and build web apps, mobile experiences, and automation — with a direct line to the engineers who ship your product.";
+  const ctaLabel = content?.ctaLabel ?? "View our projects";
+  const ctaHref = content?.ctaHref ?? "/projects";
+
   return (
     <section
       aria-labelledby="home-hero-heading"
@@ -12,27 +26,26 @@ export function HomeHero() {
     >
       <div className="mx-auto max-w-3xl motion-safe:animate-fade-in-up">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-xone-violet">
-          {BRAND_NAME}
+          {eyebrow}
         </p>
         <h1
           id="home-hero-heading"
           className="mt-4 text-3xl font-semibold tracking-tight text-foreground sm:text-4xl lg:text-5xl lg:leading-tight"
         >
-          Custom software for teams that need clarity and reliable delivery
+          {heading}
         </h1>
         <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-          We design and build web apps, mobile experiences, and automation —
-          with a direct line to the engineers who ship your product.
+          {body}
         </p>
         <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center">
           <Link
-            href="/projects"
+            href={ctaHref}
             className={cn(
               buttonVariants({ size: "lg" }),
               "min-h-11 w-full sm:w-auto",
             )}
           >
-            View our projects
+            {ctaLabel}
           </Link>
           <a
             href={buildContactMailto("Project inquiry")}

@@ -1,8 +1,21 @@
 import { buildContactMailto } from "@/lib/brand";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
-export function HomeCtaSection() {
+type HomeCtaContent = {
+  heading?: string;
+  body?: string;
+  label?: string;
+  href?: string;
+};
+
+export function HomeCtaSection({ content }: { content?: HomeCtaContent }) {
+  const heading = content?.heading ?? "Ready to talk about your project?";
+  const body = content?.body ?? "Tell us what you are building. We respond within one business day to schedule a discovery conversation.";
+  const label = content?.label ?? "Email us";
+  const href = content?.href ?? buildContactMailto("Project inquiry");
+
   return (
     <section
       aria-labelledby="home-cta-heading"
@@ -13,21 +26,16 @@ export function HomeCtaSection() {
           id="home-cta-heading"
           className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
         >
-          Ready to talk about your project?
+          {heading}
         </h2>
         <p className="mt-4 text-sm leading-relaxed text-muted-foreground sm:text-base">
-          Tell us what you are building. We respond within one business day to
-          schedule a discovery conversation.
+          {body}
         </p>
-        <a
-          href={buildContactMailto("Project inquiry")}
-          className={cn(
-            buttonVariants({ size: "lg" }),
-            "mt-8 inline-flex w-full sm:w-auto",
-          )}
-        >
-          Email us
-        </a>
+        {href.startsWith("/") ? (
+          <Link href={href} className={cn(buttonVariants({ size: "lg" }), "mt-8 inline-flex w-full sm:w-auto")}>{label}</Link>
+        ) : (
+          <a href={href} className={cn(buttonVariants({ size: "lg" }), "mt-8 inline-flex w-full sm:w-auto")}>{label}</a>
+        )}
       </div>
     </section>
   );

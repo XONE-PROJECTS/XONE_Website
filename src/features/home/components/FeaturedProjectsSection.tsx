@@ -5,8 +5,19 @@ import {
   ProjectsLinkButton,
 } from "@/components/marketing/project-card";
 import { featuredProjects } from "@/features/projects/data/projects";
+import type { Project } from "@/features/projects/data/projects";
 
-export function FeaturedProjectsSection() {
+type FeaturedProjectsContent = {
+  heading?: string;
+  body?: string;
+  projects?: readonly Project[];
+};
+
+export function FeaturedProjectsSection({ content }: { content?: FeaturedProjectsContent }) {
+  const heading = content?.heading ?? "Projects that show how we deliver";
+  const body = content?.body ?? "Real problems, structured builds, measurable outcomes — explore case studies similar to what you need.";
+  const projects = content?.projects ?? featuredProjects;
+
   return (
     <section
       aria-labelledby="featured-projects-heading"
@@ -22,11 +33,10 @@ export function FeaturedProjectsSection() {
               id="featured-projects-heading"
               className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
             >
-              Projects that show how we deliver
+              {heading}
             </h2>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-              Real problems, structured builds, measurable outcomes — explore
-              case studies similar to what you need.
+              {body}
             </p>
           </div>
           <ProjectsLinkButton
@@ -36,7 +46,7 @@ export function FeaturedProjectsSection() {
         </div>
 
         <ul className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-          {featuredProjects.map((project, index) => (
+          {projects.map((project, index) => (
             <li
               key={project.id}
               className="motion-safe:animate-fade-in-up"

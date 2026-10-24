@@ -12,23 +12,48 @@ import {
   CONTACT_PHONE_DISPLAY,
 } from "@/lib/brand";
 
-export function ContactPageContent() {
+type ContactContent = {
+  heading?: string;
+  body?: string;
+  detailsHeading?: string;
+  email: string;
+  emailDescription?: string;
+  phone?: string;
+  phoneDisplay?: string;
+  location?: string;
+  secondaryLabel?: string;
+  secondaryHref?: string;
+  note?: string;
+};
+
+export function ContactPageContent({ content }: { content?: ContactContent }) {
+  const heading = content?.heading ?? `Contact ${BRAND_NAME}`;
+  const body = content?.body ?? "Email us about your project. We respond within one business day to schedule a discovery call.";
+  const detailsHeading = content?.detailsHeading ?? "Get in touch";
+  const email = content?.email ?? CONTACT_EMAIL;
+  const emailDescription = content?.emailDescription ?? "Primary way to reach us — click below to open your mail app.";
+  const phone = content?.phone ?? CONTACT_PHONE;
+  const phoneDisplay = content?.phoneDisplay ?? CONTACT_PHONE_DISPLAY;
+  const location = content?.location ?? CONTACT_LOCATION;
+  const secondaryLabel = content?.secondaryLabel ?? "View our projects";
+  const secondaryHref = content?.secondaryHref ?? "/projects";
+  const note = content?.note ?? "Online contact forms are planned for a future release. For now, email is the fastest path to a qualified conversation.";
+
   return (
     <div className="bg-xone-section px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-3xl">
         <header className="mb-10 text-center">
           <h1 className="text-3xl font-bold text-foreground sm:text-5xl">
-            Contact {BRAND_NAME}
+            {heading}
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-            Email us about your project. We respond within one business day to
-            schedule a discovery call.
+            {body}
           </p>
         </header>
 
         <div className="rounded-xl border border-border bg-background p-8 shadow-sm">
           <h2 className="mb-6 text-2xl font-semibold text-foreground">
-            Get in touch
+            {detailsHeading}
           </h2>
 
           <ul className="space-y-6 text-muted-foreground">
@@ -40,13 +65,13 @@ export function ContactPageContent() {
               <div>
                 <p className="font-medium text-foreground">Email</p>
                 <p className="mt-1 text-sm">
-                  Primary way to reach us — click below to open your mail app.
+                  {emailDescription}
                 </p>
                 <a
-                  href={buildContactMailto()}
+                  href={buildContactMailto("Project inquiry", email)}
                   className="mt-2 block text-xone-violet transition-colors hover:underline"
                 >
-                  {CONTACT_EMAIL}
+                  {email}
                 </a>
               </div>
             </li>
@@ -58,10 +83,10 @@ export function ContactPageContent() {
               <div>
                 <p className="font-medium text-foreground">Phone</p>
                 <a
-                  href={`tel:${CONTACT_PHONE}`}
+                  href={`tel:${phone}`}
                   className="mt-1 block transition-colors hover:text-xone-violet"
                 >
-                  {CONTACT_PHONE_DISPLAY}
+                  {phoneDisplay}
                 </a>
               </div>
             </li>
@@ -72,31 +97,30 @@ export function ContactPageContent() {
               />
               <div>
                 <p className="font-medium text-foreground">Location</p>
-                <p className="mt-1">{CONTACT_LOCATION}</p>
+                <p className="mt-1">{location}</p>
               </div>
             </li>
           </ul>
 
           <div className="mt-8 flex flex-wrap gap-3 border-t border-border pt-8">
             <a
-              href={buildContactMailto("Project inquiry")}
+              href={buildContactMailto("Project inquiry", email)}
               className={cn(buttonVariants({ size: "lg" }), "gap-2")}
             >
               <Mail className="size-4" aria-hidden />
               Email us
             </a>
             <Link
-              href="/projects"
+              href={secondaryHref}
               className={buttonVariants({ variant: "outline", size: "lg" })}
             >
-              View our projects
+              {secondaryLabel}
             </Link>
           </div>
         </div>
 
         <p className="mt-6 text-center text-sm text-muted-foreground">
-          Online contact forms are planned for a future release. For now, email
-          is the fastest path to a qualified conversation.
+          {note}
         </p>
       </div>
     </div>

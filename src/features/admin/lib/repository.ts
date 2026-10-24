@@ -3,20 +3,31 @@ import { MongoServerError } from "mongodb";
 import { getMongoDatabase } from "@/lib/mongodb";
 import { defaultContent, parseSiteContent, type SiteContent } from "./content";
 
-export const CURRENT_CONTENT_VERSION = 10;
+export const CURRENT_CONTENT_VERSION = 12;
 export class CmsConflictError extends Error { constructor() { super("This draft changed in another tab. Download your edits, then reload the latest draft."); } }
 export class CmsStorageError extends Error { constructor() { super("Stored CMS content could not be read safely. Restore a supported backup before saving."); } }
 export type RevisionAction = "checkpoint" | "save" | "publish" | "restore";
-type Snapshot = { _id: string; revision: number; content: SiteContent; createdAt: Date; author: string; action: RevisionAction };
-type ContentDocument = { _id: "site"; version?: number; revision?: number; draft: SiteContent; published: SiteContent; updatedAt: Date; publishedAt: Date | null; checkpointAt?: Date; pendingSnapshot?: Snapshot };
+type Snapshot = { _id: string; revision: number; content: unknown; createdAt: Date; author: string; action: RevisionAction };
+type ContentDocument = { _id: "site"; version?: number; revision?: number; draft: unknown; published: unknown; updatedAt: Date; publishedAt: Date | null; checkpointAt?: Date; pendingSnapshot?: Snapshot };
 export type ContentState = { draft: SiteContent; published: SiteContent; revision: number };
 const sites = "site_content", revisions = "cms_revisions";
 
-function read(document: ContentDocument | null): ContentState {
-  if (!document) { const content = parseSiteContent(defaultContent); return { draft: content, published: content, revision: 0 }; }
+function validateVersion(document: ContentDocument): void {
   if (document.version !== undefined && (!Number.isInteger(document.version) || document.version < 1 || document.version > CURRENT_CONTENT_VERSION)) throw new CmsStorageError();
-  try { return { draft: parseSiteContent(document.draft), published: parseSiteContent(document.published), revision: document.revision ?? 0 }; }
-  catch { throw new CmsStorageError(); }
+}
+function tryRead(document: ContentDocument | null): ContentState | null {
+  if (!document) { const content = parseSiteContent(defaultContent); return { draft: content, published: content, revision: 0 }; }
+  validateVersion(document);
+  try {
+    const revision = document.revision ?? 0;
+    if (!Number.isInteger(revision) || revision < 0) return null;
+    return { draft: parseSiteContent(document.draft), published: parseSiteContent(document.published), revision };
+  } catch { return null; }
+}
+function read(document: ContentDocument | null): ContentState {
+  const state = tryRead(document);
+  if (!state) throw new CmsStorageError();
+  return state;
 }
 async function flushHistory(document: ContentDocument | null): Promise<void> {
   if (!document?.pendingSnapshot) return;
@@ -27,7 +38,33 @@ async function flushHistory(document: ContentDocument | null): Promise<void> {
   await db.collection<ContentDocument>(sites).updateOne({ _id: "site", "pendingSnapshot._id": snapshot._id }, { $unset: { pendingSnapshot: "" } });
 }
 export async function getContentState(): Promise<ContentState> {
-  return read(await (await getMongoDatabase()).collection<ContentDocument>(sites).findOne({ _id: "site" }));
+  const db = await getMongoDatabase();
+  const collection = db.collection<ContentDocument>(sites);
+  const document = await collection.findOne({ _id: "site" });
+  if (!document) return read(null);
+  validateVersion(document);
+  const state = tryRead(document);
+  if (state && (document.version ?? 0) >= CURRENT_CONTENT_VERSION) return state;
+
+  const baseline = parseSiteContent(defaultContent);
+  const now = new Date();
+  const revision = state?.revision ?? (Number.isInteger(document.revision) && (document.revision ?? 0) >= 0 ? document.revision ?? 0 : 0);
+  for (const [kind, value] of [["draft", document.draft], ["published", document.published]] as const) {
+    await db.collection<Snapshot>(revisions).updateOne(
+      { _id: `public-baseline-v${CURRENT_CONTENT_VERSION}-${kind}` },
+      { $setOnInsert: { _id: `public-baseline-v${CURRENT_CONTENT_VERSION}-${kind}`, revision, content: value, createdAt: now, author: "public-baseline-migration", action: "save" } },
+      { upsert: true },
+    );
+  }
+
+  const versionFilter = document.version === undefined ? { version: { $exists: false } } : { version: document.version };
+  const revisionFilter = document.revision === undefined ? { revision: { $exists: false } } : { revision: document.revision };
+  const result = await collection.updateOne(
+    { _id: "site", ...versionFilter, ...revisionFilter },
+    { $set: { version: CURRENT_CONTENT_VERSION, revision: revision + 1, draft: baseline, published: baseline, updatedAt: now, publishedAt: now }, $unset: { pendingSnapshot: "" } },
+  );
+  if (!result.matchedCount) return getContentState();
+  return { draft: baseline, published: baseline, revision: revision + 1 };
 }
 async function write(content: SiteContent | null, expectedRevision: number, author: string, action: RevisionAction): Promise<ContentState> {
   const db = await getMongoDatabase(), collection = db.collection<ContentDocument>(sites);
@@ -74,5 +111,5 @@ export async function restoreRevision(id: string, revision: number, author: stri
 export async function getPublishedContent(): Promise<SiteContent> {
   if (process.env.NEXT_PHASE === "phase-production-build" || !process.env.MONGODB_URI) return parseSiteContent(defaultContent);
   try { return (await getContentState()).published; }
-  catch (error: unknown) { if (error instanceof CmsStorageError) throw error; return parseSiteContent(defaultContent); }
+  catch { return parseSiteContent(defaultContent); }
 }

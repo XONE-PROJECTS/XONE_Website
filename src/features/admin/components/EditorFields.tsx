@@ -198,6 +198,8 @@ export function BlockSettings({
             value={block.href}
             onChange={(value) => patch({ href: value })}
           />
+          <Field label="Secondary button label" value={block.secondaryLabel ?? ""} onChange={(value) => patch({ secondaryLabel: value || undefined })} />
+          <Field label="Secondary button link" value={block.secondaryHref ?? ""} onChange={(value) => patch({ secondaryHref: value || undefined })} />
         </>
       )}
       {block.type === "contact" && (
@@ -212,16 +214,20 @@ export function BlockSettings({
             value={block.body}
             onChange={(value) => patch({ body: value })}
           />
+          <Field label="Details heading" value={block.detailsHeading} onChange={(value) => patch({ detailsHeading: value })} />
           <Field
             label="Email"
             value={block.email}
             onChange={(value) => patch({ email: value })}
             type="email"
           />
+          <TextField label="Email description" value={block.emailDescription} onChange={(value) => patch({ emailDescription: value })} />
           <Field label="Phone" value={block.phone} onChange={(value) => patch({ phone: value })} />
+          <Field label="Phone display" value={block.phoneDisplay} onChange={(value) => patch({ phoneDisplay: value })} />
           <Field label="Location" value={block.location} onChange={(value) => patch({ location: value })} />
           <Field label="Secondary button label" value={block.secondaryLabel} onChange={(value) => patch({ secondaryLabel: value })} />
           <Field label="Secondary button link" value={block.secondaryHref} onChange={(value) => patch({ secondaryHref: value })} />
+          <TextField label="Footer note" value={block.note} onChange={(value) => patch({ note: value })} />
         </>
       )}
       {block.type === "preflight" && (
@@ -248,10 +254,11 @@ export function BlockSettings({
                 <Field label="Number" type="number" value={String(item.step)} onChange={(value) => patch({ items: block.items.map((current, itemIndex) => itemIndex === index ? { ...current, step: Number(value) } : current) })} />
                 <Field label="Title" value={item.title} onChange={(value) => patch({ items: block.items.map((current, itemIndex) => itemIndex === index ? { ...current, title: value } : current) })} />
                 <TextField label="Description" value={item.description} onChange={(value) => patch({ items: block.items.map((current, itemIndex) => itemIndex === index ? { ...current, description: value } : current) })} />
+                <TextField label="Details (one per line)" value={item.details.join("\n")} onChange={(value) => patch({ items: block.items.map((current, itemIndex) => itemIndex === index ? { ...current, details: value.split("\n").filter(Boolean) } : current) })} />
                 <VisualAssetField label="Step icon" value={item.icon} onChange={(icon) => patch({ items: block.items.map((current, itemIndex) => itemIndex === index ? { ...current, icon } : current) })} />
               </div>
             ))}
-            <button type="button" className="text-xs text-primary underline" onClick={() => patch({ items: [...block.items, { step: block.items.length + 1, title: "New step", description: "Edit this content." }] })}>+ Add step</button>
+            <button type="button" className="text-xs text-primary underline" onClick={() => patch({ items: [...block.items, { step: block.items.length + 1, title: "New step", description: "Edit this content.", details: [] }] } as Partial<Extract<CmsBlock, { type: "processCollection" }>>)}>+ Add step</button>
           </div>
         </>
       )}
@@ -307,13 +314,14 @@ export function BlockSettings({
             onChange={(value) => patch({ description: value })}
           />
           <TextField
-            label="Links (label | href, one per line)"
-            value={block.links
+            label="Service links (label | href, one per line)"
+            value={(block.serviceLinks.length ? block.serviceLinks : block.links)
+              .slice(0, 3)
               .map((link) => `${link.label} | ${link.href}`)
               .join("\n")}
             onChange={(value) =>
               patch({
-                links: value
+                serviceLinks: value
                   .split("\n")
                   .filter(Boolean)
                   .map((line) => {
@@ -325,6 +333,13 @@ export function BlockSettings({
                   }),
               })
             }
+          />
+          <TextField
+            label="Company links (label | href, one per line)"
+            value={(block.companyLinks.length ? block.companyLinks : block.links.slice(3))
+              .map((link) => `${link.label} | ${link.href}`)
+              .join("\n")}
+            onChange={(value) => patch({ companyLinks: value.split("\n").filter(Boolean).map((line) => { const [label, href] = line.split("|"); return { label: label?.trim() ?? "", href: href?.trim() ?? "" }; }) })}
           />
         </>
       )}

@@ -4,8 +4,19 @@ import { TeamMemberAvatar } from "@/components/team-member-avatar";
 import { TeamMemberSocialLinks } from "@/components/team-member-social-links";
 import { teamMembers } from "@/lib/team-members";
 import { BRAND_SHORT } from "@/lib/brand";
+import type { TeamMember } from "@/lib/team-members";
 
-export function TeamStripSection() {
+type TeamStripContent = {
+  heading?: string;
+  body?: string;
+  members?: readonly TeamMember[];
+};
+
+export function TeamStripSection({ content }: { content?: TeamStripContent }) {
+  const heading = content?.heading ?? "Engineers you will work with";
+  const body = content?.body ?? `${BRAND_SHORT} is a small, senior-led team — no hand-offs to anonymous contractors.`;
+  const members = content?.members ?? teamMembers;
+
   return (
     <section
       aria-labelledby="team-strip-heading"
@@ -20,16 +31,15 @@ export function TeamStripSection() {
             id="team-strip-heading"
             className="mt-2 text-2xl font-semibold tracking-tight text-foreground sm:text-3xl"
           >
-            Engineers you will work with
+            {heading}
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
-            {BRAND_SHORT} is a small, senior-led team — no hand-offs to
-            anonymous contractors.
+            {body}
           </p>
         </div>
 
         <ul className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8">
-          {teamMembers.map((member) => (
+          {members.map((member) => (
             <li
               key={member.name}
               className="flex flex-col items-center rounded-lg border border-border bg-background p-6 text-center motion-safe:transition-shadow motion-safe:hover:shadow-sm sm:items-start sm:text-left"

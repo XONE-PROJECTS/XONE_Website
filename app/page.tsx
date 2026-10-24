@@ -1,24 +1,12 @@
 import type { Metadata } from "next";
 
-import { FeaturedProjectsSection } from "@/features/home/components/FeaturedProjectsSection";
-import { HomeCtaSection } from "@/features/home/components/HomeCtaSection";
-import { HomeHero } from "@/features/home/components/HomeHero";
-import { TeamStripSection } from "@/features/home/components/TeamStripSection";
-import { PreFlightIntro } from "@/features/preflight/components/PreFlightIntro";
-import { createPageMetadata } from "@/lib/metadata";
+import { CmsPublicPage } from "@/features/admin/components/CmsPublicPage";
+import { createCmsPageMetadata } from "@/lib/metadata";
+import { getPublishedContent } from "@/features/admin/lib/repository";
 
-export const metadata: Metadata = createPageMetadata({
-  path: "",
-});
-
-export default function HomePage() {
-  return (
-    <>
-      <PreFlightIntro />
-      <HomeHero />
-      <FeaturedProjectsSection />
-      <TeamStripSection />
-      <HomeCtaSection />
-    </>
-  );
+export async function generateMetadata(): Promise<Metadata> {
+  const content = await getPublishedContent();
+  return createCmsPageMetadata(content.pages.home.seo, { path: "" });
 }
+
+export default function HomePage() { return <CmsPublicPage page="home" />; }

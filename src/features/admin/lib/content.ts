@@ -2,6 +2,12 @@ import { z } from "zod";
 import { imageUrlSchema, linkSchema, responsiveStyleSchema, seoSchema, themeSchema } from "./design";
 
 import { teamMembers } from "@/lib/team-members";
+import { projects, featuredProjects } from "@/features/projects/data/projects";
+import { serviceOfferings } from "@/features/services/data/services";
+import { processSteps } from "@/features/process/data/process-steps";
+import { privacyContent, termsContent } from "@/features/legal/data/legal-content";
+import { buildContactMailto, CONTACT_EMAIL, CONTACT_LOCATION, CONTACT_PHONE, CONTACT_PHONE_DISPLAY, BRAND_NAME } from "@/lib/brand";
+import { DEFAULT_PREFLIGHT_CONTENT } from "@/features/preflight/data/preflight-content";
 
 export const pageKeys = [
   "home",
@@ -48,6 +54,7 @@ const projectSchema = itemSchema.extend({
   href: hrefSchema.optional(),
   imageSrc: imageUrlSchema.optional(),
   summary: z.string().trim().max(3000).optional(),
+  mobileSummary: z.string().trim().max(3000).optional(),
   challenge: z.string().trim().max(3000).default(""),
   outcomes: z.array(z.string().trim().max(500)).max(20).default([]),
   category: z.enum(["web-app", "mobile-app", "automation", "marketing-site"]).default("web-app"),
@@ -124,6 +131,8 @@ export const blockSchema = z.discriminatedUnion("type", [
     body: z.string().trim().max(2000),
     label: z.string().trim().min(1).max(120),
     href: hrefSchema,
+    secondaryLabel: z.string().trim().max(120).optional(),
+    secondaryHref: hrefSchema.optional(),
     visible: z.boolean().default(true),
   }),
   z.object({
@@ -153,6 +162,7 @@ export const blockSchema = z.discriminatedUnion("type", [
     ...blockBase,
     type: z.literal("serviceCollection"),
     heading: z.string().trim().max(240).optional(),
+    body: z.string().trim().max(2000).default(""),
     items: z.array(itemSchema.extend({ icon: z.union([z.enum(["cog", "palette", "globe", "mobile"]), visualAssetSchema]).default("cog"), highlights: z.array(z.string().trim().max(160)).max(12) })).max(50),
     columns: z.number().int().min(1).max(3).default(2),
     visible: z.boolean().default(true),
@@ -162,11 +172,15 @@ export const blockSchema = z.discriminatedUnion("type", [
     type: z.literal("contact"),
     heading: z.string().trim().min(1).max(240),
     body: z.string().trim().max(2000),
+    detailsHeading: z.string().trim().max(240).default("Get in touch"),
     email: z.string().trim().email(),
+    emailDescription: z.string().trim().max(500).default("Primary way to reach us — click below to open your mail app."),
     phone: z.string().trim().max(80).default(""),
+    phoneDisplay: z.string().trim().max(80).default(""),
     location: z.string().trim().max(240).default(""),
     secondaryLabel: z.string().trim().max(120).default("View our projects"),
     secondaryHref: hrefSchema.default("/projects"),
+    note: z.string().trim().max(1000).default(""),
     visible: z.boolean().default(true),
   }),
   z.object({
@@ -188,6 +202,7 @@ export const blockSchema = z.discriminatedUnion("type", [
       step: z.number().int().min(1).max(20),
       title: z.string().trim().min(1).max(160),
       description: z.string().trim().max(2000),
+      details: z.array(z.string().trim().max(500)).max(20).default([]),
       icon: visualAssetSchema.optional(),
     })).min(1).max(20),
     visible: z.boolean().default(true),
@@ -215,6 +230,8 @@ export const blockSchema = z.discriminatedUnion("type", [
     type: z.literal("footer"),
     description: z.string().trim().max(2000),
     links: z.array(z.object({ label: z.string().trim().min(1).max(120), href: hrefSchema })).max(30),
+    serviceLinks: z.array(z.object({ label: z.string().trim().min(1).max(120), href: hrefSchema })).max(10).default([]),
+    companyLinks: z.array(z.object({ label: z.string().trim().min(1).max(120), href: hrefSchema })).max(10).default([]),
     visible: z.boolean().default(true),
   }),
   z.object({
@@ -368,71 +385,57 @@ function normalizeContent(content: z.infer<typeof siteContentSchema>): SiteConte
   };
 }
 
+function cmsProject(project: (typeof projects)[number]) {
+  return { id: project.id, title: project.title, description: project.summary, summary: project.summary, mobileSummary: project.mobileSummary, challenge: project.challenge, outcomes: project.outcomes, category: project.category, leadEngineer: project.leadEngineer ?? "", teamCredits: project.teamCredits ?? [], href: project.href, liveHref: project.liveHref, liveLinkLabel: project.liveLinkLabel ?? "View live site", previewImageSrc: project.previewImageSrc, tags: project.tags };
+}
+
+function cmsTeamMember(member: (typeof teamMembers)[number]) {
+  return { name: member.name, role: member.role, initials: member.initials, photoSrc: member.photoSrc, linkedin: member.linkedin, github: member.github, portfolio: member.portfolio };
+}
+
+const serviceIconNames = ["cog", "palette", "globe", "mobile"] as const;
+const cmsServices = serviceOfferings.map((service, index) => ({ icon: serviceIconNames[index] ?? "cog", title: service.title, description: service.description, highlights: service.highlights }));
+
 export const defaultContent = {
   pages: {
     home: { blocks: [
-      { id: "home-preflight", type: "preflight", logoSrc: "/assets/XONE/xone_brand_kit/xone_logo_inverse.svg", logoAlt: "Xone Software Development", objectives: ["Build custom software with clarity and reliable delivery", "Design user-first products that scale with your business", "Partner transparently from discovery through launch"], reasons: [
-        { title: "Senior-led team", description: "work directly with the engineers who ship your product" },
-        { title: "Proven delivery", description: "portfolio case studies with measurable outcomes" },
-        { title: "Modern, maintainable stack", description: "TypeScript-first web and mobile builds" },
-        { title: "Clear communication", description: "honest timelines and fast email follow-up" },
-      ], ctaLabel: "Start Building with XONE" },
-      { id: "home-hero", type: "hero", eyebrow: "Xone Software Development", heading: "Custom software for teams that need clarity and reliable delivery", body: "We design and build web apps, mobile experiences, and automation — with a direct line to the engineers who ship your product.", ctaLabel: "View our projects", ctaHref: "/projects" },
-      { id: "home-projects", type: "projectCollection", display: "grid", heading: "Projects that show how we deliver", body: "Real problems, structured builds, measurable outcomes — explore case studies similar to what you need.", items: [
-        { id: "smart-cubicle-main", title: "Smart restroom preventive maintenance", description: "IoT and machine-learning platform that monitors occupancy, air quality, and supplies — then surfaces predictive maintenance on a real-time admin dashboard.", href: "https://github.com/ryMGDLT/SMART_CUBICLE_MAIN" },
-        { id: "esp32-controller-app", title: "ESP32 mobile controller app", description: "Flutter Android app paired with ESP32 firmware to control relays and LEDs over Bluetooth or Wi-Fi.", href: "https://github.com/ryMGDLT/ESP32_Controller_APP" },
-        { id: "lightbox-studio-website", title: "LightBox Studio website", description: "Full-stack studio website for photography and videography, portfolio galleries, and booking flows.", liveHref: "https://www.thelightboxstudios.com/" },
-      ] },
-      { id: "home-team", type: "teamCollection", heading: "Engineers you will work with", body: "Xone is a small, senior-led team — no hand-offs to anonymous contractors.", items: teamMembers },
-      { id: "home-cta", type: "cta", heading: "Ready to talk about your project?", body: "Tell us what you are building. We respond within one business day to schedule a discovery conversation.", label: "Email us", href: "mailto:xonesoftware.marketing@gmail.com?subject=Project%20inquiry" },
+      { id: "home-preflight", type: "preflight", ...DEFAULT_PREFLIGHT_CONTENT },
+      { id: "home-hero", type: "hero", eyebrow: BRAND_NAME, heading: "Custom software for teams that need clarity and reliable delivery", body: "We design and build web apps, mobile experiences, and automation — with a direct line to the engineers who ship your product.", ctaLabel: "View our projects", ctaHref: "/projects" },
+      { id: "home-projects", type: "projectCollection", display: "grid", columns: 3, heading: "Projects that show how we deliver", body: "Real problems, structured builds, measurable outcomes — explore case studies similar to what you need.", items: featuredProjects.map(cmsProject) },
+      { id: "home-team", type: "teamCollection", columns: 3, heading: "Engineers you will work with", body: "Xone is a small, senior-led team — no hand-offs to anonymous contractors.", items: teamMembers.map(cmsTeamMember) },
+      { id: "home-cta", type: "cta", heading: "Ready to talk about your project?", body: "Tell us what you are building. We respond within one business day to schedule a discovery conversation.", label: "Email us", href: buildContactMailto("Project inquiry") },
     ] },
     projects: { blocks: [
-      { id: "projects-hero", type: "hero", heading: "Our projects", body: "A selection of products, platforms, and experiences we have helped bring to life.", ctaLabel: "Start a conversation", ctaHref: "/contact" },
-      { id: "projects-list", type: "projectCollection", display: "carousel", heading: "Selected work", items: [
-        { id: "smart-cubicle-main", title: "Smart restroom preventive maintenance", description: "IoT and machine-learning platform for predictive maintenance.", href: "https://github.com/ryMGDLT/SMART_CUBICLE_MAIN" },
-        { id: "esp32-controller-app", title: "ESP32 mobile controller app", description: "Flutter Android app paired with ESP32 firmware for Bluetooth and Wi-Fi control.", href: "https://github.com/ryMGDLT/ESP32_Controller_APP" },
-        { id: "lightbox-studio-website", title: "LightBox Studio website", description: "Full-stack studio website for photography, videography, gallery, and booking flows.", href: "https://www.thelightboxstudios.com/" },
-        { id: "xone-software-solutions", title: "Xone Software Solutions", description: "Company marketing site on Next.js App Router with portfolio, services, team, and email-first lead capture.", href: "https://github.com/JshMarkCastillo-GHdev/xone-swe-next" },
-        { id: "rahamen-digital-base44", title: "Rahamen restaurant website", description: "A clickable restaurant brand and menu mockup prepared for production.", href: "https://rahamen.base44.app/" },
-      ] },
+      { id: "projects-hero", type: "hero", eyebrow: "Portfolio", heading: "Our projects", body: `Case studies from ${BRAND_NAME}. Swipe or use the dots to browse — the center card is in focus. Email us if something matches your needs.`, ctaLabel: `Email ${CONTACT_EMAIL}`, ctaHref: buildContactMailto("Project inquiry from portfolio") },
+      { id: "projects-list", type: "projectCollection", display: "carousel", columns: 1, heading: "Selected work", items: projects.map(cmsProject) },
+      { id: "projects-cta", type: "cta", heading: "Have a project in mind?", body: "Tell us about your goals by email. We will follow up to schedule a discovery call.", label: "Send us an email", href: buildContactMailto(), secondaryLabel: "Contact details", secondaryHref: "/contact" },
     ] },
-    services: { blocks: [{ id: "services", type: "serviceCollection", heading: "Our Services", items: [
-      { icon: "cog", title: "System Generation & Automation", description: "Streamline your workflows with intelligent automation solutions that boost efficiency and reduce manual tasks.", highlights: ["Process automation", "Workflow optimization", "System integration", "Custom tooling"] },
-      { icon: "palette", title: "UI/UX Design", description: "Create user-centered, seamless experiences that engage your audience and drive conversions.", highlights: ["User research", "Interface design", "Prototyping", "Design systems"] },
-      { icon: "globe", title: "Web Application Development", description: "Build scalable, secure, and modern web applications that grow with your business needs.", highlights: ["Full-stack development", "API integration", "Performance optimization", "Cloud deployment"] },
-      { icon: "mobile", title: "Mobile Application Development", description: "Develop cross-platform, engaging mobile apps that provide exceptional user experiences.", highlights: ["iOS and Android", "Cross-platform builds", "App store optimization", "Offline-first experiences"] },
-    ] }] },
+    services: { blocks: [{ id: "services", type: "serviceCollection", heading: "Our Services", body: `${BRAND_NAME} delivers end-to-end digital solutions — from automation and design to production-ready web and mobile apps.`, columns: 2, items: cmsServices }] },
     about: { blocks: [
-      { id: "about-intro", type: "hero", imageSrc: "/assets/XONE/xone_brand_kit/xone_logo.svg", imageAlt: "Xone Software Development", imageFit: "contain", heading: "About Xone", body: "Xone Software Development is a forward-thinking software studio focused on system generation, UI/UX design, and web and mobile application development." },
-      { id: "about-story", type: "text", heading: "Our story", paragraphs: ["We started Xone with a simple belief: technology should be powerful, accessible, and designed with real users in mind.", "Our team combines product thinking, design craft, and engineering discipline to deliver digital solutions that make work easier and growth sustainable."] },
-      { id: "about-values", type: "cards", heading: "What we stand for", items: [
+      { id: "about-intro", type: "hero", imageSrc: "/assets/XONE/xone_brand_kit/xone_logo.svg", imageAlt: BRAND_NAME, imageFit: "contain", heading: "About Xone", body: `${BRAND_NAME} is a forward-thinking software studio focused on system generation, UI/UX design, and web and mobile application development.` },
+      { id: "about-story", type: "text", heading: "Our story", paragraphs: [`We started Xone with a simple belief: technology should be powerful, accessible, and designed with real users in mind. Too many businesses struggle with fragmented tools, outdated interfaces, and systems that do not scale.`, "Our team bridges that gap — combining product thinking, design craft, and engineering discipline to deliver digital solutions that make work easier and growth sustainable."] },
+      { id: "about-values", type: "cards", columns: 3, heading: "What we stand for", items: [
         { title: "User-first design", description: "Every product decision starts with the people who will use it — clarity, accessibility, and delight." },
         { title: "Scalable engineering", description: "We build with TypeScript, modern frameworks, and patterns that grow with your business." },
         { title: "Transparent partnership", description: "Regular demos, honest timelines, and collaborative communication from kickoff to launch." },
       ] },
-      { id: "about-cta", type: "cta", heading: "Ready to work together?", body: "Learn how we plan, build, and deliver — or reach out to discuss your next project.", label: "See our process", href: "/process" },
+      { id: "about-cta", type: "cta", heading: "Ready to work together?", body: "Learn how we plan, build, and deliver — or reach out to discuss your next project.", label: "See our process", href: "/process", secondaryLabel: "Contact us", secondaryHref: "/contact" },
     ] },
-    contact: { blocks: [{ id: "contact", type: "contact", heading: "Contact Xone Software Development", body: "Email us about your project. We respond within one business day to schedule a discovery call.", email: "xonesoftware.marketing@gmail.com", phone: "+639533720594", location: "Remote-first team serving clients worldwide", secondaryLabel: "View our projects", secondaryHref: "/projects" }] },
-    process: { blocks: [{ id: "process", type: "processCollection", heading: "How We Work", body: "Xone Software Development follows a proven five-step process to deliver successful projects — from discovery through long-term support.", items: [
-      { step: 1, title: "Determine", description: "Understanding your needs, goals, and target audience through comprehensive research and analysis." },
-      { step: 2, title: "Design", description: "Creating wireframes, prototypes, and visual designs that align with your brand and user expectations." },
-      { step: 3, title: "Development", description: "Building robust, scalable applications using modern technologies and best development practices." },
-      { step: 4, title: "Deployment", description: "Launching your application with proper testing, optimization, and seamless go-live processes." },
-      { step: 5, title: "Support", description: "Providing ongoing maintenance, updates, and support to ensure continued success and growth." },
-    ] }] },
-    privacy: { blocks: [{ id: "privacy", type: "legal", title: "Privacy Policy", lastUpdated: "June 14, 2026", intro: "Xone Software Development respects your privacy. This policy describes what information we collect when you visit our website, how we use it, and the choices available to you.", sections: [{ id: "information-we-collect", title: "Information we collect", paragraphs: ["We collect limited information automatically when you browse our public pages, such as IP address, browser type, device type, referring URL, and pages viewed. If you email us, we receive the contents of your message and any contact details you choose to include."], listItems: ["Server and analytics logs", "Information you voluntarily send by email or phone", "Cookie or local storage data only where required for basic site functionality"] }, { id: "how-we-use-information", title: "How we use information", paragraphs: ["We use collected information to operate and improve the website, respond to inquiries, understand aggregate traffic patterns, and protect against abuse or security incidents. We do not sell personal information."], listItems: ["Respond to project inquiries and schedule discovery calls", "Maintain site security, uptime, and performance", "Comply with applicable legal obligations"] }, { id: "sharing", title: "When we share information", paragraphs: ["We share information only with service providers that help us host and operate the site, when required by law, or to protect our rights and users."] }, { id: "your-rights", title: "Your choices and rights", paragraphs: ["Depending on your location, you may have rights to access, correct, delete, or restrict certain processing of personal information. Contact xonesoftware.marketing@gmail.com with questions."] }, { id: "changes", title: "Changes to this policy", paragraphs: ["We may update this Privacy Policy to reflect product, legal, or operational changes. The last updated date will change when revisions are published."] }] }] },
-    terms: { blocks: [{ id: "terms", type: "legal", title: "Terms of Service", lastUpdated: "June 14, 2026", intro: "These Terms of Service govern your access to and use of the Xone Software Development marketing website. Custom software engagements are governed by separate written agreements signed with clients.", sections: [{ id: "use-of-site", title: "Use of the website", paragraphs: ["You may use this site for lawful purposes only. You agree not to interfere with site operation, attempt unauthorized access, scrape content in violation of applicable law, or transmit malware or abusive content."] }, { id: "services", title: "Marketing content vs. professional services", paragraphs: ["Information on this site describes our capabilities, process, and sample work. Project scope, timelines, fees, and deliverables are defined only in a mutually executed statement of work or contract."] }, { id: "intellectual-property", title: "Intellectual property", paragraphs: ["Unless otherwise noted, Xone owns the text, design, logos, and other materials on this site. Client project deliverables and ownership terms are addressed in individual client agreements."] }, { id: "third-party-links", title: "Third-party links", paragraphs: ["Our site may link to external websites or portfolio demos. We are not responsible for the content, privacy practices, or availability of third-party sites."] }, { id: "contact", title: "Contact", paragraphs: ["Questions about these Terms may be sent to xonesoftware.marketing@gmail.com or via our Contact page."] }] }] },
-    footer: { blocks: [{ id: "footer", type: "footer", description: "Custom software development for teams that need clarity, speed, and reliable delivery.", links: [{ label: "Projects", href: "/projects" }, { label: "Services", href: "/services" }, { label: "About", href: "/about" }, { label: "Contact", href: "/contact" }] }] },
+    contact: { blocks: [{ id: "contact", type: "contact", heading: `Contact ${BRAND_NAME}`, body: "Email us about your project. We respond within one business day to schedule a discovery call.", detailsHeading: "Get in touch", email: CONTACT_EMAIL, emailDescription: "Primary way to reach us — click below to open your mail app.", phone: CONTACT_PHONE, phoneDisplay: CONTACT_PHONE_DISPLAY, location: CONTACT_LOCATION, secondaryLabel: "View our projects", secondaryHref: "/projects", note: "Online contact forms are planned for a future release. For now, email is the fastest path to a qualified conversation." }] },
+    process: { blocks: [{ id: "process", type: "processCollection", heading: "How We Work", body: `${BRAND_NAME} follows a proven five-step process to deliver successful projects — from discovery through long-term support.`, items: processSteps.map((step) => ({ step: step.step, title: step.title, description: step.summary, details: step.details })) }] },
+    privacy: { blocks: [{ id: "privacy", type: "legal", ...privacyContent }] },
+    terms: { blocks: [{ id: "terms", type: "legal", ...termsContent }] },
+    footer: { blocks: [{ id: "footer", type: "footer", description: "Custom software development for teams that need clarity, speed, and reliable delivery.", links: [], serviceLinks: [{ label: "Our Projects", href: "/projects" }, { label: "Web & Mobile Apps", href: "/services" }, { label: "Our Process", href: "/process" }], companyLinks: [{ label: "About", href: "/about" }, { label: "Contact", href: "/contact" }], visible: true }] },
   },
   customPages: {},
   customPageDefinitions: [],
   settings: {
-    siteName: "Xone Software Development",
-    contactEmail: "xonesoftware.marketing@gmail.com",
+    siteName: BRAND_NAME,
+    contactEmail: CONTACT_EMAIL,
     logoUrl: "/assets/XONE/xone_brand_kit/xone_logo_inverse.svg",
     primaryColor: "#533bda",
     accentColor: "#22d3ee",
-    defaultTitle: "Xone Software Development",
+    defaultTitle: BRAND_NAME,
     defaultDescription: "Custom software development for teams that need clarity, speed, and reliable delivery.",
     navLinks: [{ label: "Projects", href: "/projects", visible: true }, { label: "Services", href: "/services", visible: true }, { label: "About", href: "/about", visible: true }, { label: "Contact", href: "/contact", visible: true }],
   },

@@ -12,22 +12,38 @@ import { processSteps } from "@/features/process/data/process-steps";
 import { BRAND_NAME } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 
-export function ProcessPageContent() {
+type ProcessPageItem = {
+  step: number;
+  title: string;
+  summary: string;
+  details: readonly string[];
+};
+
+type ProcessContent = {
+  heading?: string;
+  body?: string;
+  items?: readonly ProcessPageItem[];
+};
+
+export function ProcessPageContent({ content }: { content?: ProcessContent }) {
+  const heading = content?.heading ?? "How We Work";
+  const body = content?.body ?? `${BRAND_NAME} follows a proven five-step process to deliver successful projects — from discovery through long-term support.`;
+  const items = content?.items ?? processSteps;
+
   return (
     <div className="bg-xone-section px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <header className="mb-12 text-center">
           <h1 className="text-3xl font-bold text-foreground sm:text-5xl">
-            How We Work
+            {heading}
           </h1>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-muted-foreground">
-            {BRAND_NAME} follows a proven five-step process to deliver
-            successful projects — from discovery through long-term support.
+            {body}
           </p>
         </header>
 
         <div className="space-y-6">
-          {processSteps.map((step) => (
+          {items.map((step) => (
             <Card key={step.step} className="border-border bg-xone-light">
               <CardHeader className="flex flex-col gap-3 sm:flex-row sm:items-start">
                 <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-xone-accent-muted text-lg font-bold text-xone-violet">

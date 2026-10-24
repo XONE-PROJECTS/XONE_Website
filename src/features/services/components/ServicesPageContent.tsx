@@ -12,26 +12,43 @@ import { serviceOfferings } from "@/features/services/data/services";
 import { BRAND_NAME } from "@/lib/brand";
 import { cn } from "@/lib/utils";
 
-export function ServicesPageContent() {
+type ServicePageItem = {
+  id?: string;
+  title: string;
+  description: string;
+  highlights: readonly string[];
+  icon: typeof serviceOfferings[number]["icon"];
+};
+
+type ServicesContent = {
+  heading?: string;
+  body?: string;
+  items?: readonly ServicePageItem[];
+};
+
+export function ServicesPageContent({ content }: { content?: ServicesContent }) {
+  const heading = content?.heading ?? "Our Services";
+  const body = content?.body ?? `${BRAND_NAME} delivers end-to-end digital solutions — from automation and design to production-ready web and mobile apps.`;
+  const items = content?.items ?? serviceOfferings;
+
   return (
     <div className="bg-xone-section px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
         <header className="mb-12 text-center">
           <h1 className="text-3xl font-bold text-foreground sm:text-5xl">
-            Our Services
+            {heading}
           </h1>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-muted-foreground">
-            {BRAND_NAME} delivers end-to-end digital solutions — from automation
-            and design to production-ready web and mobile apps.
+            {body}
           </p>
         </header>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {serviceOfferings.map((service) => {
+          {items.map((service) => {
             const Icon = service.icon;
             return (
               <Card
-                key={service.id}
+                key={service.id ?? service.title}
                 className="border-border bg-xone-light shadow-lg shadow-xone-navy/5"
               >
                 <CardHeader>

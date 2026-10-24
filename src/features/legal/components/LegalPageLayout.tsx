@@ -2,26 +2,21 @@ import Link from "next/link";
 
 import { buildContactMailto, CONTACT_EMAIL } from "@/lib/brand";
 
-type LegalSection = {
+export type LegalSection = {
   id: string;
   title: string;
   paragraphs: readonly string[];
   listItems?: readonly string[];
 };
 
-type LegalPageLayoutProps = {
+export type LegalPageContent = {
   title: string;
   lastUpdated: string;
   intro: string;
   sections: readonly LegalSection[];
 };
 
-export function LegalPageLayout({
-  title,
-  lastUpdated,
-  intro,
-  sections,
-}: LegalPageLayoutProps) {
+export function LegalPageLayout({ title, lastUpdated, intro, sections }: LegalPageContent) {
   return (
     <article className="bg-xone-section px-4 py-12 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-3xl">

@@ -14,6 +14,9 @@ type PageMetadataOptions = {
   path?: string;
 };
 
+export type CmsSeo = { title?: string; description?: string; noIndex?: boolean };
+export type CmsSiteMetadata = { siteName?: string; defaultTitle?: string; defaultDescription?: string };
+
 function resolveAbsoluteUrl(path: string): string {
   const base = getSiteUrl();
   if (path === "" || path === "/") {
@@ -36,16 +39,18 @@ export function getDefaultOgImage(): NonNullable<
   ];
 }
 
-export function createRootMetadata(): Metadata {
+export function createRootMetadata(settings?: CmsSiteMetadata): Metadata {
   const siteUrl = getSiteUrl();
+  const title = settings?.defaultTitle?.trim() || settings?.siteName?.trim() || BRAND_NAME;
+  const description = settings?.defaultDescription?.trim() || DEFAULT_SITE_DESCRIPTION;
 
   return {
     metadataBase: new URL(siteUrl),
     title: {
-      default: BRAND_NAME,
-      template: `%s | ${BRAND_NAME}`,
+      default: title,
+      template: `%s | ${settings?.siteName?.trim() || BRAND_NAME}`,
     },
-    description: DEFAULT_SITE_DESCRIPTION,
+    description,
     icons: {
       icon: [{ url: brandAssets.icon, type: "image/svg+xml" }],
       shortcut: brandAssets.icon,
@@ -53,19 +58,28 @@ export function createRootMetadata(): Metadata {
     openGraph: {
       type: "website",
       locale: "en_US",
-      siteName: BRAND_NAME,
-      title: BRAND_NAME,
-      description: DEFAULT_SITE_DESCRIPTION,
+      siteName: settings?.siteName || BRAND_NAME,
+      title,
+      description,
       url: siteUrl,
       images: getDefaultOgImage(),
     },
     twitter: {
       card: "summary",
-      title: BRAND_NAME,
-      description: DEFAULT_SITE_DESCRIPTION,
+      title,
+      description,
       images: [brandAssets.iconPng],
     },
   };
+}
+
+export function createCmsPageMetadata(seo: CmsSeo | undefined, fallback: PageMetadataOptions): Metadata {
+  const metadata = createPageMetadata({
+    ...fallback,
+    title: seo?.title?.trim() || fallback.title,
+    description: seo?.description?.trim() || fallback.description,
+  });
+  return seo?.noIndex ? { ...metadata, robots: { index: false, follow: false } } : metadata;
 }
 
 export function createPageMetadata({
