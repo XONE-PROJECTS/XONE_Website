@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-import { visitRoute } from "../fixtures/mobile";
+import { openMobileNav, visitRoute } from "../fixtures/mobile";
 
 test("hero and featured projects visible after preflight", async ({ page }) => {
   await visitRoute(page, "/");
@@ -26,12 +26,17 @@ test("hero and featured projects visible after preflight", async ({ page }) => {
 test("preflight stays dismissed during client navigation", async ({ page }) => {
   await visitRoute(page, "/");
 
+  await openMobileNav(page);
   await page
+    .getByRole("navigation", { name: "Mobile navigation" })
     .getByRole("link", { name: "Projects", exact: true })
-    .first()
     .click();
   await page.waitForURL("**/projects");
-  await page.getByRole("link", { name: "Home", exact: true }).first().click();
+  await openMobileNav(page);
+  await page
+    .getByRole("navigation", { name: "Mobile navigation" })
+    .getByRole("link", { name: "Home", exact: true })
+    .click();
   await page.waitForURL("**/");
 
   await expect(page.getByRole("dialog")).toBeHidden();

@@ -9,6 +9,10 @@ import {
 
 import { projects, featuredProjects } from "@/features/projects/data/projects";
 import { serviceOfferings } from "@/features/services/data/services";
+import {
+  defaultEstimatorCatalog,
+  projectEstimatorSchema,
+} from "@/features/services/estimator/catalog";
 import { processSteps } from "@/features/process/data/process-steps";
 import {
   privacyContent,
@@ -492,6 +496,9 @@ const settingsSchema = z.object({
 });
 export const siteContentSchema = z
   .object({
+    projectEstimator: projectEstimatorSchema.default(() =>
+      structuredClone(defaultEstimatorCatalog),
+    ),
     pages: z.object({
       prehome: pageContentSchema.optional(),
       home: pageContentSchema,
@@ -710,6 +717,7 @@ const cmsServices = serviceOfferings.map((service, index) => ({
 }));
 
 export const defaultContent = {
+  projectEstimator: defaultEstimatorCatalog,
   pages: {
     prehome: createDefaultPrehome(),
     home: {
@@ -956,7 +964,11 @@ export function parseSiteContent(value: unknown): SiteContent {
 }
 
 export function isDefaultContent(content: SiteContent): boolean {
+  const baseline = parseSiteContent(defaultContent);
   return (
-    JSON.stringify(content) === JSON.stringify(parseSiteContent(defaultContent))
+    JSON.stringify({
+      ...content,
+      projectEstimator: baseline.projectEstimator,
+    }) === JSON.stringify(baseline)
   );
 }

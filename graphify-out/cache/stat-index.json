@@ -45,12 +45,12 @@
     }
   },
   "PROJECT_INFO_NEXT.md": {
-    "size": 19681,
-    "mtime_ns": 1792309616290717100,
-    "indexed_at_ns": 1792863530449801000,
-    "word_count": 2333,
+    "size": 20266,
+    "mtime_ns": 1792865880210911700,
+    "indexed_at_ns": 1792866739750522700,
+    "word_count": 2473,
     "hashes": {
-      "project_info_next.md": "c58e1aa95b64f5da7a68ffba5d6dc10f6a16f50849e81e1d9a93840926dbd111"
+      "project_info_next.md": "c7ecfadfe8c40e2c20df3c24b6f020282ff02e2b91e469a7b941677283e42da6"
     }
   },
   "PROJECT_OVERVIEW.md": {
@@ -63,12 +63,12 @@
     }
   },
   "README.md": {
-    "size": 5344,
-    "mtime_ns": 1792859148904736800,
-    "indexed_at_ns": 1792863530456051400,
-    "word_count": 658,
+    "size": 6967,
+    "mtime_ns": 1792867146345997600,
+    "indexed_at_ns": 1792867240848238000,
+    "word_count": 887,
     "hashes": {
-      "readme.md": "b6ebfc208937edb097d6e0af27603ebb5c6f1c3acd63241c0ed5e332d3607a6a"
+      "readme.md": "3111dc5726dbbd7a4946ff5101fcd3be8079c69256f3987137ddecaf591bb450"
     }
   },
   "SPRINT_PLAN_v1.md": {
@@ -168,10 +168,10 @@
     "word_count": 71
   },
   "app/layout.tsx": {
-    "size": 1494,
-    "mtime_ns": 1792862261517712000,
-    "indexed_at_ns": 1792863516903462200,
-    "word_count": 131
+    "size": 1541,
+    "mtime_ns": 1792864405020331000,
+    "indexed_at_ns": 1792866738764365100,
+    "word_count": 133
   },
   "app/page.tsx": {
     "size": 513,
@@ -231,22 +231,22 @@
     }
   },
   "e2e/fixtures/desktop.ts": {
-    "size": 2876,
-    "mtime_ns": 1792309616308196000,
-    "indexed_at_ns": 1792863517067876700,
-    "word_count": 288
+    "size": 2831,
+    "mtime_ns": 1792866718398680000,
+    "indexed_at_ns": 1792866738786079100,
+    "word_count": 291
   },
   "e2e/fixtures/mobile.ts": {
-    "size": 1968,
-    "mtime_ns": 1792309616308196000,
-    "indexed_at_ns": 1792863517071191900,
-    "word_count": 209
+    "size": 1980,
+    "mtime_ns": 1792866718318863600,
+    "indexed_at_ns": 1792866738789821500,
+    "word_count": 215
   },
   "e2e/fixtures/preflight.ts": {
-    "size": 680,
-    "mtime_ns": 1792309616308196000,
-    "indexed_at_ns": 1792863517075509600,
-    "word_count": 82
+    "size": 966,
+    "mtime_ns": 1792866718265667400,
+    "indexed_at_ns": 1792866738792732700,
+    "word_count": 122
   },
   "e2e/fixtures/routes.ts": {
     "size": 504,
@@ -285,10 +285,10 @@
     "word_count": 46
   },
   "e2e/pages/home.spec.ts": {
-    "size": 1183,
-    "mtime_ns": 1792862419969361200,
-    "indexed_at_ns": 1792863517176521000,
-    "word_count": 110
+    "size": 1342,
+    "mtime_ns": 1792867096546006900,
+    "indexed_at_ns": 1792867240159114300,
+    "word_count": 131
   },
   "e2e/pages/projects.spec.ts": {
     "size": 500,
@@ -324,10 +324,10 @@
     }
   },
   "playwright.config.ts": {
-    "size": 1616,
-    "mtime_ns": 1792309616318055600,
-    "indexed_at_ns": 1792863517248332600,
-    "word_count": 160
+    "size": 1634,
+    "mtime_ns": 1792866301748032400,
+    "indexed_at_ns": 1792866738826013000,
+    "word_count": 165
   },
   "postcss.config.mjs": {
     "size": 154,
@@ -459,10 +459,10 @@
     "word_count": 79
   },
   "src/components/ui/sheet.tsx": {
-    "size": 3842,
-    "mtime_ns": 1792309616398216400,
-    "indexed_at_ns": 1792863517540862600,
-    "word_count": 256
+    "size": 4022,
+    "mtime_ns": 1792866011601320000,
+    "indexed_at_ns": 1792866738906123200,
+    "word_count": 275
   },
   "src/features/about/components/AboutPageContent.tsx": {
     "size": 5176,
@@ -471,10 +471,10 @@
     "word_count": 475
   },
   "src/features/admin/components/AdminDashboard.tsx": {
-    "size": 16832,
-    "mtime_ns": 1792863116348793200,
-    "indexed_at_ns": 1792863517575340200,
-    "word_count": 1438
+    "size": 17316,
+    "mtime_ns": 1792865879723686300,
+    "indexed_at_ns": 1792866738911187100,
+    "word_count": 1465
   },
   "src/features/admin/components/AdminLogin.tsx": {
     "size": 1633,
@@ -501,28 +501,28 @@
     "word_count": 64
   },
   "src/features/admin/components/CmsPublicPageView.tsx": {
-    "size": 17411,
-    "mtime_ns": 1792862790143250900,
-    "indexed_at_ns": 1792863517631342300,
-    "word_count": 1367
+    "size": 17757,
+    "mtime_ns": 1792865879777299000,
+    "indexed_at_ns": 1792866738925021800,
+    "word_count": 1396
   },
   "src/features/admin/components/EditorCanvas.tsx": {
-    "size": 8821,
-    "mtime_ns": 1792862790140165200,
-    "indexed_at_ns": 1792863517635260800,
+    "size": 8828,
+    "mtime_ns": 1792864405401961400,
+    "indexed_at_ns": 1792866738928886500,
     "word_count": 767
   },
   "src/features/admin/components/EditorFields.tsx": {
-    "size": 38836,
-    "mtime_ns": 1792863110962179200,
-    "indexed_at_ns": 1792863517638960500,
-    "word_count": 3335
+    "size": 51962,
+    "mtime_ns": 1792864405568071200,
+    "indexed_at_ns": 1792866738932001000,
+    "word_count": 3693
   },
   "src/features/admin/components/EditorPanels.tsx": {
-    "size": 26801,
-    "mtime_ns": 1792861976817847100,
-    "indexed_at_ns": 1792863517642640000,
-    "word_count": 2076
+    "size": 26768,
+    "mtime_ns": 1792864405669371600,
+    "indexed_at_ns": 1792866738935202500,
+    "word_count": 2074
   },
   "src/features/admin/components/PreviewLiveSync.tsx": {
     "size": 2985,
@@ -555,16 +555,16 @@
     "word_count": 450
   },
   "src/features/admin/lib/builder.ts": {
-    "size": 5532,
-    "mtime_ns": 1792862790138633300,
-    "indexed_at_ns": 1792863517721851100,
-    "word_count": 729
+    "size": 6072,
+    "mtime_ns": 1792864405737692300,
+    "indexed_at_ns": 1792866738956751100,
+    "word_count": 752
   },
   "src/features/admin/lib/content.ts": {
-    "size": 30107,
-    "mtime_ns": 1792862132110938900,
-    "indexed_at_ns": 1792863517725597700,
-    "word_count": 2387
+    "size": 30474,
+    "mtime_ns": 1792866718872489300,
+    "indexed_at_ns": 1792866738959955900,
+    "word_count": 2409
   },
   "src/features/admin/lib/contracts.ts": {
     "size": 448,
@@ -603,9 +603,9 @@
     "word_count": 145
   },
   "src/features/home/components/FeaturedProjectsSection.tsx": {
-    "size": 3145,
-    "mtime_ns": 1792862653538733300,
-    "indexed_at_ns": 1792863517823900800,
+    "size": 3060,
+    "mtime_ns": 1792864405962447200,
+    "indexed_at_ns": 1792866738995416000,
     "word_count": 243
   },
   "src/features/home/components/HeroSection.tsx": {
@@ -699,9 +699,9 @@
     "word_count": 64
   },
   "src/features/preflight/components/PreflightGate.tsx": {
-    "size": 396,
-    "mtime_ns": 1792863206142650500,
-    "indexed_at_ns": 1792863518070863600,
+    "size": 390,
+    "mtime_ns": 1792864405972343700,
+    "indexed_at_ns": 1792866739091539100,
     "word_count": 44
   },
   "src/features/preflight/components/PreflightObjectivesStep.tsx": {
@@ -741,9 +741,9 @@
     "word_count": 237
   },
   "src/features/projects/components/ProjectsCarousel.tsx": {
-    "size": 2882,
-    "mtime_ns": 1792862538563388100,
-    "indexed_at_ns": 1792863518180797500,
+    "size": 2780,
+    "mtime_ns": 1792864405998763900,
+    "indexed_at_ns": 1792866739124558100,
     "word_count": 191
   },
   "src/features/projects/components/ProjectsPageContent.tsx": {
@@ -765,10 +765,10 @@
     "word_count": 250
   },
   "src/features/services/components/ServicesPageContent.tsx": {
-    "size": 3731,
-    "mtime_ns": 1792862565688041900,
-    "indexed_at_ns": 1792863518257286000,
-    "word_count": 268
+    "size": 3707,
+    "mtime_ns": 1792865879633074700,
+    "indexed_at_ns": 1792866739163882000,
+    "word_count": 263
   },
   "src/features/services/data/services.ts": {
     "size": 1742,
@@ -777,10 +777,10 @@
     "word_count": 176
   },
   "src/lib/brand.ts": {
-    "size": 1506,
-    "mtime_ns": 1792338950898504600,
-    "indexed_at_ns": 1792863518266002100,
-    "word_count": 156
+    "size": 1543,
+    "mtime_ns": 1792865879959686100,
+    "indexed_at_ns": 1792866739192880500,
+    "word_count": 166
   },
   "src/lib/env.ts": {
     "size": 1035,
@@ -831,10 +831,10 @@
     "word_count": 22
   },
   "tests/admin-content-route.test.ts": {
-    "size": 1827,
-    "mtime_ns": 1792502285122017200,
-    "indexed_at_ns": 1792863518420486700,
-    "word_count": 194
+    "size": 2291,
+    "mtime_ns": 1792866017087635500,
+    "indexed_at_ns": 1792866739216793100,
+    "word_count": 235
   },
   "tests/admin-content.test.ts": {
     "size": 11188,
@@ -843,10 +843,10 @@
     "word_count": 841
   },
   "tests/admin-renderer.test.ts": {
-    "size": 7776,
-    "mtime_ns": 1792862790155481800,
-    "indexed_at_ns": 1792863518448754000,
-    "word_count": 702
+    "size": 7837,
+    "mtime_ns": 1792864406045396500,
+    "indexed_at_ns": 1792866739222592300,
+    "word_count": 708
   },
   "tests/admin-selection.test.ts": {
     "size": 1950,
@@ -885,10 +885,10 @@
     "word_count": 85
   },
   "tests/repository.test.ts": {
-    "size": 5031,
-    "mtime_ns": 1792859158403684500,
-    "indexed_at_ns": 1792863518546767500,
-    "word_count": 405
+    "size": 7276,
+    "mtime_ns": 1792866017065680100,
+    "indexed_at_ns": 1792866739245807600,
+    "word_count": 549
   },
   "tests/site-metadata.test.ts": {
     "size": 2409,
@@ -912,10 +912,10 @@
     }
   },
   "vitest.config.ts": {
-    "size": 282,
-    "mtime_ns": 1792309616423669900,
-    "indexed_at_ns": 1792863518599006500,
-    "word_count": 30
+    "size": 301,
+    "mtime_ns": 1792865879997412900,
+    "indexed_at_ns": 1792866739256526300,
+    "word_count": 35
   },
   "public/assets/XONE/xone_brand_kit/new/fb cover.png": {
     "size": 73666,
@@ -1060,5 +1060,83 @@
     "hashes": {
       "public/assets/team_photo/ryan_photo.jpg": "7a4b3829445dc1a2393367436b0cb1c2ffd693240126fb3dce2a8def0cbefca5"
     }
+  },
+  "e2e/pages/project-estimator.spec.ts": {
+    "size": 7910,
+    "mtime_ns": 1792866696862309300,
+    "indexed_at_ns": 1792866738811602200,
+    "word_count": 750
+  },
+  "src/features/admin/components/PricingPanel.tsx": {
+    "size": 6111,
+    "mtime_ns": 1792865879658032900,
+    "indexed_at_ns": 1792866738941995300,
+    "word_count": 493
+  },
+  "src/features/services/components/EstimatorCatalog.tsx": {
+    "size": 7322,
+    "mtime_ns": 1792865879533623000,
+    "indexed_at_ns": 1792866739143236200,
+    "word_count": 491
+  },
+  "src/features/services/components/EstimatorDetails.tsx": {
+    "size": 4082,
+    "mtime_ns": 1792865879552388900,
+    "indexed_at_ns": 1792866739146993900,
+    "word_count": 347
+  },
+  "src/features/services/components/EstimatorHosting.tsx": {
+    "size": 5942,
+    "mtime_ns": 1792865879575917800,
+    "indexed_at_ns": 1792866739150330300,
+    "word_count": 454
+  },
+  "src/features/services/components/EstimatorSummary.tsx": {
+    "size": 5653,
+    "mtime_ns": 1792866318605290400,
+    "indexed_at_ns": 1792866739155033000,
+    "word_count": 419
+  },
+  "src/features/services/components/ProjectEstimator.tsx": {
+    "size": 7644,
+    "mtime_ns": 1792866718680871700,
+    "indexed_at_ns": 1792866739159103900,
+    "word_count": 534
+  },
+  "src/features/services/estimator/EstimatorProvider.tsx": {
+    "size": 800,
+    "mtime_ns": 1792865879422917800,
+    "indexed_at_ns": 1792866739172637200,
+    "word_count": 77
+  },
+  "src/features/services/estimator/catalog.ts": {
+    "size": 13897,
+    "mtime_ns": 1792865879404518600,
+    "indexed_at_ns": 1792866739178338700,
+    "word_count": 1422
+  },
+  "src/features/services/estimator/inquiry.ts": {
+    "size": 5088,
+    "mtime_ns": 1792866318530349200,
+    "indexed_at_ns": 1792866739182411800,
+    "word_count": 525
+  },
+  "src/features/services/estimator/pricing.ts": {
+    "size": 4992,
+    "mtime_ns": 1792865879487858200,
+    "indexed_at_ns": 1792866739186934200,
+    "word_count": 473
+  },
+  "src/features/services/estimator/use-estimator.ts": {
+    "size": 2284,
+    "mtime_ns": 1792866584904715400,
+    "indexed_at_ns": 1792866739190498800,
+    "word_count": 203
+  },
+  "tests/project-estimator.test.ts": {
+    "size": 10605,
+    "mtime_ns": 1792866457485579900,
+    "indexed_at_ns": 1792866739242116400,
+    "word_count": 806
   }
 }

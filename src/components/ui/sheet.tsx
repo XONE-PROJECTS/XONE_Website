@@ -59,7 +59,7 @@ function SheetContent({
             render={
               <Button
                 variant="ghost"
-                className="absolute top-3 right-3"
+                className="absolute top-3 right-3 min-h-11 min-w-11"
                 size="icon-sm"
               />
             }
@@ -96,4 +96,24 @@ function SheetTitle({ className, ...props }: SheetPrimitive.Title.Props) {
   );
 }
 
-export { Sheet, SheetTrigger, SheetContent, SheetHeader, SheetTitle };
+function SheetDescription({
+  className,
+  ...props
+}: SheetPrimitive.Description.Props) {
+  return (
+    <SheetPrimitive.Description
+      data-slot="sheet-description"
+      className={className}
+      {...props}
+    />
+  );
+}
+
+export {
+  Sheet,
+  SheetTrigger,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetDescription,
+};

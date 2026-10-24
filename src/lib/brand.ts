@@ -33,7 +33,12 @@ export const brandAssets = {
   wordmark: "/assets/XONE/xone_brand_kit/xone_wordmark.svg",
 } as const;
 
-export function buildContactMailto(subject = "Project inquiry", email = CONTACT_EMAIL): string {
+export function buildContactMailto(
+  subject = "Project inquiry",
+  email = CONTACT_EMAIL,
+  body?: string,
+): string {
   const params = new URLSearchParams({ subject });
+  if (body !== undefined) params.set("body", body);
   return `mailto:${email}?${params.toString()}`;
 }

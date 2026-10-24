@@ -208,6 +208,24 @@ Marketing sections that are static HTML can stay Server Components.
 
 ## 7. Forms and validation
 
+### Services estimator (approved addition)
+
+Services **Start a project** opens a client-side project estimator with multiple
+systems, scoped add-ons, custom requirements, and sample PHP pricing. Its catalog
+is editable in the existing CMS Pricing panel through draft/preview/publish and
+revision history. Older content defaults this catalog without a content-version
+bump or page reset.
+
+Hosting offers None, Local/on-premise (one-time installation on the customer's own
+office PC/server), or Web (monthly). Hosting and maintenance independently support
+1/3/6/12-month terms; an optional domain covers one year. Shared services are charged
+once per project. Unpriced custom work is explicitly pending a custom quote.
+
+Customer name/email, project name/description, and timeline are validated before
+opening a `mailto:` inquiry with the itemized estimate. Copying remains available
+without completing the brief. This is an email-only workflow, with no new public
+POST endpoint or stored customer details. See README for administrator usage.
+
 ### Contact fields
 
 | Field   | Rules                                      |

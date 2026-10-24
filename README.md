@@ -8,6 +8,30 @@ Greenfield **Next.js App Router** rebuild of the Xone marketing site. Single app
 
 **Status:** **v1 shipped** on Vercel (June 2026).
 
+## Services project estimator
+
+On `/services`, **Start a project** opens a searchable estimator for websites,
+business systems, wedding/event solutions, apps, and design. Customers can select
+multiple systems, scoped add-ons, a yearly domain, and independent hosting and
+maintenance terms of 1, 3, 6, or 12 months. Local/on-premise installation is a
+one-time setup on the customer's own PC/server; web hosting is monthly.
+
+Prices are illustrative PHP estimates, not binding quotations. **Others / Custom
+system** requires a description and stays marked **Custom quote required** alongside
+the priced subtotal. Hardware, subscriptions, payment fees, and usage charges need
+separate confirmation.
+
+In the existing admin CMS, open the **Pricing** panel to edit labels, descriptions,
+availability, and PHP prices. Use **Save draft** and preview Services before
+**Publish**. Pricing participates in undo/redo and revision restoration. Existing
+content receives catalog defaults without replacing pages or changing the content
+version. Billing units and add-on eligibility remain fixed.
+
+**Copy estimate** copies the complete breakdown. **Email project inquiry** validates
+the brief and opens an email draft; it does not send or store a lead. Details stay
+in page memory and reset when the page reloads. Clipboard-denied browsers provide
+a selectable-text fallback. No public submission API is introduced.
+
 ## Prerequisites
 
 - **Node.js 22.x** (matches Vercel and CI)
@@ -46,6 +70,10 @@ SITE_URL=http://localhost:5142
 | `npm run test:e2e`         | Playwright E2E (all projects)                      |
 | `npm run test:e2e:mobile`  | Mobile/tablet E2E projects only                    |
 | `npm run test:e2e:desktop` | Desktop structural layout guard only               |
+
+Browser tests use port **5142** by default. Set `PLAYWRIGHT_PORT` to an unused
+port when a development server is already running. Estimator browser checks run
+on the desktop profile as well as all mobile/tablet profiles.
 
 ## Environment variables
 

@@ -1,6 +1,6 @@
 import type { Locator, Page } from "@playwright/test";
 
-import { completePreflightViaCta } from "./preflight";
+import { completePreflightViaCta, dismissPreflightViaSkip } from "./preflight";
 
 export async function assertNoHorizontalOverflow(page: Page): Promise<void> {
   const overflow = await page.evaluate(() => {
@@ -60,6 +60,8 @@ export async function visitRoute(page: Page, path: string): Promise<void> {
   await page.goto(path);
   if (path === "/") {
     await completePreflightViaCta(page);
+  } else {
+    await dismissPreflightViaSkip(page);
   }
   await page.waitForLoadState("domcontentloaded");
 }

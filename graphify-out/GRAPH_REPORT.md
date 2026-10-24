@@ -2,17 +2,19 @@
 
 ## Corpus Check
 
-- cluster-only mode — file stats not available
+- 152 files · ~57,502 words
+- Verdict: corpus is large enough that graph structure adds value.
+- Unclassified: 10 file(s) not represented in the graph (top: (none) 4, .css 3, .psd 2)
 
 ## Summary
 
-- 728 nodes · 1861 edges · 37 communities (31 shown, 6 thin omitted)
-- Extraction: 100% EXTRACTED · 0% INFERRED · 0% AMBIGUOUS · INFERRED: 8 edges (avg confidence: 0.85)
+- 949 nodes · 2276 edges · 44 communities (39 shown, 5 thin omitted)
+- Extraction: 99% EXTRACTED · 1% INFERRED · 0% AMBIGUOUS · INFERRED: 19 edges (avg confidence: 0.88)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
 
-- Built from commit: `48f7ab43`
+- Built from commit: `44024ae3`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -25,86 +27,93 @@
 - steps
 - design.ts
 - admin-renderer.test.ts
-- repository.ts
-- PreFlightIntro.tsx
+- vitest
+- cn
 - components.json
 - devDependencies
 - TeamStripSection.tsx
-- auth.ts
+- repository.ts
 - dependencies
 - compilerOptions
 - AdminDashboard.tsx
-- package.json
+- lint-staged
 - AdminDashboard
 - EditorFields.tsx
-- content/route.ts
-- getMongoDatabase
+- catalog.ts
+- AGENTS.md
 - scripts
 - builder.ts
-- env.ts
+- Shared Workflows
 - eslint.config.mjs
-- preview.ts
+- PROJECT_OVERVIEW.md
 - AdminSkeleton
-- admin/page.tsx
+- Xone Software Development — Next.js Site
 - health/route.ts
 - react-icons
 - postcss.config.mjs
 - prettier.config.mjs
 - MediaPanel
 - ProcessSection.tsx
-- jsdom@^26.1.0
+- SPRINT_PLAN_v1.md
+- PROJECT_INFO_NEXT.md — Next.js Rebuild Brief
+- Deployment guide — Vercel (Next.js)
+- BACKLOGS_v1.md
+- Post-deploy verification (QA-05)
+- Testing
+- Week 4 — Phase 3 Polish + Vercel Deploy
+- Week 2 — Phase 2 Core Pages (Part 1)
 
 ## God Nodes (most connected - your core abstractions)
 
-1. `cn()` - 57 edges
-2. `next` - 49 edges
-3. `AdminDashboard()` - 26 edges
-4. `getPublishedContent()` - 25 edges
-5. `buttonVariants` - 25 edges
-6. `react` - 23 edges
-7. `CmsPublicPage()` - 20 edges
-8. `getMongoDatabase()` - 20 edges
-9. `createCmsPageMetadata()` - 18 edges
-10. `BRAND_NAME` - 18 edges
+1. `cn()` - 55 edges
+2. `next` - 48 edges
+3. `react` - 28 edges
+4. `AdminDashboard()` - 27 edges
+5. `getPublishedContent()` - 25 edges
+6. `ProjectEstimator()` - 24 edges
+7. `buttonVariants` - 23 edges
+8. `buildContactMailto()` - 23 edges
+9. `CmsPublicPage()` - 20 edges
+10. `getMongoDatabase()` - 20 edges
 
 ## Surprising Connections (you probably didn't know these)
 
-- `GET()` --calls--> `getMongoDatabase()` [EXTRACTED]
-  app/api/admin/media/[assetId]/route.ts → src/lib/mongodb.ts
-- `RootLayout()` --calls--> `Navbar()` [EXTRACTED]
-  app/layout.tsx → src/components/navbar.tsx
-- `AdminPage()` --calls--> `getAdminSession()` [EXTRACTED]
-  app/admin/page.tsx → src/features/admin/lib/auth.ts
-- `POST()` --calls--> `isSafeMutationRequest()` [EXTRACTED]
-  app/api/admin/content/route.ts → src/features/admin/lib/auth.ts
-- `PUT()` --calls--> `isSafeMutationRequest()` [EXTRACTED]
-  app/api/admin/content/route.ts → src/features/admin/lib/auth.ts
+- `Review Checklist` --references--> `buildContactMailto()` [INFERRED]
+  AGENTS.md → src/lib/brand.ts
+- `Fullstack Developer` --references--> `buildContactMailto()` [INFERRED]
+  TEAM_INSTRUCTIONS.md → src/lib/brand.ts
+- `YOUR ACTION — Step 3: Environment variables` --references--> `getSiteUrl()` [INFERRED]
+  DEPLOY.md → src/lib/site.ts
+- `6. Brand and design system` --references--> `MissionSection()` [INFERRED]
+  PROJECT_INFO_NEXT.md → src/features/home/components/MissionSection.tsx
+- `Commits (manual, per teammate)` --references--> `add()` [INFERRED]
+  TEAM_INSTRUCTIONS.md → src/features/services/estimator/pricing.ts
 
 ## Import Cycles
 
 - None detected.
 
-## Communities (37 total, 6 thin omitted)
+## Communities (44 total, 5 thin omitted)
 
 ### Community 0 - "CmsPublicPageView.tsx"
 
-Cohesion: 0.06
-Nodes (80): @base-ui/react, lucide-react, react, LearnMoreButton(), LearnMoreButtonProps, PillButton(), PillButtonProps, ProjectCard() (+72 more)
+Cohesion: 0.05
+Nodes (83): ProjectCard(), ProjectCardLinkProps, ProjectCardProps, ProjectsLinkButton(), buttonVariants, Card(), CardContent(), CardDescription() (+75 more)
 
 ### Community 1 - "content.ts"
 
-Cohesion: 0.05
-Nodes (54): FooterProps, Asset(), Block(), BuilderElement(), ComponentBlock(), componentGridClass(), ComponentHeading(), gridClass() (+46 more)
+Cohesion: 0.07
+Nodes (32): FooterProps, blockBase, blockSchema, builderColumnSchema, builderElementBase, builderElementSchema, builderRowSchema, builderSectionSchema (+24 more)
 
 ### Community 2 - "next"
 
 Cohesion: 0.09
-Nodes (37): AboutPage(), generateMetadata(), ContactPage(), generateMetadata(), generateMetadata(), generateMetadata(), HomePage(), generateMetadata() (+29 more)
+Nodes (38): AboutPage(), generateMetadata(), ContactPage(), generateMetadata(), generateMetadata(), generateMetadata(), HomePage(), generateMetadata() (+30 more)
 
 ### Community 3 - "mobile.ts"
 
-Cohesion: 0.10
-Nodes (22): assertDesktopNav(), assertElementMinHeight(), assertFlexDirection(), assertGridColumnCount(), assertMinFontSize(), visitHomeWithPreflight(), visitRouteDesktop(), assertMinTouchTarget() (+14 more)
+Cohesion: 0.11
+Nodes (25): assertDesktopNav(), assertElementMinHeight(), assertFlexDirection(), assertGridColumnCount(), assertMinFontSize(), visitHomeWithPreflight(), visitRouteDesktop(), assertMinTouchTarget() (+17 more)
 
 ### Community 4 - "steps"
 
@@ -113,23 +122,23 @@ Nodes (30): concurrency, cancel-in-progress, group, CI, RATE_LIMIT_MAX, RATE_LIM
 
 ### Community 5 - "design.ts"
 
-Cohesion: 0.11
-Nodes (26): ChromeFields(), HistoryPanel(), historySchema, mediaSchema, StyleFields(), patch(), TextInput(), ThemePanel() (+18 more)
+Cohesion: 0.12
+Nodes (24): ChromeFields(), HistoryPanel(), historySchema, mediaSchema, StyleFields(), patch(), TextInput(), ThemePanel() (+16 more)
 
 ### Community 6 - "admin-renderer.test.ts"
 
 Cohesion: 0.14
-Nodes (20): AdminPreviewPage(), dynamic, metadata, revalidate, dynamic, RootLayout(), Footer(), CmsPublicBuilder() (+12 more)
+Nodes (18): AdminPreviewPage(), dynamic, metadata, revalidate, dynamic, RootLayout(), react-dom, Footer() (+10 more)
 
-### Community 7 - "repository.ts"
+### Community 7 - "vitest"
 
-Cohesion: 0.14
-Nodes (17): vitest, defaultContent, parseSiteContent(), CmsConflictError, CmsStorageError, ContentDocument, ContentState, CURRENT_CONTENT_VERSION (+9 more)
+Cohesion: 0.25
+Nodes (4): vitest@^3.2.4, vitest, requireAdmin, saveDraft
 
-### Community 8 - "PreFlightIntro.tsx"
+### Community 8 - "cn"
 
-Cohesion: 0.16
-Nodes (17): PreFlightIntro(), ObjectiveItemState, PreflightObjectivesStep(), PreflightObjectivesStepProps, PreflightReasonsStep(), PreflightReasonsStepProps, PreFlightStep(), PreFlightStepProps (+9 more)
+Cohesion: 0.08
+Nodes (48): @base-ui/react, lucide-react, react, LearnMoreButton(), LearnMoreButtonProps, PillButton(), PillButtonProps, Navbar() (+40 more)
 
 ### Community 9 - "components.json"
 
@@ -138,18 +147,18 @@ Nodes (21): aliases, components, hooks, lib, ui, utils, iconLibrary, menuAccent 
 
 ### Community 10 - "devDependencies"
 
-Cohesion: 0.10
-Nodes (21): devDependencies, eslint-config-next@15.5.28, husky@^9.1.7, @playwright/test@^1.61.0, postcss@^8.5.6, prettier@^3.8.4, @tailwindcss/postcss@^4.1.13, @testing-library/jest-dom@^6.9.1 (+13 more)
+Cohesion: 0.08
+Nodes (35): devDependencies, eslint@^9.35.0, eslint-config-next@15.5.28, husky@^9.1.7, jsdom@^26.1.0, lint-staged@^17.6.0, @playwright/test@^1.61.0, postcss@^8.5.6 (+27 more)
 
 ### Community 11 - "TeamStripSection.tsx"
 
-Cohesion: 0.17
-Nodes (13): sizeClasses, TeamMemberAvatar(), TeamMemberAvatarProps, getSocialLinks(), SocialLinkItem, TeamMemberSocialLinks(), TeamMemberSocialLinksProps, MissionSection() (+5 more)
+Cohesion: 0.16
+Nodes (14): 6. Brand and design system, sizeClasses, TeamMemberAvatar(), TeamMemberAvatarProps, getSocialLinks(), SocialLinkItem, TeamMemberSocialLinks(), TeamMemberSocialLinksProps (+6 more)
 
-### Community 12 - "auth.ts"
+### Community 12 - "repository.ts"
 
-Cohesion: 0.20
-Nodes (16): loginSchema, POST(), POST(), adminCookieName, AdminUserDocument, configured(), createAdminSession(), deleteAdminSession() (+8 more)
+Cohesion: 0.05
+Nodes (70): AdminPage(), dynamic, failure(), GET(), POST(), PUT(), failure(), GET() (+62 more)
 
 ### Community 13 - "dependencies"
 
@@ -166,10 +175,10 @@ Nodes (18): compilerOptions, allowJs, esModuleInterop, incremental, isolatedModu
 Cohesion: 0.18
 Nodes (15): InspectableNode, Inspector(), label(), pageLabels, Panel, EditorCanvas(), inline(), widths (+7 more)
 
-### Community 16 - "package.json"
+### Community 16 - "lint-staged"
 
-Cohesion: 0.12
-Nodes (16): eslint@^9.35.0, lint-staged@^17.6.0, tailwindcss@^4.1.13, @types/node@^24.5.2, typescript@^5.9.2, lint-staged, _.{css,json,md}, _.{js,mjs,cjs,jsx,ts,tsx} (+8 more)
+Cohesion: 0.67
+Nodes (3): lint-staged, _.{css,json,md}, _.{js,mjs,cjs,jsx,ts,tsx}
 
 ### Community 17 - "AdminDashboard"
 
@@ -181,15 +190,15 @@ Nodes (13): AdminDashboard(), broadcast(), change(), changePage(), updateCollect
 Cohesion: 0.27
 Nodes (15): blockLabel(), BlockSettings(), CollectionItemSettings(), CollectionSettings(), ColumnField(), createClientId(), ElementFields(), Field() (+7 more)
 
-### Community 19 - "content/route.ts"
+### Community 19 - "catalog.ts"
 
-Cohesion: 0.20
-Nodes (13): failure(), GET(), POST(), PUT(), zod@^4.4.3, zod, SiteContent, publishRequestSchema (+5 more)
+Cohesion: 0.07
+Nodes (54): PriceFields(), PriceItem, PricingPanel(), EstimatorCatalog(), estimatorInputClass, EstimatorHosting(), TermSelect(), categories (+46 more)
 
-### Community 20 - "getMongoDatabase"
+### Community 20 - "AGENTS.md"
 
-Cohesion: 0.28
-Nodes (14): failure(), GET(), POST(), allowedTypes, GET(), isSafeSvg(), POST(), requireAdmin() (+6 more)
+Cohesion: 0.10
+Nodes (19): Agent Instruction, API Route Rules (Route Handlers), Authentication Rules, CI/CD Rules, Core Stack, Database Connection Rules, DTO Rules, Environment Variable Protection (+11 more)
 
 ### Community 21 - "scripts"
 
@@ -198,33 +207,33 @@ Nodes (14): scripts, build, dev, format, format:check, lint, prepare, start (+6 
 
 ### Community 22 - "builder.ts"
 
-Cohesion: 0.22
-Nodes (13): blockElement(), BuilderNode, cloneNode(), CollectionBlock, CollectionItem, emptyColumn(), emptyRow(), emptySection() (+5 more)
+Cohesion: 0.18
+Nodes (14): blockElement(), BuilderNode, CollectionBlock, CollectionItem, EditorSelection, emptyColumn(), emptyRow(), emptySection() (+6 more)
 
-### Community 23 - "env.ts"
+### Community 23 - "Shared Workflows"
 
-Cohesion: 0.21
-Nodes (8): dynamic, GET(), mongodb, env, envSchema, optionalWebhookUrl, parseServerEnv(), ServerEnv
+Cohesion: 0.13
+Nodes (13): Backend Developer (API / Server), CI/CD (GitHub Actions + Vercel), Communication, Definition of Done, Document Map, Frontend Developer, Fullstack Developer, Git and PRs (+5 more)
 
 ### Community 24 - "eslint.config.mjs"
 
 Cohesion: 0.20
 Nodes (8): compat, **dirname, eslintConfig, **filename, eslint-config-prettier@^10.1.8, @eslint/eslintrc@^3.3.1, eslint-config-prettier, @eslint/eslintrc
 
-### Community 25 - "preview.ts"
+### Community 25 - "PROJECT_OVERVIEW.md"
 
-Cohesion: 0.43
-Nodes (4): POST(), createPreviewToken(), hashToken(), PreviewTokenDocument
+Cohesion: 0.17
+Nodes (10): Brand, Current State, Open decisions (post-v1), Project Purpose, Related Documentation, Security posture (v1), Status: v1 shipped, Success criteria (+2 more)
 
 ### Community 26 - "AdminSkeleton"
 
 Cohesion: 0.53
 Nodes (4): Loading(), AdminSkeleton(), delays, SkeletonBar()
 
-### Community 27 - "admin/page.tsx"
+### Community 27 - "Xone Software Development — Next.js Site"
 
-Cohesion: 0.47
-Nodes (3): AdminPage(), dynamic, AdminLogin()
+Cohesion: 0.17
+Nodes (12): API, CI, Deployment (Vercel), Environment variables, Key routes, Prerequisites, Project structure, Quick start (+4 more)
 
 ### Community 28 - "health/route.ts"
 
@@ -241,25 +250,65 @@ Nodes (3): react-icons@^5.6.0, react-icons, valueProps
 Cohesion: 1.00
 Nodes (3): MediaPanel(), load(), upload()
 
+### Community 35 - "SPRINT_PLAN_v1.md"
+
+Cohesion: 0.17
+Nodes (11): Program Goal, Risks and Mitigations, Role Focus by Week, Theme, Theme, Timeline Overview, v1.1 Backlog (post-launch, optional), Week 1 Exit Criteria (+3 more)
+
+### Community 36 - "PROJECT_INFO_NEXT.md — Next.js Rebuild Brief"
+
+Cohesion: 0.06
+Nodes (30): 10. Deployment (Vercel only), 11. CI (GitHub Actions), 12. Testing expectations, 13. Build phases (recommended order), 14. Out of scope (unless product direction changes), 15. Engineering rules (Next version), 16. Source repo reference map, 17. Success criteria (Next v1 done) (+22 more)
+
+### Community 37 - "Deployment guide — Vercel (Next.js)"
+
+Cohesion: 0.20
+Nodes (10): Before you deploy (local), Deployment guide — Vercel (Next.js), Troubleshooting, v1 ship complete, v1 success criteria reminder, YOUR ACTION — Step 1: Push to GitHub, YOUR ACTION — Step 2: Create Vercel project, YOUR ACTION — Step 3: Environment variables (+2 more)
+
+### Community 38 - "BACKLOGS_v1.md"
+
+Cohesion: 0.22
+Nodes (7): Decisions Log, Epic: Brand and Content (Xone), Epic: Frontend Architecture, Epic: Lead Capture API (Route Handlers) — **v1.1 deferred**, Epic: Page Completion, Epic: Project Foundation, Epic: QA and Deploy
+
+### Community 39 - "Post-deploy verification (QA-05)"
+
+Cohesion: 0.33
+Nodes (6): Lead capture (email-only v1), Lighthouse (PERF-06), Post-deploy verification (QA-05), Routes (mobile 375px + desktop 1280px), Security headers (sample), SEO & infra
+
+### Community 41 - "Testing"
+
+Cohesion: 0.67
+Nodes (3): E2E tests (Playwright), Testing, Unit tests
+
+### Community 42 - "Week 4 — Phase 3 Polish + Vercel Deploy"
+
+Cohesion: 0.67
+Nodes (3): Theme, Week 4 Exit Criteria, Week 4 — Phase 3 Polish + Vercel Deploy
+
+### Community 43 - "Week 2 — Phase 2 Core Pages (Part 1)"
+
+Cohesion: 0.67
+Nodes (3): Theme, Week 2 Exit Criteria, Week 2 — Phase 2 Core Pages (Part 1)
+
 ## Knowledge Gaps
 
-- **6 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **5 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `next` connect `next` to `CmsPublicPageView.tsx`, `content.ts`, `admin-renderer.test.ts`, `repository.ts`, `PreFlightIntro.tsx`, `TeamStripSection.tsx`, `auth.ts`, `dependencies`, `package.json`, `content/route.ts`, `getMongoDatabase`, `env.ts`, `preview.ts`, `health/route.ts`?**
-  _High betweenness centrality (0.190) - this node is a cross-community bridge._
+- **Why does `next` connect `next` to `CmsPublicPageView.tsx`, `content.ts`, `admin-renderer.test.ts`, `vitest`, `cn`, `devDependencies`, `TeamStripSection.tsx`, `repository.ts`, `dependencies`, `health/route.ts`?**
+  _High betweenness centrality (0.161) - this node is a cross-community bridge._
 - **Should `CmsPublicPageView.tsx` be split into smaller, more focused modules?**
-  _Cohesion score 0.06334371754932502 - nodes in this community are weakly interconnected._
-- **Why does `react` connect `CmsPublicPageView.tsx` to `content.ts`, `design.ts`, `admin-renderer.test.ts`, `PreFlightIntro.tsx`, `dependencies`, `AdminDashboard.tsx`, `package.json`, `EditorFields.tsx`, `content/route.ts`, `admin/page.tsx`?**
-  _High betweenness centrality (0.074) - this node is a cross-community bridge._
+  _Cohesion score 0.05470608222901801 - nodes in this community are weakly interconnected._
+- **Why does `getSiteUrl()` connect `next` to `Deployment guide — Vercel (Next.js)`?**
+  _High betweenness centrality (0.083) - this node is a cross-community bridge._
 - **Should `content.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.05384615384615385 - nodes in this community are weakly interconnected._
-- **Why does `@playwright/test` connect `mobile.ts` to `package.json`, `content.ts`, `devDependencies`?**
-  _High betweenness centrality (0.069) - this node is a cross-community bridge._
+  _Cohesion score 0.06906906906906907 - nodes in this community are weakly interconnected._
+- **Why does `Deployment guide — Vercel (Next.js)` connect `Deployment guide — Vercel (Next.js)` to `DEPLOY.md`, `Post-deploy verification (QA-05)`?**
+  _High betweenness centrality (0.081) - this node is a cross-community bridge._
 - **Should `next` be split into smaller, more focused modules?**
-  _Cohesion score 0.09292929292929293 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.09350649350649351 - nodes in this community are weakly interconnected._
 - **Should `mobile.ts` be split into smaller, more focused modules?**
-  _Cohesion score 0.10256410256410256 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.10609756097560975 - nodes in this community are weakly interconnected._

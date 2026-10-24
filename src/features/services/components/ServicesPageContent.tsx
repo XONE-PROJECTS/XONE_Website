@@ -1,6 +1,3 @@
-import Link from "next/link";
-
-import { buttonVariants } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -10,7 +7,8 @@ import {
 } from "@/components/ui/card";
 import { serviceOfferings } from "@/features/services/data/services";
 import { BRAND_NAME } from "@/lib/brand";
-import { cn } from "@/lib/utils";
+import type { ProjectEstimatorCatalog } from "../estimator/catalog";
+import { ProjectEstimator } from "./ProjectEstimator";
 
 type ServicePageItem = {
   id?: string;
@@ -30,10 +28,14 @@ export function ServicesPageContent({
   content,
   editorBlockId,
   editing = false,
+  estimatorCatalog,
+  contactEmail,
 }: {
   content?: ServicesContent;
   editorBlockId?: string;
   editing?: boolean;
+  estimatorCatalog?: ProjectEstimatorCatalog;
+  contactEmail?: string;
 }) {
   const heading = content?.heading ?? "Our Services";
   const body =
@@ -101,12 +103,11 @@ export function ServicesPageContent({
         </div>
 
         <div className="mt-12 text-center">
-          <Link
-            href="/contact"
-            className={cn(buttonVariants({ size: "lg" }), "rounded-full px-8")}
-          >
-            Start a project
-          </Link>
+          <ProjectEstimator
+            catalog={estimatorCatalog}
+            contactEmail={contactEmail}
+            disabled={editing}
+          />
         </div>
       </div>
     </div>

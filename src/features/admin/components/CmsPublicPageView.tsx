@@ -30,6 +30,7 @@ import { ContactPageContent } from "@/features/contact/components/ContactPageCon
 import { LegalPageLayout } from "@/features/legal/components/LegalPageLayout";
 import type { Project } from "@/features/projects/data/projects";
 import { BRAND_NAME } from "@/lib/brand";
+import { EstimatorProvider } from "@/features/services/estimator/EstimatorProvider";
 
 type PublicPage = Exclude<PageKey, "footer">;
 
@@ -51,13 +52,24 @@ export function CmsPublicPageContent({
   editing?: boolean;
   defaultRenderer?: boolean;
 }): React.ReactNode {
-  if (defaultRenderer && !editing)
-    return (
+  const view =
+    defaultRenderer && !editing ? (
       <div className="cms-page min-h-full w-full">
         <RestoredPublicPage page={page} />
       </div>
+    ) : (
+      <CmsPublicBuilder content={content} page={page} editing={editing} />
     );
-  return <CmsPublicBuilder content={content} page={page} editing={editing} />;
+  return page === "services" ? (
+    <EstimatorProvider
+      catalog={content.projectEstimator}
+      contactEmail={content.settings.contactEmail}
+    >
+      {view}
+    </EstimatorProvider>
+  ) : (
+    view
+  );
 }
 export function getCmsPublicSections(
   content: SiteContent,

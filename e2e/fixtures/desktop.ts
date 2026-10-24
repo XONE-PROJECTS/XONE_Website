@@ -1,6 +1,6 @@
 import { expect, type Page } from "@playwright/test";
 
-import { completePreflightViaCta } from "./preflight";
+import { completePreflightViaCta, dismissPreflightViaSkip } from "./preflight";
 
 export async function assertDesktopNav(page: Page): Promise<void> {
   await expect(page.getByRole("navigation", { name: "Primary" })).toBeVisible();
@@ -106,4 +106,5 @@ export async function visitRouteDesktop(
 
   await page.goto(path);
   await page.waitForLoadState("domcontentloaded");
+  await dismissPreflightViaSkip(page);
 }

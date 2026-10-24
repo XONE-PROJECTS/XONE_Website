@@ -1,6 +1,6 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const PORT = 5142;
+const PORT = Number(process.env.PLAYWRIGHT_PORT ?? 5142);
 const baseURL = `http://127.0.0.1:${PORT}`;
 
 const desktopGuardSpec = /desktop-guard\.spec\.ts/;
@@ -18,7 +18,7 @@ export default defineConfig({
     trace: "on-first-retry",
   },
   webServer: {
-    command: "npm run start",
+    command: `npx next start -p ${PORT}`,
     url: baseURL,
     reuseExistingServer: !process.env.CI,
     env: {
@@ -60,7 +60,7 @@ export default defineConfig({
         ...chromiumOnly,
         viewport: { width: 1280, height: 720 },
       },
-      testMatch: desktopGuardSpec,
+      testMatch: [desktopGuardSpec, /project-estimator\.spec\.ts/],
     },
   ],
 });

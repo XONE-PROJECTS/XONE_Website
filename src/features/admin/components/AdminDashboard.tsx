@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { AdminSkeleton } from "./AdminSkeleton";
+import { PricingPanel } from "./PricingPanel";
 import { EditorCanvas } from "./EditorCanvas";
 import { CollectionItemSettings, ElementFields } from "./EditorFields";
 import {
@@ -30,7 +31,7 @@ import {
 } from "../lib/content";
 import type { Device, ResponsiveStyle } from "../lib/design";
 
-type Panel = "edit" | "theme" | "media" | "history";
+type Panel = "edit" | "theme" | "media" | "history" | "pricing";
 type InspectableNode = {
   id: string;
   label?: string;
@@ -368,18 +369,28 @@ export function AdminDashboard({ email }: { email: string }) {
           />
         </section>
         <aside className="min-h-0 overflow-y-auto border-t bg-background p-4 lg:border-l lg:border-t-0">
-          <div className="mb-4 grid grid-cols-4 gap-1 rounded-md border p-1">
-            {(["edit", "theme", "media", "history"] as const).map((item) => (
-              <button
-                type="button"
-                key={item}
-                onClick={() => setPanel(item)}
-                className={`min-h-9 rounded text-xs capitalize ${panel === item ? "bg-primary text-primary-foreground" : "hover:bg-muted"}`}
-              >
-                {item}
-              </button>
-            ))}
+          <div className="mb-4 grid grid-cols-3 gap-1 rounded-md border p-1">
+            {(["edit", "theme", "media", "history", "pricing"] as const).map(
+              (item) => (
+                <button
+                  type="button"
+                  key={item}
+                  onClick={() => setPanel(item)}
+                  className={`min-h-9 rounded text-xs capitalize ${panel === item ? "bg-primary text-primary-foreground" : "hover:bg-muted"}`}
+                >
+                  {item}
+                </button>
+              ),
+            )}
           </div>
+          {panel === "pricing" && (
+            <PricingPanel
+              catalog={content.projectEstimator}
+              onChange={(projectEstimator) =>
+                change({ ...content, projectEstimator })
+              }
+            />
+          )}
           {panel === "theme" && (
             <ThemePanel content={content} onChange={change} />
           )}
