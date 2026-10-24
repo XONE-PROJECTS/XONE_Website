@@ -43,18 +43,27 @@ function navLinkClass(isActive: boolean, mobile = false) {
   );
 }
 
-export function Navbar({ className, links, settings, preview = false }: NavbarProps) {
+export function Navbar({
+  className,
+  links,
+  settings,
+  preview = false,
+}: NavbarProps) {
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
 
   const isHome = pathname === "/";
   const isAdmin = !preview && pathname.startsWith("/admin");
-  const navLinks = (links ?? [
-    { href: "/projects", label: "Projects", visible: true },
-    { href: "/services", label: "Services", visible: true },
-    { href: "/about", label: "About", visible: true },
-    { href: "/contact", label: "Contact", visible: true },
-  ]).filter((link) => link.visible);
+  const navLinks = (
+    links ?? [
+      { href: "/projects", label: "Projects", visible: true },
+      { href: "/services", label: "Services", visible: true },
+      { href: "/about", label: "About", visible: true },
+      { href: "/contact", label: "Contact", visible: true },
+    ]
+  ).filter((link) => link.visible);
+
+  if (isAdmin) return null;
 
   return (
     <header
@@ -70,7 +79,8 @@ export function Navbar({ className, links, settings, preview = false }: NavbarPr
           aria-current={isHome ? "page" : undefined}
         >
           <Image
-            src={settings?.logoUrl || brandAssets.logoInverse} unoptimized
+            src={settings?.logoUrl || brandAssets.logoInverse}
+            unoptimized
             alt={settings?.siteName ?? BRAND_NAME}
             width={220}
             height={48}
@@ -79,67 +89,86 @@ export function Navbar({ className, links, settings, preview = false }: NavbarPr
           />
         </Link>
 
-        {!isAdmin && <>
-        <nav aria-label="Primary" className="hidden items-center gap-7 lg:flex">
-          {navLinks.map((link) => <Link key={link.href} href={link.href} className={navLinkClass(pathname === link.href)}>{link.label}</Link>)}
-        </nav>
-
-        <div className="flex items-center gap-2">
-          <Link href={settings?.header?.ctaHref ?? "/projects"} className={cn(buttonVariants({ size: "default" }), "hidden border border-white/20 bg-xone-violet text-white hover:bg-xone-violet/90 sm:inline-flex")}>{settings?.header?.ctaLabel ?? "View projects"}</Link>
-
-          <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-            <SheetTrigger
-              className={cn(
-                buttonVariants({ variant: "ghost", size: "icon" }),
-                "size-11 min-h-11 min-w-11 text-white hover:bg-white/10 hover:text-white lg:hidden",
-              )}
-              aria-label="Open navigation menu"
-            >
-              <MenuIcon className="size-5" />
-            </SheetTrigger>
-            <SheetContent
-              side="right"
-              className="border-white/10 bg-xone-navy text-xone-light w-[min(100vw-2rem,20rem)]"
-            >
-              <SheetHeader>
-                <SheetTitle className="text-white">Menu</SheetTitle>
-              </SheetHeader>
-              <nav
-                aria-label="Mobile navigation"
-                className="flex flex-col gap-1 px-1 pt-2"
+        <>
+          <nav
+            aria-label="Primary"
+            className="hidden items-center gap-7 lg:flex"
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={navLinkClass(pathname === link.href)}
               >
-                <Link
-                  href="/"
-                  className={navLinkClass(pathname === "/", true)}
-                  onClick={() => setMobileOpen(false)}
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="flex items-center gap-2">
+            <Link
+              href={settings?.header?.ctaHref ?? "/projects"}
+              className={cn(
+                buttonVariants({ size: "default" }),
+                "hidden border border-white/20 bg-xone-violet text-white hover:bg-xone-violet/90 sm:inline-flex",
+              )}
+            >
+              {settings?.header?.ctaLabel ?? "View projects"}
+            </Link>
+
+            <Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
+              <SheetTrigger
+                className={cn(
+                  buttonVariants({ variant: "ghost", size: "icon" }),
+                  "size-11 min-h-11 min-w-11 text-white hover:bg-white/10 hover:text-white lg:hidden",
+                )}
+                aria-label="Open navigation menu"
+              >
+                <MenuIcon className="size-5" />
+              </SheetTrigger>
+              <SheetContent
+                side="right"
+                className="border-white/10 bg-xone-navy text-xone-light w-[min(100vw-2rem,20rem)]"
+              >
+                <SheetHeader>
+                  <SheetTitle className="text-white">Menu</SheetTitle>
+                </SheetHeader>
+                <nav
+                  aria-label="Mobile navigation"
+                  className="flex flex-col gap-1 px-1 pt-2"
                 >
-                  Home
-                </Link>
-                {navLinks.map((link) => (
                   <Link
-                    key={link.href}
-                    href={link.href}
-                    className={navLinkClass(pathname === link.href, true)}
+                    href="/"
+                    className={navLinkClass(pathname === "/", true)}
                     onClick={() => setMobileOpen(false)}
                   >
-                    {link.label}
+                    Home
                   </Link>
-                ))}
-                <Link
-                  href={settings?.header?.ctaHref ?? "/projects"}
-                  className={cn(
-                    buttonVariants({ size: "lg" }),
-                    "mt-4 min-h-11 w-full bg-xone-violet text-white hover:bg-xone-violet/90",
-                  )}
-                  onClick={() => setMobileOpen(false)}
-                >
-                  View projects
-                </Link>
-              </nav>
-            </SheetContent>
-          </Sheet>
-        </div>
-        </>}
+                  {navLinks.map((link) => (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={navLinkClass(pathname === link.href, true)}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                  <Link
+                    href={settings?.header?.ctaHref ?? "/projects"}
+                    className={cn(
+                      buttonVariants({ size: "lg" }),
+                      "mt-4 min-h-11 w-full bg-xone-violet text-white hover:bg-xone-violet/90",
+                    )}
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    View projects
+                  </Link>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
+        </>
       </div>
     </header>
   );
