@@ -8,6 +8,7 @@ import { Navbar } from "@/components/navbar";
 import { SiteTheme } from "@/features/admin/components/SiteTheme";
 import {
   pageKeys,
+  isDefaultContent,
   type PageKey,
   type SiteContent,
 } from "@/features/admin/lib/content";
@@ -80,7 +81,11 @@ export function PreviewLiveSync({
       </div>
       {page === "footer" ? null : (
         <main className={previewPageClassName}>
-          <CmsPublicPageContent content={content} page={page} />
+          <CmsPublicPageContent
+            content={content}
+            page={page}
+            defaultRenderer={isDefaultContent(content)}
+          />
         </main>
       )}
       <Footer

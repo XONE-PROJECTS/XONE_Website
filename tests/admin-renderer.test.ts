@@ -6,12 +6,17 @@ import {
   getCmsPublicSections,
 } from "@/features/admin/components/CmsPublicPageView";
 import { CmsPageRenderer } from "@/features/admin/components/CmsPageRenderer";
+import { RestoredPublicPage } from "@/features/admin/components/RestoredPublicPage";
 import {
   previewPageClassName,
   previewToolbarInnerClassName,
 } from "@/features/admin/components/PreviewLiveSync";
 import { cloneNode, replacePage } from "@/features/admin/lib/builder";
-import { defaultContent, parseSiteContent } from "@/features/admin/lib/content";
+import {
+  defaultContent,
+  isDefaultContent,
+  parseSiteContent,
+} from "@/features/admin/lib/content";
 
 describe("canonical CMS page renderer", () => {
   it("keeps the default public page order from the target site", () => {
@@ -138,6 +143,28 @@ describe("canonical CMS page renderer", () => {
     expect(prehomeEditor).toMatchObject({
       props: { editing: true, includePrehome: false },
     });
+  });
+
+  it("uses the source page renderer for untouched default content", () => {
+    const content = parseSiteContent(defaultContent);
+    expect(isDefaultContent(content)).toBe(true);
+    const page = CmsPublicPageContent({
+      content,
+      page: "home",
+      defaultRenderer: true,
+    }) as { type: string; props: { children: unknown } };
+    const children = page.props.children as readonly {
+      type: unknown;
+      props?: { children?: unknown };
+    }[];
+
+    expect(page.type).toBe("div");
+    expect(children).toHaveLength(2);
+    expect(children[1]?.type).toBe(RestoredPublicPage);
+    const sourcePage = RestoredPublicPage({ page: "home" }) as {
+      props: { children: unknown };
+    };
+    expect(sourcePage.props.children).toHaveLength(3);
   });
 
   it("does not render legacy team blocks in public or CMS preview output", () => {

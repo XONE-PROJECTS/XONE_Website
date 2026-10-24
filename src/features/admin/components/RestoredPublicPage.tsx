@@ -1,3 +1,4 @@
+import React, { type ReactNode } from "react";
 import { FeaturedProjectsSection } from "@/features/home/components/FeaturedProjectsSection";
 import { HomeCtaSection } from "@/features/home/components/HomeCtaSection";
 import { HomeHero } from "@/features/home/components/HomeHero";
@@ -41,4 +42,3 @@ export function RestoredPublicPage({ page }: { page: PageKey }): ReactNode {
       return null;
   }
 }
-import type { ReactNode } from "react";

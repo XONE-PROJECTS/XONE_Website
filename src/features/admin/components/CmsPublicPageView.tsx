@@ -11,6 +11,7 @@ import type {
   PageKey,
   SiteContent,
 } from "@/features/admin/lib/content";
+import { RestoredPublicPage } from "@/features/admin/components/RestoredPublicPage";
 import { responsiveCss } from "../lib/design";
 import { buttonVariants } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -43,11 +44,20 @@ export function CmsPublicPageContent({
   content,
   page,
   editing = false,
+  defaultRenderer = false,
 }: {
   content: SiteContent;
   page: PublicPage;
   editing?: boolean;
+  defaultRenderer?: boolean;
 }): React.ReactNode {
+  if (defaultRenderer && !editing)
+    return (
+      <div className="cms-page min-h-full w-full">
+        {page === "home" && <PreFlightIntro />}
+        <RestoredPublicPage page={page} />
+      </div>
+    );
   return (
     <CmsPublicBuilder
       content={content}

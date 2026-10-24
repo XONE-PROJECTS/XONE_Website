@@ -8,12 +8,24 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const metadata = { robots: { index: false, follow: false } };
 
-export default async function AdminPreviewPage({ searchParams }: { searchParams: Promise<{ token?: string; page?: string }> }) {
+export default async function AdminPreviewPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ token?: string; page?: string }>;
+}) {
   const params = await searchParams;
   const token = params.token ?? "";
   const content = await getPreviewContent(token);
   if (!content) notFound();
   const requestedPage = params.page ?? "home";
-  const page: PageKey = pageKeys.includes(requestedPage as PageKey) ? requestedPage as PageKey : "home";
-  return <main className="min-h-screen bg-xone-section"><PreviewLiveSync initialContent={content} initialPage={page} token={token} /></main>;
+  const page: PageKey = pageKeys.includes(requestedPage as PageKey)
+    ? (requestedPage as PageKey)
+    : "home";
+  return (
+    <PreviewLiveSync
+      initialContent={content}
+      initialPage={page}
+      token={token}
+    />
+  );
 }

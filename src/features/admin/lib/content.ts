@@ -951,3 +951,9 @@ export function parseSiteContent(value: unknown): SiteContent {
     }),
   );
 }
+
+export function isDefaultContent(content: SiteContent): boolean {
+  return (
+    JSON.stringify(content) === JSON.stringify(parseSiteContent(defaultContent))
+  );
+}
