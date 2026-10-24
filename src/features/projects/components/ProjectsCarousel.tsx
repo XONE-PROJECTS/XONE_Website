@@ -12,9 +12,15 @@ import "@/features/projects/styles/projects-swiper.css";
 
 type ProjectsCarouselProps = {
   items?: readonly Project[];
+  editorBlockId?: string;
+  editing?: boolean;
 };
 
-export function ProjectsCarousel({ items = projects }: ProjectsCarouselProps) {
+export function ProjectsCarousel({
+  items = projects,
+  editorBlockId,
+  editing = false,
+}: ProjectsCarouselProps) {
   const canLoop = items.length > 2;
 
   return (
@@ -66,14 +72,27 @@ export function ProjectsCarousel({ items = projects }: ProjectsCarouselProps) {
         }}
         className="projects-coverflow-swiper"
       >
-        {items.map((project) => (
+        {items.map((project, index) => (
           <SwiperSlide key={project.id} className="!flex !h-auto">
-            <ProjectCard
-              project={project}
-              variant="full"
-              carousel
-              className="project-carousel-shell w-full"
-            />
+            <div
+              className="w-full"
+              {...(editorBlockId
+                ? { "data-cms-id": `${editorBlockId}-item-${index}` }
+                : {})}
+              {...(editing && editorBlockId
+                ? {
+                    "data-cms-item-block": editorBlockId,
+                    "data-cms-item-index": index,
+                  }
+                : {})}
+            >
+              <ProjectCard
+                project={project}
+                variant="full"
+                carousel
+                className="project-carousel-shell w-full"
+              />
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

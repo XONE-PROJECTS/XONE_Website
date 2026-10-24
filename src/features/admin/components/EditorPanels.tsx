@@ -94,7 +94,12 @@ export function StyleFields({
           ([, size]) => size === resolved.fontSize,
         )?.[0] ?? "custom");
   const color = (
-    key: "backgroundColor" | "color" | "borderColor",
+    key:
+      | "backgroundColor"
+      | "color"
+      | "buttonBackgroundColor"
+      | "buttonTextColor"
+      | "borderColor",
     label: string,
   ) => (
     <div key={key} className="grid grid-cols-[1fr_44px] items-end gap-2">
@@ -163,6 +168,8 @@ export function StyleFields({
         <>
           {color("backgroundColor", "Background")}
           {color("color", "Text color")}
+          {color("buttonBackgroundColor", "Button background")}
+          {color("buttonTextColor", "Button text")}
           <TextInput
             label="Background image URL"
             value={resolved.backgroundImage ?? ""}
@@ -319,16 +326,25 @@ export function ThemePanel({
     <div className="space-y-5">
       <SiteSettings content={content} onChange={onChange} />
       <h3 className="font-semibold">Site theme · Geist Sans</h3>
-      {(["background", "foreground", "muted", "section", "card"] as const).map(
-        (key) => (
-          <TextInput
-            key={key}
-            label={key + " color"}
-            value={theme[key]}
-            onChange={(value) => patch({ [key]: value })}
-          />
-        ),
-      )}
+      {(
+        [
+          "background",
+          "foreground",
+          "muted",
+          "section",
+          "card",
+          "buttonBackground",
+          "buttonForeground",
+        ] as const
+      ).map((key) => (
+        <TextInput
+          key={key}
+          label={key + " color"}
+          type="color"
+          value={theme[key]}
+          onChange={(value) => patch({ [key]: value })}
+        />
+      ))}
       {(["bodySize", "headingSize", "lineHeight"] as const).map((key) => (
         <TextInput
           key={key}

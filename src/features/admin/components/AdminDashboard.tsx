@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef, useState, type DragEvent } from "react";
+import { useRef, useState } from "react";
 import { AdminSkeleton } from "./AdminSkeleton";
 import { EditorCanvas } from "./EditorCanvas";
-import { ElementFields, SiteSettings } from "./EditorFields";
+import { CollectionItemSettings, ElementFields } from "./EditorFields";
 import {
   HistoryPanel,
   MediaPanel,
@@ -12,14 +12,12 @@ import {
 } from "./EditorPanels";
 import { useCmsEditor } from "../hooks/use-cms-editor";
 import {
-  blockElement,
-  cloneNode,
-  emptySection,
   getPage,
+  locateBlock,
+  locateCollectionItem,
   locate,
-  moveNode,
   replacePage,
-  uid,
+  type EditorSelection,
   type NodeKind,
   type SelectedPage,
 } from "../lib/builder";
@@ -33,8 +31,12 @@ import {
 import type { Device, ResponsiveStyle } from "../lib/design";
 
 type Panel = "edit" | "theme" | "media" | "history";
-type AddableBlock = Exclude<CmsBlock["type"], "footer">;
-type InspectableNode = { id: string; styles?: ResponsiveStyle };
+type InspectableNode = {
+  id: string;
+  label?: string;
+  visible?: boolean;
+  styles?: ResponsiveStyle;
+};
 
 const pageLabels: Record<(typeof pageKeys)[number], string> = {
   prehome: "Pre-home",
@@ -48,180 +50,12 @@ const pageLabels: Record<(typeof pageKeys)[number], string> = {
   terms: "Terms",
   footer: "Footer",
 };
-const blockTypes: AddableBlock[] = [
-  "hero",
-  "text",
-  "cta",
-  "cards",
-  "projectCollection",
-  "serviceCollection",
-  "contact",
-  "processCollection",
-  "teamCollection",
-  "legal",
-  "component",
-];
 
 function label(value: string): string {
   return value
     .replace(/([A-Z])/g, " $1")
     .replace(/^./, (character) => character.toUpperCase());
 }
-
-function newBlock(type: AddableBlock, content: SiteContent): CmsBlock {
-  const id = uid();
-  if (type === "hero")
-    return {
-      id,
-      type,
-      heading: "New heading",
-      body: "Edit this content.",
-      columns: 1,
-      imageFit: "cover",
-      visible: true,
-    };
-  if (type === "text")
-    return {
-      id,
-      type,
-      heading: "New section",
-      paragraphs: ["Edit this content."],
-      visible: true,
-    };
-  if (type === "cta")
-    return {
-      id,
-      type,
-      heading: "New call to action",
-      body: "Edit this content.",
-      label: "Learn more",
-      href: "/contact",
-      visible: true,
-    };
-  if (type === "cards")
-    return {
-      id,
-      type,
-      heading: "New cards",
-      items: [{ title: "New card", description: "Edit this content." }],
-      columns: 3,
-      visible: true,
-    };
-  if (type === "projectCollection")
-    return {
-      id,
-      type,
-      heading: "Projects",
-      body: "",
-      display: "grid",
-      items: [],
-      columns: 2,
-      visible: true,
-    };
-  if (type === "serviceCollection")
-    return {
-      id,
-      type,
-      heading: "Services",
-      body: "Edit this content.",
-      items: [],
-      columns: 2,
-      visible: true,
-    };
-  if (type === "contact")
-    return {
-      id,
-      type,
-      heading: "Contact",
-      body: "Edit this content.",
-      detailsHeading: "Get in touch",
-      email: content.settings.contactEmail,
-      emailDescription: "Primary way to reach us.",
-      phone: "",
-      phoneDisplay: "",
-      location: "",
-      secondaryLabel: "View our projects",
-      secondaryHref: "/projects",
-      note: "",
-      visible: true,
-    };
-  if (type === "preflight")
-    return {
-      id,
-      type,
-      logoSrc: "/assets/XONE/xone_brand_kit/xone_logo_inverse.svg",
-      logoAlt: content.settings.siteName,
-      objectives: ["Objective one", "Objective two", "Objective three"],
-      reasons: [{ title: "Reason", description: "Edit this content." }],
-      ctaLabel: "Start Building with XONE",
-      visible: true,
-    };
-  if (type === "processCollection")
-    return {
-      id,
-      type,
-      heading: "How We Work",
-      body: "Edit this content.",
-      items: [
-        {
-          step: 1,
-          title: "Determine",
-          description: "Edit this content.",
-          details: [],
-        },
-      ],
-      visible: true,
-    };
-  if (type === "teamCollection")
-    return {
-      id,
-      type,
-      heading: "Our team",
-      body: "Edit this content.",
-      items: [
-        {
-          name: "New team member",
-          role: "Edit this role.",
-          initials: "NM",
-          photoSrc: "",
-        },
-      ],
-      columns: 3,
-      visible: true,
-    };
-  if (type === "legal")
-    return {
-      id,
-      type,
-      title: "Legal page",
-      lastUpdated: new Date().toISOString().slice(0, 10),
-      intro: "Edit this content.",
-      sections: [
-        {
-          id: uid(),
-          title: "Section",
-          paragraphs: ["Edit this content."],
-          listItems: [],
-        },
-      ],
-      visible: true,
-    };
-  return {
-    id,
-    type: "component",
-    componentKind: "featureSplit",
-    heading: "New component",
-    body: "Edit this content.",
-    label: "Learn more",
-    href: "/contact",
-    items: [],
-    columns: 3,
-    align: "left",
-    spacing: "default",
-    visible: true,
-  };
-}
-
 export function AdminDashboard({ email }: { email: string }) {
   const editor = useCmsEditor();
   const {
@@ -243,17 +77,21 @@ export function AdminDashboard({ email }: { email: string }) {
     revision,
   } = editor;
   const [page, setPage] = useState<SelectedPage>("home");
-  const [selected, setSelected] = useState<string | null>(null);
+  const [selected, setSelected] = useState<EditorSelection | null>(null);
   const [device, setDevice] = useState<Device>("desktop");
   const [panel, setPanel] = useState<Panel>("edit");
   const previewWindow = useRef<Window | null>(null);
 
   const currentPage = content ? getPage(content, page) : null;
   const selectedNode =
-    currentPage && selected ? locate(currentPage, selected) : null;
+    currentPage && selected?.type === "node"
+      ? locate(currentPage, selected.id)
+      : null;
+  const selectedItem =
+    currentPage && selected?.type === "item"
+      ? locateCollectionItem(currentPage, selected)
+      : null;
   const pageTitle = pageLabels[page];
-  const availableBlockTypes: AddableBlock[] =
-    page === "prehome" ? ["preflight"] : blockTypes;
 
   function broadcast(next: SiteContent): void {
     try {
@@ -274,9 +112,11 @@ export function AdminDashboard({ email }: { email: string }) {
     if (content) change(replacePage(content, page, nextPage));
   }
 
-  function updateElement(next: CmsBuilderElement): void {
-    if (!currentPage || !selectedNode || selectedNode.kind !== "element")
-      return;
+  function updateElement(
+    next: CmsBuilderElement,
+    elementId = selectedNode?.kind === "element" ? selectedNode.node.id : null,
+  ): void {
+    if (!currentPage || !elementId) return;
     const sections = currentPage.sections.map((section) => ({
       ...section,
       rows: section.rows.map((row) => ({
@@ -284,7 +124,7 @@ export function AdminDashboard({ email }: { email: string }) {
         columns: row.columns.map((column) => ({
           ...column,
           elements: column.elements.map((element) =>
-            element.id === next.id ? next : element,
+            element.id === elementId ? next : element,
           ),
         })),
       })),
@@ -292,12 +132,60 @@ export function AdminDashboard({ email }: { email: string }) {
     changePage({ ...currentPage, sections });
   }
 
-  function updateStyles(
-    kind: NodeKind,
-    id: string,
-    styles: ResponsiveStyle,
-  ): void {
+  function updateCollectionItem(nextBlock: CmsBlock): void {
+    if (!currentPage || !selectedItem || selected?.type !== "item") return;
+    const parent = locateBlock(currentPage, selected.blockId);
+    if (
+      !parent ||
+      parent.kind !== "element" ||
+      !("type" in parent.node) ||
+      parent.node.type !== "block"
+    )
+      return;
+    updateElement({ ...parent.node, block: nextBlock }, parent.node.id);
+  }
+
+  function updateSection(value: { label?: string; visible?: boolean }): void {
+    if (!currentPage || selectedNode?.kind !== "section") return;
+    changePage({
+      ...currentPage,
+      sections: currentPage.sections.map((section) =>
+        section.id === selectedNode.node.id
+          ? { ...section, ...value }
+          : section,
+      ),
+    });
+  }
+
+  function updateStyles(styles: ResponsiveStyle): void {
     if (!currentPage) return;
+    if (selected?.type === "item" && selectedItem) {
+      const nextPage = structuredClone(currentPage);
+      const parent = locateBlock(nextPage, selected.blockId);
+      if (
+        !parent ||
+        parent.kind !== "element" ||
+        !("type" in parent.node) ||
+        parent.node.type !== "block"
+      )
+        return;
+      const block = parent.node.block;
+      if (
+        block.type !== "cards" &&
+        block.type !== "projectCollection" &&
+        block.type !== "serviceCollection"
+      )
+        return;
+      block.items[selected.index] = {
+        ...block.items[selected.index],
+        styles,
+      };
+      changePage(nextPage);
+      return;
+    }
+    if (!selectedNode) return;
+    const { kind } = selectedNode;
+    const id = selectedNode.node.id;
     const sections = currentPage.sections.map((section) => {
       if (kind === "section" && section.id === id)
         return { ...section, styles };
@@ -322,88 +210,6 @@ export function AdminDashboard({ email }: { email: string }) {
       };
     });
     changePage({ ...currentPage, sections });
-  }
-
-  function move(
-    id: string,
-    parent: string | null,
-    before: string | null,
-  ): void {
-    if (!currentPage) return;
-    const next = moveNode(currentPage, id, parent, before);
-    if (next !== currentPage) changePage(next);
-  }
-
-  function add(type: string, columnId: string | null = null): void {
-    if (!content || !currentPage) return;
-    const block = newBlock(type as AddableBlock, content);
-    const element = blockElement(block);
-    const section = emptySection();
-    if (columnId) {
-      const nextPage = structuredClone(currentPage);
-      const target = locate(nextPage, columnId)?.node;
-      if (target && "elements" in target) {
-        target.elements.push(element);
-        changePage(nextPage);
-        setSelected(element.id);
-        return;
-      }
-    }
-    section.label = label(block.type);
-    section.rows[0]?.columns[0]?.elements.push(element);
-    changePage({
-      ...currentPage,
-      sections: [...currentPage.sections, section],
-    });
-    setSelected(element.id);
-  }
-
-  function addFromDrag(
-    event: DragEvent<HTMLButtonElement>,
-    type: string,
-  ): void {
-    event.dataTransfer.setData("text/x-xone-add", type);
-    event.dataTransfer.effectAllowed = "copy";
-  }
-
-  function selectedAction(action: "duplicate" | "delete" | "toggle"): void {
-    if (!currentPage || !selectedNode) return;
-    if (action === "toggle") {
-      if (selectedNode.kind === "section")
-        changePage({
-          ...currentPage,
-          sections: currentPage.sections.map((item) =>
-            item.id === selectedNode.node.id
-              ? { ...item, visible: !item.visible }
-              : item,
-          ),
-        });
-      const element =
-        selectedNode.kind === "element"
-          ? (selectedNode.node as CmsBuilderElement)
-          : null;
-      if (element?.type === "block")
-        updateElement({
-          ...element,
-          block: { ...element.block, visible: !element.block.visible },
-        });
-      return;
-    }
-    const draft = structuredClone(currentPage);
-    const located = locate(draft, selectedNode.node.id);
-    if (!located) return;
-    if (action === "delete") {
-      if (located.kind === "row" && located.siblings.length <= 1) return;
-      if (located.kind === "column" && located.siblings.length <= 1) return;
-      located.siblings.splice(located.index, 1);
-      changePage(draft);
-      setSelected(null);
-      return;
-    }
-    const copy = cloneNode(located.node);
-    located.siblings.splice(located.index + 1, 0, copy);
-    changePage(draft);
-    setSelected(copy.id);
   }
 
   async function saveDraft(): Promise<void> {
@@ -532,7 +338,7 @@ export function AdminDashboard({ email }: { email: string }) {
             <div>
               <h2 className="text-xl font-semibold">Page canvas</h2>
               <p className="text-sm text-muted-foreground">
-                Select, drag, drop, or double-click content to edit it.
+                Select a section or item, then edit only that content.
               </p>
             </div>
             <div className="flex rounded-md border bg-background p-1">
@@ -558,9 +364,7 @@ export function AdminDashboard({ email }: { email: string }) {
               setSelected(id);
               setPanel("edit");
             }}
-            onMove={move}
             onInline={updateElement}
-            onAdd={add}
           />
         </section>
         <aside className="min-h-0 overflow-y-auto border-t bg-background p-4 lg:border-l lg:border-t-0">
@@ -598,38 +402,58 @@ export function AdminDashboard({ email }: { email: string }) {
               onRestore={restore}
             />
           )}
-          {panel === "edit" && selectedNode && (
+          {panel === "edit" && selectedItem && selected?.type === "item" && (
+            <>
+              <CollectionItemSettings
+                block={selectedItem.block}
+                index={selectedItem.index}
+                onChange={updateCollectionItem}
+                onRemove={() => {
+                  const parent = currentPage
+                    ? locateBlock(currentPage, selectedItem.block.id)
+                    : null;
+                  setSelected(
+                    parent ? { type: "node", id: parent.node.id } : null,
+                  );
+                }}
+              />
+              <StyleFields
+                styles={selectedItem.item.styles}
+                device={device}
+                onChange={updateStyles}
+                tab="style"
+                typography
+              />
+            </>
+          )}
+          {panel === "edit" && selectedNode && !selectedItem && (
             <Inspector
               node={selectedNode.node}
               kind={selectedNode.kind}
               device={device}
               onElement={updateElement}
-              onStyles={(styles) =>
-                updateStyles(selectedNode.kind, selectedNode.node.id, styles)
-              }
-              onAction={selectedAction}
+              onStyles={updateStyles}
+              onSection={updateSection}
+              onAddItem={(index) => {
+                if (
+                  selectedNode.kind !== "element" ||
+                  !("type" in selectedNode.node) ||
+                  selectedNode.node.type !== "block"
+                )
+                  return;
+                setSelected({
+                  type: "item",
+                  blockId: selectedNode.node.block.id,
+                  index,
+                });
+              }}
             />
           )}
-          {panel === "edit" && !selectedNode && (
-            <SiteSettings content={content} onChange={change} />
+          {panel === "edit" && !selectedItem && !selectedNode && (
+            <p className="rounded-md border border-dashed p-4 text-sm text-muted-foreground">
+              Select a section or item in the canvas to edit it.
+            </p>
           )}
-          <div className="mt-6 border-t pt-4">
-            <h2 className="mb-3 font-semibold">Add components</h2>
-            <div className="grid gap-2">
-              {availableBlockTypes.map((type) => (
-                <button
-                  type="button"
-                  draggable
-                  key={type}
-                  onDragStart={(event) => addFromDrag(event, type)}
-                  onClick={() => add(type)}
-                  className="min-h-10 rounded-md border px-3 text-left text-sm hover:bg-muted"
-                >
-                  + {label(type)}
-                </button>
-              ))}
-            </div>
-          </div>
         </aside>
       </div>
     </main>
@@ -642,14 +466,16 @@ function Inspector({
   device,
   onElement,
   onStyles,
-  onAction,
+  onSection,
+  onAddItem,
 }: {
   node: InspectableNode;
   kind: NodeKind;
   device: Device;
   onElement: (element: CmsBuilderElement) => void;
   onStyles: (styles: ResponsiveStyle) => void;
-  onAction: (action: "duplicate" | "delete" | "toggle") => void;
+  onSection: (value: { label?: string; visible?: boolean }) => void;
+  onAddItem: (index: number) => void;
 }) {
   const style = node.styles;
   const element = kind === "element" ? (node as CmsBuilderElement) : null;
@@ -667,37 +493,34 @@ function Inspector({
             Changes appear in the canvas immediately.
           </p>
         </div>
-        <button
-          type="button"
-          className="text-xs underline"
-          onClick={() => onAction("duplicate")}
-        >
-          Duplicate
-        </button>
-        <button
-          type="button"
-          className="text-xs text-destructive underline"
-          onClick={() => onAction("delete")}
-        >
-          Delete
-        </button>
       </div>
-      {kind === "section" || element?.type === "block" ? (
-        <button
-          type="button"
-          className="min-h-9 rounded border px-3 text-xs"
-          onClick={() => onAction("toggle")}
-        >
-          Toggle visibility
-        </button>
-      ) : null}
-      {element && <ElementFields element={element} onChange={onElement} />}
-      <StyleFields
-        styles={style}
-        device={device}
-        onChange={onStyles}
-        tab="layout"
-      />
+      {kind === "section" && (
+        <div className="space-y-3">
+          <label className="block text-sm font-medium">
+            Section label
+            <input
+              value={node.label ?? ""}
+              onChange={(event) => onSection({ label: event.target.value })}
+              className="mt-1 min-h-10 w-full rounded-md border bg-background px-3"
+            />
+          </label>
+          <label className="flex items-center gap-2 text-sm font-medium">
+            <input
+              type="checkbox"
+              checked={node.visible !== false}
+              onChange={(event) => onSection({ visible: event.target.checked })}
+            />
+            Visible
+          </label>
+        </div>
+      )}
+      {element && (
+        <ElementFields
+          element={element}
+          onChange={onElement}
+          onAddItem={onAddItem}
+        />
+      )}
       <StyleFields
         styles={style}
         device={device}

@@ -1,18 +1,18 @@
 "use client";
 
-import {
-  useEffect,
-  useRef,
-  useState,
-  type DragEvent,
-  type MouseEvent,
-} from "react";
+import { useEffect, useRef, useState, type MouseEvent } from "react";
 import { createPortal } from "react-dom";
 import { Navbar } from "@/components/navbar";
 import { Footer } from "@/components/footer";
 import { SiteTheme } from "./SiteTheme";
 import { CmsPublicPageContent } from "./CmsPublicPageView";
-import { getPage, locate, type SelectedPage } from "../lib/builder";
+import {
+  getPage,
+  locate,
+  locateCollectionItem,
+  type EditorSelection,
+  type SelectedPage,
+} from "../lib/builder";
 import type { CmsBuilderElement, SiteContent } from "../lib/content";
 import type { Device } from "../lib/design";
 
@@ -24,26 +24,21 @@ export function EditorCanvas({
   selected,
   preview,
   onSelect,
-  onMove,
   onInline,
-  onAdd,
 }: {
   content: SiteContent;
   page: SelectedPage;
   device: Device;
-  selected: string | null;
+  selected: EditorSelection | null;
   preview: boolean;
-  onSelect: (id: string) => void;
-  onMove: (id: string, parent: string | null, before: string | null) => void;
+  onSelect: (selection: EditorSelection) => void;
   onInline: (element: CmsBuilderElement) => void;
-  onAdd: (type: string, column: string | null) => void;
 }) {
   const frame = useRef<HTMLIFrameElement>(null),
     container = useRef<HTMLDivElement>(null);
   const [body, setBody] = useState<HTMLElement | null>(null),
     [available, setAvailable] = useState(800);
-  const dragId = useRef<string | null>(null),
-    editable = useRef<HTMLElement | null>(null);
+  const editable = useRef<HTMLElement | null>(null);
   const currentPage = getPage(content, page),
     width = widths[device],
     scale = Math.min(1, available / width);
@@ -61,9 +56,19 @@ export function EditorCanvas({
     document
       .querySelectorAll("[data-cms-selected]")
       .forEach((node) => node.removeAttribute("data-cms-selected"));
-    if (selected)
+    if (selected?.type === "node")
       Array.from(document.querySelectorAll<HTMLElement>("[data-cms-id]"))
-        .find((node) => node.dataset.cmsId === selected)
+        .find((node) => node.dataset.cmsId === selected.id)
+        ?.setAttribute("data-cms-selected", "true");
+    if (selected?.type === "item")
+      Array.from(
+        document.querySelectorAll<HTMLElement>("[data-cms-item-block]"),
+      )
+        .find(
+          (node) =>
+            node.dataset.cmsItemBlock === selected.blockId &&
+            Number(node.dataset.cmsItemIndex) === selected.index,
+        )
         ?.setAttribute("data-cms-selected", "true");
   }, [body, selected, content, preview]);
   useEffect(() => {
@@ -93,8 +98,17 @@ export function EditorCanvas({
     if (preview) return;
     const target = event.target as HTMLElement;
     if (target.closest("a,button,summary,input")) event.preventDefault();
+    const item = target.closest<HTMLElement>("[data-cms-item-block]");
+    if (item?.dataset.cmsItemBlock && item.dataset.cmsItemIndex) {
+      onSelect({
+        type: "item",
+        blockId: item.dataset.cmsItemBlock,
+        index: Number(item.dataset.cmsItemIndex),
+      });
+      return;
+    }
     const node = target.closest<HTMLElement>("[data-cms-id]");
-    if (node?.dataset.cmsId) onSelect(node.dataset.cmsId);
+    if (node?.dataset.cmsId) onSelect({ type: "node", id: node.dataset.cmsId });
   }
   function inline(event: MouseEvent<HTMLDivElement>): void {
     if (preview) return;
@@ -163,38 +177,6 @@ export function EditorCanvas({
     target.addEventListener("blur", finish, { once: true });
     target.addEventListener("keydown", keyboard);
   }
-  function dropTarget(
-    event: DragEvent<HTMLDivElement>,
-  ): { parent: string | null; before: string | null } | null {
-    const id = dragId.current ?? event.dataTransfer.getData("text/x-xone-node"),
-      source = locate(currentPage, id);
-    const target = event.target as HTMLElement;
-    if (!source) return null;
-    const peer = target.closest<HTMLElement>(
-      `[data-cms-kind="${source.kind}"]`,
-    );
-    if (peer?.dataset.cmsId) {
-      const located = locate(currentPage, peer.dataset.cmsId);
-      return located
-        ? { parent: located.parent, before: peer.dataset.cmsId }
-        : null;
-    }
-    const parentKind =
-      source.kind === "element"
-        ? "column"
-        : source.kind === "column"
-          ? "row"
-          : source.kind === "row"
-            ? "section"
-            : null;
-    const parent = parentKind
-      ? target.closest<HTMLElement>(`[data-cms-kind="${parentKind}"]`)?.dataset
-          .cmsId
-      : null;
-    return parentKind && !parent
-      ? null
-      : { parent: parent ?? null, before: null };
-  }
   return (
     <div
       ref={container}
@@ -230,60 +212,16 @@ export function EditorCanvas({
             className={preview ? "" : "cms-editing"}
             onClickCapture={select}
             onDoubleClick={inline}
-            onDragOver={(event) => {
-              if (preview) return;
-              event.preventDefault();
-              const target = (event.target as HTMLElement).closest<HTMLElement>(
-                "[data-cms-id]",
-              );
-              body
-                .querySelectorAll("[data-cms-drop]")
-                .forEach((node) => node.removeAttribute("data-cms-drop"));
-              target?.setAttribute("data-cms-drop", "true");
-            }}
-            onDrop={(event) => {
-              if (preview) return;
-              event.preventDefault();
-              body
-                .querySelectorAll("[data-cms-drop]")
-                .forEach((node) => node.removeAttribute("data-cms-drop"));
-              const type = event.dataTransfer.getData("text/x-xone-add");
-              if (type) {
-                onAdd(
-                  type,
-                  (event.target as HTMLElement).closest<HTMLElement>(
-                    '[data-cms-kind="column"]',
-                  )?.dataset.cmsId ?? null,
-                );
-                return;
-              }
-              const target = dropTarget(event);
-              const id =
-                dragId.current ??
-                event.dataTransfer.getData("text/x-xone-node");
-              if (target && id) onMove(id, target.parent, target.before);
-              dragId.current = null;
-            }}
           >
-            {!preview && selected && locate(currentPage, selected) && (
-              <div className="sticky top-0 z-[60] flex items-center gap-3 border-b bg-white px-4 py-2 text-xs text-slate-600">
-                <span>Double-click text to edit</span>
-                <button
-                  type="button"
-                  draggable
-                  onDragStart={(event) => {
-                    dragId.current = selected;
-                    event.dataTransfer.setData("text/x-xone-node", selected);
-                  }}
-                  onDragEnd={() => {
-                    dragId.current = null;
-                  }}
-                  className="ml-auto cursor-grab rounded border px-3 py-2"
-                >
-                  ⠿ Drag selected {locate(currentPage, selected)?.kind}
-                </button>
-              </div>
-            )}
+            {!preview &&
+              selected &&
+              ((selected.type === "node" && locate(currentPage, selected.id)) ||
+                (selected.type === "item" &&
+                  locateCollectionItem(currentPage, selected))) && (
+                <div className="sticky top-0 z-[60] flex items-center gap-3 border-b bg-white px-4 py-2 text-xs text-slate-600">
+                  <span>Double-click text to edit</span>
+                </div>
+              )}
             <SiteTheme settings={content.settings} preview>
               <Navbar
                 settings={content.settings}

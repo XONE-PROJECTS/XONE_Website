@@ -17,7 +17,7 @@ type ServicePageItem = {
   title: string;
   description: string;
   highlights: readonly string[];
-  icon: typeof serviceOfferings[number]["icon"];
+  icon: (typeof serviceOfferings)[number]["icon"];
 };
 
 type ServicesContent = {
@@ -26,9 +26,19 @@ type ServicesContent = {
   items?: readonly ServicePageItem[];
 };
 
-export function ServicesPageContent({ content }: { content?: ServicesContent }) {
+export function ServicesPageContent({
+  content,
+  editorBlockId,
+  editing = false,
+}: {
+  content?: ServicesContent;
+  editorBlockId?: string;
+  editing?: boolean;
+}) {
   const heading = content?.heading ?? "Our Services";
-  const body = content?.body ?? `${BRAND_NAME} delivers end-to-end digital solutions — from automation and design to production-ready web and mobile apps.`;
+  const body =
+    content?.body ??
+    `${BRAND_NAME} delivers end-to-end digital solutions — from automation and design to production-ready web and mobile apps.`;
   const items = content?.items ?? serviceOfferings;
 
   return (
@@ -44,11 +54,20 @@ export function ServicesPageContent({ content }: { content?: ServicesContent }) 
         </header>
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {items.map((service) => {
+          {items.map((service, index) => {
             const Icon = service.icon;
             return (
               <Card
                 key={service.id ?? service.title}
+                {...(editorBlockId
+                  ? { "data-cms-id": `${editorBlockId}-item-${index}` }
+                  : {})}
+                {...(editing && editorBlockId
+                  ? {
+                      "data-cms-item-block": editorBlockId,
+                      "data-cms-item-index": index,
+                    }
+                  : {})}
                 className="border-border bg-xone-light shadow-lg shadow-xone-navy/5"
               >
                 <CardHeader>

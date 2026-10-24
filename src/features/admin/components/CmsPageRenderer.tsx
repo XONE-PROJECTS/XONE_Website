@@ -465,7 +465,7 @@ function Block({ block }: { block: CmsBlock }) {
     return (
       <section aria-labelledby="featured-projects-heading">
         <p className="text-xs font-semibold uppercase tracking-[0.2em] text-xone-violet">
-          Selected work
+          {block.eyebrow ?? "Selected work"}
         </p>
         <h2
           id="featured-projects-heading"

@@ -22,3 +22,20 @@ test("hero and featured projects visible after preflight", async ({ page }) => {
   );
   await expect(featuredGrid.locator(":scope > li")).toHaveCount(3);
 });
+
+test("preflight stays dismissed during client navigation", async ({ page }) => {
+  await visitRoute(page, "/");
+
+  await page
+    .getByRole("link", { name: "Projects", exact: true })
+    .first()
+    .click();
+  await page.waitForURL("**/projects");
+  await page.getByRole("link", { name: "Home", exact: true }).first().click();
+  await page.waitForURL("**/");
+
+  await expect(page.getByRole("dialog")).toBeHidden();
+
+  await page.reload();
+  await expect(page.getByRole("dialog")).toBeVisible();
+});

@@ -1,0 +1,1064 @@
+{
+  ".codex/hooks.json": {
+    "size": 232,
+    "mtime_ns": 1792310213321546200,
+    "indexed_at_ns": 1792863520420530500,
+    "word_count": 22,
+    "hashes": {
+      ".codex/hooks.json": "1dce6ecebbf4270ca495632efca87af1a5e9d99a2d6e7f85ec20f99116496482"
+    }
+  },
+  ".github/workflows/ci.yml": {
+    "size": 1358,
+    "mtime_ns": 1792309616286425300,
+    "indexed_at_ns": 1792863520744708800,
+    "word_count": 128,
+    "hashes": {
+      ".github/workflows/ci.yml": "1de95311cfb3aa3412b98882803129ea7d8a74c13e2511efc3f7aaa93786d067"
+    }
+  },
+  "AGENTS.md": {
+    "size": 15712,
+    "mtime_ns": 1792310213318474000,
+    "indexed_at_ns": 1792863530439838700,
+    "word_count": 2193,
+    "hashes": {
+      "agents.md": "ba81af0de4c109caa982fc2b1f1ddf930f8c941f2581d39f54701a0b1c6fce81"
+    }
+  },
+  "BACKLOGS_v1.md": {
+    "size": 6896,
+    "mtime_ns": 1792309616290191900,
+    "indexed_at_ns": 1792863530442657700,
+    "word_count": 1030,
+    "hashes": {
+      "backlogs_v1.md": "34a12cacfe59d12e8c10c89884e63b79e929f6ec30af436fbefc1b8b4f3f57a4"
+    }
+  },
+  "DEPLOY.md": {
+    "size": 7524,
+    "mtime_ns": 1792309616290717100,
+    "indexed_at_ns": 1792863530446605600,
+    "word_count": 950,
+    "hashes": {
+      "deploy.md": "c0188f4e9bb6e5cbf3879d568cbf0c3b8114134c8afcd2fe68e060e07071df14"
+    }
+  },
+  "PROJECT_INFO_NEXT.md": {
+    "size": 19681,
+    "mtime_ns": 1792309616290717100,
+    "indexed_at_ns": 1792863530449801000,
+    "word_count": 2333,
+    "hashes": {
+      "project_info_next.md": "c58e1aa95b64f5da7a68ffba5d6dc10f6a16f50849e81e1d9a93840926dbd111"
+    }
+  },
+  "PROJECT_OVERVIEW.md": {
+    "size": 5493,
+    "mtime_ns": 1792309616290717100,
+    "indexed_at_ns": 1792863530453658800,
+    "word_count": 643,
+    "hashes": {
+      "project_overview.md": "096316d3be3ab5cf6aa6d8a68fbf493db2d54012cd179170e7d1fa0be21ed329"
+    }
+  },
+  "README.md": {
+    "size": 5344,
+    "mtime_ns": 1792859148904736800,
+    "indexed_at_ns": 1792863530456051400,
+    "word_count": 658,
+    "hashes": {
+      "readme.md": "b6ebfc208937edb097d6e0af27603ebb5c6f1c3acd63241c0ed5e332d3607a6a"
+    }
+  },
+  "SPRINT_PLAN_v1.md": {
+    "size": 10836,
+    "mtime_ns": 1792309616292249000,
+    "indexed_at_ns": 1792863530457994400,
+    "word_count": 1507,
+    "hashes": {
+      "sprint_plan_v1.md": "4b8b6ce11b2a1f9faf57031289b607f379ccf52b313c5b77a853a930d8698527"
+    }
+  },
+  "TEAM_INSTRUCTIONS.md": {
+    "size": 14817,
+    "mtime_ns": 1792859148990198000,
+    "indexed_at_ns": 1792863530460365400,
+    "word_count": 1980,
+    "hashes": {
+      "team_instructions.md": "47af4aa48a9e23f01ea4ad97813e0a111e037c699c526f5f68b012f275f624ec"
+    }
+  },
+  "app/about/page.tsx": {
+    "size": 653,
+    "mtime_ns": 1792511528200950800,
+    "indexed_at_ns": 1792863516631370900,
+    "word_count": 71
+  },
+  "app/admin/loading.tsx": {
+    "size": 142,
+    "mtime_ns": 1792320897154165500,
+    "indexed_at_ns": 1792863516652808700,
+    "word_count": 15
+  },
+  "app/admin/page.tsx": {
+    "size": 427,
+    "mtime_ns": 1792311202950613100,
+    "indexed_at_ns": 1792863516683324000,
+    "word_count": 44
+  },
+  "app/admin/preview/page.tsx": {
+    "size": 971,
+    "mtime_ns": 1792861497238935100,
+    "indexed_at_ns": 1792863516686456200,
+    "word_count": 113
+  },
+  "app/api/admin/content/route.ts": {
+    "size": 2470,
+    "mtime_ns": 1792338853822369600,
+    "indexed_at_ns": 1792863516691178800,
+    "word_count": 268
+  },
+  "app/api/admin/history/route.ts": {
+    "size": 1872,
+    "mtime_ns": 1792338853833179700,
+    "indexed_at_ns": 1792863516695802400,
+    "word_count": 218
+  },
+  "app/api/admin/login/route.ts": {
+    "size": 1271,
+    "mtime_ns": 1792320266097793500,
+    "indexed_at_ns": 1792863516722841600,
+    "word_count": 133
+  },
+  "app/api/admin/logout/route.ts": {
+    "size": 384,
+    "mtime_ns": 1792310933325231000,
+    "indexed_at_ns": 1792863516751290600,
+    "word_count": 39
+  },
+  "app/api/admin/media/[assetId]/route.ts": {
+    "size": 1209,
+    "mtime_ns": 1792335048353345100,
+    "indexed_at_ns": 1792863516776867800,
+    "word_count": 140
+  },
+  "app/api/admin/media/route.ts": {
+    "size": 3074,
+    "mtime_ns": 1792335193979638900,
+    "indexed_at_ns": 1792863516801083100,
+    "word_count": 342
+  },
+  "app/api/admin/preview/route.ts": {
+    "size": 806,
+    "mtime_ns": 1792321744313755900,
+    "indexed_at_ns": 1792863516827974600,
+    "word_count": 87
+  },
+  "app/api/health/route.ts": {
+    "size": 182,
+    "mtime_ns": 1792309616293307400,
+    "indexed_at_ns": 1792863516851770400,
+    "word_count": 19
+  },
+  "app/contact/page.tsx": {
+    "size": 665,
+    "mtime_ns": 1792511529331791300,
+    "indexed_at_ns": 1792863516877537600,
+    "word_count": 71
+  },
+  "app/layout.tsx": {
+    "size": 1494,
+    "mtime_ns": 1792862261517712000,
+    "indexed_at_ns": 1792863516903462200,
+    "word_count": 131
+  },
+  "app/page.tsx": {
+    "size": 513,
+    "mtime_ns": 1792511527920173200,
+    "indexed_at_ns": 1792863516907707800,
+    "word_count": 53
+  },
+  "app/privacy/page.tsx": {
+    "size": 659,
+    "mtime_ns": 1792511529614009000,
+    "indexed_at_ns": 1792863516911108800,
+    "word_count": 72
+  },
+  "app/process/page.tsx": {
+    "size": 668,
+    "mtime_ns": 1792511528755289100,
+    "indexed_at_ns": 1792863516933035700,
+    "word_count": 70
+  },
+  "app/projects/page.tsx": {
+    "size": 693,
+    "mtime_ns": 1792511529024100700,
+    "indexed_at_ns": 1792863516955569000,
+    "word_count": 75
+  },
+  "app/robots.ts": {
+    "size": 304,
+    "mtime_ns": 1792309616299518800,
+    "indexed_at_ns": 1792863516980294700,
+    "word_count": 34
+  },
+  "app/services/page.tsx": {
+    "size": 676,
+    "mtime_ns": 1792511528480101000,
+    "indexed_at_ns": 1792863516999383600,
+    "word_count": 70
+  },
+  "app/sitemap.ts": {
+    "size": 474,
+    "mtime_ns": 1792309616302107900,
+    "indexed_at_ns": 1792863517023260400,
+    "word_count": 60
+  },
+  "app/terms/page.tsx": {
+    "size": 634,
+    "mtime_ns": 1792511529925152300,
+    "indexed_at_ns": 1792863517029358400,
+    "word_count": 69
+  },
+  "components.json": {
+    "size": 541,
+    "mtime_ns": 1792309616306670700,
+    "indexed_at_ns": 1792863520749523600,
+    "word_count": 46,
+    "hashes": {
+      "components.json": "2bd4a3046cdfad5431837e730bd91589e693af5cb0da3de5b4c13517c0ef186b"
+    }
+  },
+  "e2e/fixtures/desktop.ts": {
+    "size": 2876,
+    "mtime_ns": 1792309616308196000,
+    "indexed_at_ns": 1792863517067876700,
+    "word_count": 288
+  },
+  "e2e/fixtures/mobile.ts": {
+    "size": 1968,
+    "mtime_ns": 1792309616308196000,
+    "indexed_at_ns": 1792863517071191900,
+    "word_count": 209
+  },
+  "e2e/fixtures/preflight.ts": {
+    "size": 680,
+    "mtime_ns": 1792309616308196000,
+    "indexed_at_ns": 1792863517075509600,
+    "word_count": 82
+  },
+  "e2e/fixtures/routes.ts": {
+    "size": 504,
+    "mtime_ns": 1792309616308196000,
+    "indexed_at_ns": 1792863517079465600,
+    "word_count": 68
+  },
+  "e2e/layout/desktop-guard.spec.ts": {
+    "size": 3488,
+    "mtime_ns": 1792309616310333100,
+    "indexed_at_ns": 1792863517083003700,
+    "word_count": 287
+  },
+  "e2e/layout/horizontal-overflow.spec.ts": {
+    "size": 416,
+    "mtime_ns": 1792309616310866100,
+    "indexed_at_ns": 1792863517107501900,
+    "word_count": 44
+  },
+  "e2e/layout/mobile-nav.spec.ts": {
+    "size": 1085,
+    "mtime_ns": 1792309616310866100,
+    "indexed_at_ns": 1792863517126602500,
+    "word_count": 104
+  },
+  "e2e/layout/touch-targets.spec.ts": {
+    "size": 1599,
+    "mtime_ns": 1792309616310866100,
+    "indexed_at_ns": 1792863517131999600,
+    "word_count": 157
+  },
+  "e2e/pages/contact.spec.ts": {
+    "size": 507,
+    "mtime_ns": 1792309616312399400,
+    "indexed_at_ns": 1792863517157940500,
+    "word_count": 46
+  },
+  "e2e/pages/home.spec.ts": {
+    "size": 1183,
+    "mtime_ns": 1792862419969361200,
+    "indexed_at_ns": 1792863517176521000,
+    "word_count": 110
+  },
+  "e2e/pages/projects.spec.ts": {
+    "size": 500,
+    "mtime_ns": 1792309616312941600,
+    "indexed_at_ns": 1792863517180153000,
+    "word_count": 44
+  },
+  "eslint.config.mjs": {
+    "size": 587,
+    "mtime_ns": 1792309616313467400,
+    "indexed_at_ns": 1792863517197822200,
+    "word_count": 56
+  },
+  "next-env.d.ts": {
+    "size": 268,
+    "mtime_ns": 1792309616313467400,
+    "indexed_at_ns": 1792863517200549700,
+    "word_count": 26
+  },
+  "next.config.ts": {
+    "size": 950,
+    "mtime_ns": 1792849779359105600,
+    "indexed_at_ns": 1792863517222423700,
+    "word_count": 95
+  },
+  "package.json": {
+    "size": 1878,
+    "mtime_ns": 1792858712715627300,
+    "indexed_at_ns": 1792863520753420900,
+    "word_count": 150,
+    "hashes": {
+      "package.json": "de166b4b8a0de5d1ad806ebfb5bf706859aff33c514f5c757761d763541ff83d"
+    }
+  },
+  "playwright.config.ts": {
+    "size": 1616,
+    "mtime_ns": 1792309616318055600,
+    "indexed_at_ns": 1792863517248332600,
+    "word_count": 160
+  },
+  "postcss.config.mjs": {
+    "size": 154,
+    "mtime_ns": 1792309616318055600,
+    "indexed_at_ns": 1792863517251265400,
+    "word_count": 17
+  },
+  "prettier.config.mjs": {
+    "size": 208,
+    "mtime_ns": 1792309616318055600,
+    "indexed_at_ns": 1792863517255297300,
+    "word_count": 24
+  },
+  "public/assets/XONE/xone_brand_kit/README.txt": {
+    "size": 1417,
+    "mtime_ns": 1792309616320132900,
+    "indexed_at_ns": 1792863530462703600,
+    "word_count": 161,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/readme.txt": "16e4026e70174bfdcdc1e95709bab9ddc61290c163fac3e5832c16ed3a580356"
+    }
+  },
+  "public/assets/XONE/xone_brand_kit/xone_icon.svg": {
+    "size": 381,
+    "mtime_ns": 1792309616348332500,
+    "indexed_at_ns": 1792863530498576300,
+    "word_count": 33,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/xone_icon.svg": "70836309ac6d7f8e88e782020d43784399dc006e8a898734ec1a0b2a045728fe"
+    }
+  },
+  "public/assets/XONE/xone_brand_kit/xone_logo.svg": {
+    "size": 769,
+    "mtime_ns": 1792309616351415400,
+    "indexed_at_ns": 1792863530509481600,
+    "word_count": 69,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/xone_logo.svg": "6c7bab234c129d376fee214f2a5b42573682779bcf36ee8430ba2d54e2da12b8"
+    }
+  },
+  "public/assets/XONE/xone_brand_kit/xone_logo_inverse.svg": {
+    "size": 849,
+    "mtime_ns": 1792309616356015700,
+    "indexed_at_ns": 1792863530521653900,
+    "word_count": 79,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/xone_logo_inverse.svg": "bc43de9dc26e1bdfce6ad23527180621f008f17c991a112ae064ce985c04f787"
+    }
+  },
+  "public/assets/XONE/xone_brand_kit/xone_wordmark.svg": {
+    "size": 247,
+    "mtime_ns": 1792309616357655100,
+    "indexed_at_ns": 1792863530531756500,
+    "word_count": 20,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/xone_wordmark.svg": "67c3b04227e8afd6f75febd77146c8d28611e5edd1a93a2f58a39fce0076582d"
+    }
+  },
+  "scripts/capture-project-previews.mjs": {
+    "size": 1774,
+    "mtime_ns": 1792309616390002000,
+    "indexed_at_ns": 1792863517328875800,
+    "word_count": 166
+  },
+  "src/components/footer.tsx": {
+    "size": 3699,
+    "mtime_ns": 1792511504983414800,
+    "indexed_at_ns": 1792863517332757300,
+    "word_count": 310
+  },
+  "src/components/marketing/learn-more-button.tsx": {
+    "size": 595,
+    "mtime_ns": 1792309616392072400,
+    "indexed_at_ns": 1792863517359022500,
+    "word_count": 59
+  },
+  "src/components/marketing/pill-button.tsx": {
+    "size": 440,
+    "mtime_ns": 1792309616392594900,
+    "indexed_at_ns": 1792863517376638900,
+    "word_count": 48
+  },
+  "src/components/marketing/project-card.tsx": {
+    "size": 8283,
+    "mtime_ns": 1792309616393113200,
+    "indexed_at_ns": 1792863517393807700,
+    "word_count": 633
+  },
+  "src/components/navbar.tsx": {
+    "size": 5735,
+    "mtime_ns": 1792859419431573000,
+    "indexed_at_ns": 1792863517397854000,
+    "word_count": 426
+  },
+  "src/components/placeholder-page.tsx": {
+    "size": 719,
+    "mtime_ns": 1792309616393637200,
+    "indexed_at_ns": 1792863517401337100,
+    "word_count": 64
+  },
+  "src/components/team-member-avatar.tsx": {
+    "size": 982,
+    "mtime_ns": 1792309616393637200,
+    "indexed_at_ns": 1792863517421041500,
+    "word_count": 95
+  },
+  "src/components/team-member-social-links.tsx": {
+    "size": 2331,
+    "mtime_ns": 1792309616396178000,
+    "indexed_at_ns": 1792863517442096000,
+    "word_count": 202
+  },
+  "src/components/ui/button.tsx": {
+    "size": 3305,
+    "mtime_ns": 1792309616396686500,
+    "indexed_at_ns": 1792863517466165400,
+    "word_count": 192
+  },
+  "src/components/ui/card.tsx": {
+    "size": 2105,
+    "mtime_ns": 1792309616396686500,
+    "indexed_at_ns": 1792863517487579300,
+    "word_count": 155
+  },
+  "src/components/ui/input.tsx": {
+    "size": 1066,
+    "mtime_ns": 1792309616398216400,
+    "indexed_at_ns": 1792863517513205200,
+    "word_count": 79
+  },
+  "src/components/ui/sheet.tsx": {
+    "size": 3842,
+    "mtime_ns": 1792309616398216400,
+    "indexed_at_ns": 1792863517540862600,
+    "word_count": 256
+  },
+  "src/features/about/components/AboutPageContent.tsx": {
+    "size": 5176,
+    "mtime_ns": 1792511968507946200,
+    "indexed_at_ns": 1792863517571853200,
+    "word_count": 475
+  },
+  "src/features/admin/components/AdminDashboard.tsx": {
+    "size": 16832,
+    "mtime_ns": 1792863116348793200,
+    "indexed_at_ns": 1792863517575340200,
+    "word_count": 1438
+  },
+  "src/features/admin/components/AdminLogin.tsx": {
+    "size": 1633,
+    "mtime_ns": 1792310936525015900,
+    "indexed_at_ns": 1792863517578439700,
+    "word_count": 146
+  },
+  "src/features/admin/components/AdminSkeleton.tsx": {
+    "size": 1807,
+    "mtime_ns": 1792320896459173900,
+    "indexed_at_ns": 1792863517601299500,
+    "word_count": 163
+  },
+  "src/features/admin/components/CmsPageRenderer.tsx": {
+    "size": 24178,
+    "mtime_ns": 1792862393637182400,
+    "indexed_at_ns": 1792863517623615100,
+    "word_count": 1753
+  },
+  "src/features/admin/components/CmsPublicPage.tsx": {
+    "size": 665,
+    "mtime_ns": 1792861497268738600,
+    "indexed_at_ns": 1792863517627461600,
+    "word_count": 64
+  },
+  "src/features/admin/components/CmsPublicPageView.tsx": {
+    "size": 17411,
+    "mtime_ns": 1792862790143250900,
+    "indexed_at_ns": 1792863517631342300,
+    "word_count": 1367
+  },
+  "src/features/admin/components/EditorCanvas.tsx": {
+    "size": 8821,
+    "mtime_ns": 1792862790140165200,
+    "indexed_at_ns": 1792863517635260800,
+    "word_count": 767
+  },
+  "src/features/admin/components/EditorFields.tsx": {
+    "size": 38836,
+    "mtime_ns": 1792863110962179200,
+    "indexed_at_ns": 1792863517638960500,
+    "word_count": 3335
+  },
+  "src/features/admin/components/EditorPanels.tsx": {
+    "size": 26801,
+    "mtime_ns": 1792861976817847100,
+    "indexed_at_ns": 1792863517642640000,
+    "word_count": 2076
+  },
+  "src/features/admin/components/PreviewLiveSync.tsx": {
+    "size": 2985,
+    "mtime_ns": 1792860712816918500,
+    "indexed_at_ns": 1792863517645892300,
+    "word_count": 250
+  },
+  "src/features/admin/components/RestoredPublicPage.tsx": {
+    "size": 1766,
+    "mtime_ns": 1792860893539899100,
+    "indexed_at_ns": 1792863517649147900,
+    "word_count": 154
+  },
+  "src/features/admin/components/SiteTheme.tsx": {
+    "size": 1772,
+    "mtime_ns": 1792862299143425000,
+    "indexed_at_ns": 1792863517654183500,
+    "word_count": 135
+  },
+  "src/features/admin/hooks/use-cms-editor.ts": {
+    "size": 7075,
+    "mtime_ns": 1792339030509068000,
+    "indexed_at_ns": 1792863517658357100,
+    "word_count": 828
+  },
+  "src/features/admin/lib/auth.ts": {
+    "size": 4527,
+    "mtime_ns": 1792318617537796800,
+    "indexed_at_ns": 1792863517688494100,
+    "word_count": 450
+  },
+  "src/features/admin/lib/builder.ts": {
+    "size": 5532,
+    "mtime_ns": 1792862790138633300,
+    "indexed_at_ns": 1792863517721851100,
+    "word_count": 729
+  },
+  "src/features/admin/lib/content.ts": {
+    "size": 30107,
+    "mtime_ns": 1792862132110938900,
+    "indexed_at_ns": 1792863517725597700,
+    "word_count": 2387
+  },
+  "src/features/admin/lib/contracts.ts": {
+    "size": 448,
+    "mtime_ns": 1792338853819329000,
+    "indexed_at_ns": 1792863517729198300,
+    "word_count": 41
+  },
+  "src/features/admin/lib/design.ts": {
+    "size": 7380,
+    "mtime_ns": 1792862312412216600,
+    "indexed_at_ns": 1792863517747549800,
+    "word_count": 608
+  },
+  "src/features/admin/lib/preview.ts": {
+    "size": 1329,
+    "mtime_ns": 1792321738726484400,
+    "indexed_at_ns": 1792863517750982200,
+    "word_count": 136
+  },
+  "src/features/admin/lib/repository.ts": {
+    "size": 8297,
+    "mtime_ns": 1792512315175715400,
+    "indexed_at_ns": 1792863517775807100,
+    "word_count": 973
+  },
+  "src/features/contact/components/ContactPageContent.tsx": {
+    "size": 4648,
+    "mtime_ns": 1792511797483867700,
+    "indexed_at_ns": 1792863517780524600,
+    "word_count": 365
+  },
+  "src/features/home/components/CtaSection.tsx": {
+    "size": 1685,
+    "mtime_ns": 1792309616400813900,
+    "indexed_at_ns": 1792863517803924300,
+    "word_count": 145
+  },
+  "src/features/home/components/FeaturedProjectsSection.tsx": {
+    "size": 3145,
+    "mtime_ns": 1792862653538733300,
+    "indexed_at_ns": 1792863517823900800,
+    "word_count": 243
+  },
+  "src/features/home/components/HeroSection.tsx": {
+    "size": 2736,
+    "mtime_ns": 1792309616400813900,
+    "indexed_at_ns": 1792863517829336400,
+    "word_count": 217
+  },
+  "src/features/home/components/HomeCtaSection.tsx": {
+    "size": 1543,
+    "mtime_ns": 1792511361835121500,
+    "indexed_at_ns": 1792863517834862100,
+    "word_count": 155
+  },
+  "src/features/home/components/HomeHero.tsx": {
+    "size": 2201,
+    "mtime_ns": 1792511357801867800,
+    "indexed_at_ns": 1792863517860875800,
+    "word_count": 201
+  },
+  "src/features/home/components/MissionSection.tsx": {
+    "size": 6157,
+    "mtime_ns": 1792309616403488300,
+    "indexed_at_ns": 1792863517865021900,
+    "word_count": 434
+  },
+  "src/features/home/components/ProcessSection.tsx": {
+    "size": 4210,
+    "mtime_ns": 1792309616403488300,
+    "indexed_at_ns": 1792863517882444100,
+    "word_count": 355
+  },
+  "src/features/home/components/ServicesSection.tsx": {
+    "size": 3798,
+    "mtime_ns": 1792309616403488300,
+    "indexed_at_ns": 1792863517904932900,
+    "word_count": 301
+  },
+  "src/features/home/components/TeamStripSection.tsx": {
+    "size": 2801,
+    "mtime_ns": 1792511358426476800,
+    "indexed_at_ns": 1792863517910337900,
+    "word_count": 212
+  },
+  "src/features/home/components/ValuePropsSection.tsx": {
+    "size": 2863,
+    "mtime_ns": 1792309616405016400,
+    "indexed_at_ns": 1792863517932037000,
+    "word_count": 249
+  },
+  "src/features/home/lib/team-carousel.ts": {
+    "size": 51,
+    "mtime_ns": 1792309616405016400,
+    "indexed_at_ns": 1792863517955918500,
+    "word_count": 6
+  },
+  "src/features/legal/components/LegalPageLayout.tsx": {
+    "size": 2863,
+    "mtime_ns": 1792511389848145500,
+    "indexed_at_ns": 1792863517975092500,
+    "word_count": 211
+  },
+  "src/features/legal/components/PrivacyPageContent.tsx": {
+    "size": 378,
+    "mtime_ns": 1792511601261913500,
+    "indexed_at_ns": 1792863517996171900,
+    "word_count": 36
+  },
+  "src/features/legal/components/TermsPageContent.tsx": {
+    "size": 372,
+    "mtime_ns": 1792511607177818100,
+    "indexed_at_ns": 1792863518019683400,
+    "word_count": 36
+  },
+  "src/features/legal/data/legal-content.ts": {
+    "size": 7335,
+    "mtime_ns": 1792511411679211000,
+    "indexed_at_ns": 1792863518040714400,
+    "word_count": 1071
+  },
+  "src/features/preflight/components/PreFlightIntro.tsx": {
+    "size": 3566,
+    "mtime_ns": 1792332301277108500,
+    "indexed_at_ns": 1792863518063538600,
+    "word_count": 243
+  },
+  "src/features/preflight/components/PreFlightStep.tsx": {
+    "size": 702,
+    "mtime_ns": 1792309616408167700,
+    "indexed_at_ns": 1792863518067406900,
+    "word_count": 64
+  },
+  "src/features/preflight/components/PreflightGate.tsx": {
+    "size": 396,
+    "mtime_ns": 1792863206142650500,
+    "indexed_at_ns": 1792863518070863600,
+    "word_count": 44
+  },
+  "src/features/preflight/components/PreflightObjectivesStep.tsx": {
+    "size": 3049,
+    "mtime_ns": 1792331735621972800,
+    "indexed_at_ns": 1792863518075060100,
+    "word_count": 254
+  },
+  "src/features/preflight/components/PreflightReasonsStep.tsx": {
+    "size": 4538,
+    "mtime_ns": 1792331735942076000,
+    "indexed_at_ns": 1792863518098604100,
+    "word_count": 347
+  },
+  "src/features/preflight/data/preflight-content.ts": {
+    "size": 2193,
+    "mtime_ns": 1792332218979991300,
+    "indexed_at_ns": 1792863518125205800,
+    "word_count": 224
+  },
+  "src/features/preflight/hooks/usePreflightSequence.ts": {
+    "size": 2978,
+    "mtime_ns": 1792309616410751800,
+    "indexed_at_ns": 1792863518148846400,
+    "word_count": 254
+  },
+  "src/features/process/components/ProcessPageContent.tsx": {
+    "size": 3060,
+    "mtime_ns": 1792511381674817900,
+    "indexed_at_ns": 1792863518152778900,
+    "word_count": 232
+  },
+  "src/features/process/data/process-steps.ts": {
+    "size": 2170,
+    "mtime_ns": 1792309616410751800,
+    "indexed_at_ns": 1792863518175599300,
+    "word_count": 237
+  },
+  "src/features/projects/components/ProjectsCarousel.tsx": {
+    "size": 2882,
+    "mtime_ns": 1792862538563388100,
+    "indexed_at_ns": 1792863518180797500,
+    "word_count": 191
+  },
+  "src/features/projects/components/ProjectsPageContent.tsx": {
+    "size": 3836,
+    "mtime_ns": 1792511381993738300,
+    "indexed_at_ns": 1792863518184477500,
+    "word_count": 338
+  },
+  "src/features/projects/data/projects.ts": {
+    "size": 8499,
+    "mtime_ns": 1792309616413330600,
+    "indexed_at_ns": 1792863518207502900,
+    "word_count": 936
+  },
+  "src/features/projects/lib/project-tech-badge.ts": {
+    "size": 3219,
+    "mtime_ns": 1792309616413330600,
+    "indexed_at_ns": 1792863518233412700,
+    "word_count": 250
+  },
+  "src/features/services/components/ServicesPageContent.tsx": {
+    "size": 3731,
+    "mtime_ns": 1792862565688041900,
+    "indexed_at_ns": 1792863518257286000,
+    "word_count": 268
+  },
+  "src/features/services/data/services.ts": {
+    "size": 1742,
+    "mtime_ns": 1792309616416385500,
+    "indexed_at_ns": 1792863518260773900,
+    "word_count": 176
+  },
+  "src/lib/brand.ts": {
+    "size": 1506,
+    "mtime_ns": 1792338950898504600,
+    "indexed_at_ns": 1792863518266002100,
+    "word_count": 156
+  },
+  "src/lib/env.ts": {
+    "size": 1035,
+    "mtime_ns": 1792509667976972300,
+    "indexed_at_ns": 1792863518290160000,
+    "word_count": 80
+  },
+  "src/lib/health.ts": {
+    "size": 267,
+    "mtime_ns": 1792309616416385500,
+    "indexed_at_ns": 1792863518312071200,
+    "word_count": 31
+  },
+  "src/lib/metadata.ts": {
+    "size": 3179,
+    "mtime_ns": 1792511517601804400,
+    "indexed_at_ns": 1792863518329689000,
+    "word_count": 336
+  },
+  "src/lib/mongodb.ts": {
+    "size": 667,
+    "mtime_ns": 1792509668321509900,
+    "indexed_at_ns": 1792863518355901600,
+    "word_count": 66
+  },
+  "src/lib/site.ts": {
+    "size": 683,
+    "mtime_ns": 1792309616417932100,
+    "indexed_at_ns": 1792863518360145300,
+    "word_count": 73
+  },
+  "src/lib/team-members.ts": {
+    "size": 1279,
+    "mtime_ns": 1792309616417932100,
+    "indexed_at_ns": 1792863518385842000,
+    "word_count": 111
+  },
+  "src/lib/utils.ts": {
+    "size": 175,
+    "mtime_ns": 1792309616419562500,
+    "indexed_at_ns": 1792863518409865600,
+    "word_count": 22
+  },
+  "src/lib/validation-helpers.ts": {
+    "size": 259,
+    "mtime_ns": 1792309616420089000,
+    "indexed_at_ns": 1792863518414632800,
+    "word_count": 22
+  },
+  "tests/admin-content-route.test.ts": {
+    "size": 1827,
+    "mtime_ns": 1792502285122017200,
+    "indexed_at_ns": 1792863518420486700,
+    "word_count": 194
+  },
+  "tests/admin-content.test.ts": {
+    "size": 11188,
+    "mtime_ns": 1792859158307112900,
+    "indexed_at_ns": 1792863518446072200,
+    "word_count": 841
+  },
+  "tests/admin-renderer.test.ts": {
+    "size": 7776,
+    "mtime_ns": 1792862790155481800,
+    "indexed_at_ns": 1792863518448754000,
+    "word_count": 702
+  },
+  "tests/admin-selection.test.ts": {
+    "size": 1950,
+    "mtime_ns": 1792862825063242600,
+    "indexed_at_ns": 1792863518452241400,
+    "word_count": 188
+  },
+  "tests/brand.test.ts": {
+    "size": 926,
+    "mtime_ns": 1792309616420613700,
+    "indexed_at_ns": 1792863518457441400,
+    "word_count": 77
+  },
+  "tests/builder.test.ts": {
+    "size": 2677,
+    "mtime_ns": 1792859158371427600,
+    "indexed_at_ns": 1792863518463311500,
+    "word_count": 238
+  },
+  "tests/env.test.ts": {
+    "size": 1028,
+    "mtime_ns": 1792510678825266300,
+    "indexed_at_ns": 1792863518485894500,
+    "word_count": 80
+  },
+  "tests/health-route.test.ts": {
+    "size": 405,
+    "mtime_ns": 1792309616422151500,
+    "indexed_at_ns": 1792863518508565000,
+    "word_count": 41
+  },
+  "tests/preflight-content.test.ts": {
+    "size": 1603,
+    "mtime_ns": 1792309616422151500,
+    "indexed_at_ns": 1792863518528178400,
+    "word_count": 85
+  },
+  "tests/repository.test.ts": {
+    "size": 5031,
+    "mtime_ns": 1792859158403684500,
+    "indexed_at_ns": 1792863518546767500,
+    "word_count": 405
+  },
+  "tests/site-metadata.test.ts": {
+    "size": 2409,
+    "mtime_ns": 1792322347957648800,
+    "indexed_at_ns": 1792863518552198200,
+    "word_count": 194
+  },
+  "tests/team-members.test.ts": {
+    "size": 1447,
+    "mtime_ns": 1792309616423669900,
+    "indexed_at_ns": 1792863518576272800,
+    "word_count": 93
+  },
+  "tsconfig.json": {
+    "size": 629,
+    "mtime_ns": 1792309616423669900,
+    "indexed_at_ns": 1792863520758054200,
+    "word_count": 52,
+    "hashes": {
+      "tsconfig.json": "326e291bfbc443abd687cfbe8bf968d0514a5480c45a36403809732e13c21570"
+    }
+  },
+  "vitest.config.ts": {
+    "size": 282,
+    "mtime_ns": 1792309616423669900,
+    "indexed_at_ns": 1792863518599006500,
+    "word_count": 30
+  },
+  "public/assets/XONE/xone_brand_kit/new/fb cover.png": {
+    "size": 73666,
+    "mtime_ns": 1792309616326748500,
+    "indexed_at_ns": 1792863530466431700,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/new/fb cover.png": "df1adb25cddfc18216091cc2941279b65a11a3d44e89c25924f8b52dcd74281f"
+    }
+  },
+  "public/assets/XONE/xone_brand_kit/new/xone logo inverted.png": {
+    "size": 39590,
+    "mtime_ns": 1792309616340091200,
+    "indexed_at_ns": 1792863530476869900,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/new/xone logo inverted.png": "5834b094f86906bb5d5358b94b73fef7e6bfdbc00738cc6875dcf9866c644662"
+    }
+  },
+  "public/assets/XONE/xone_brand_kit/new/xone logo no bg.png": {
+    "size": 123826,
+    "mtime_ns": 1792309616343757700,
+    "indexed_at_ns": 1792863530489089400,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/new/xone logo no bg.png": "6b98b482dd5d97d0a7a957b1d5eec9e2727b9867341c3f4c8b63037d7b226d7b"
+    }
+  },
+  "public/assets/XONE/xone_brand_kit/new/xone logo w bg.png": {
+    "size": 96322,
+    "mtime_ns": 1792309616348332500,
+    "indexed_at_ns": 1792863530493868100,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/new/xone logo w bg.png": "12238dae2ae811c8c6e4686d9d2bf0df9af08250cd1a03dcf736554385f96412"
+    }
+  },
+  "public/assets/XONE/xone_brand_kit/xone_icon_2x.png": {
+    "size": 10254,
+    "mtime_ns": 1792309616349870900,
+    "indexed_at_ns": 1792863530503313800,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/xone_icon_2x.png": "7af53c19d4a04785bd2497430184021981a1f74e3a230dc07cbc653974dfe102"
+    }
+  },
+  "public/assets/XONE/xone_brand_kit/xone_icon_4x.png": {
+    "size": 27970,
+    "mtime_ns": 1792309616349870900,
+    "indexed_at_ns": 1792863530506381000,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/xone_icon_4x.png": "ff7092487ae4ae81e63dc895d98e9f6e00a510c232b7a339fec1ceacd34a4520"
+    }
+  },
+  "public/assets/XONE/xone_brand_kit/xone_logo_2x.png": {
+    "size": 33346,
+    "mtime_ns": 1792309616352935000,
+    "indexed_at_ns": 1792863530513609600,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/xone_logo_2x.png": "49bae8a15a32c3be83f07d39a609859ca81c0219f46c8a96845440bc7c05e730"
+    }
+  },
+  "public/assets/XONE/xone_brand_kit/xone_logo_4x.png": {
+    "size": 75857,
+    "mtime_ns": 1792309616354468300,
+    "indexed_at_ns": 1792863530518054200,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/xone_logo_4x.png": "2b456d383d48d4db91b0fbcc1c9e3983010b65d69e05b5bc9045c6e296495f0e"
+    }
+  },
+  "public/assets/XONE/xone_brand_kit/xone_logo_inverse_2x.png": {
+    "size": 32174,
+    "mtime_ns": 1792309616356015700,
+    "indexed_at_ns": 1792863530524859300,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/xone_logo_inverse_2x.png": "431810dc33cdde28b78dc7baf93edb829b1a5d84087dccb92307f7c35a69cf1b"
+    }
+  },
+  "public/assets/XONE/xone_brand_kit/xone_logo_inverse_4x.png": {
+    "size": 72372,
+    "mtime_ns": 1792309616357655100,
+    "indexed_at_ns": 1792863530528132000,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/xone_logo_inverse_4x.png": "f9f447318fa6d05b929416a2fd206bd81187ba8c9efd548773f271de91703a4b"
+    }
+  },
+  "public/assets/XONE/xone_brand_kit/xone_wordmark_2x.png": {
+    "size": 13877,
+    "mtime_ns": 1792309616359187400,
+    "indexed_at_ns": 1792863530534265900,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/xone_wordmark_2x.png": "0af89fb9c7188667d263ff864f31bc8a1b1cf0dc9812d5c120c38424cfb24680"
+    }
+  },
+  "public/assets/XONE/xone_brand_kit/xone_wordmark_4x.png": {
+    "size": 30137,
+    "mtime_ns": 1792309616359187400,
+    "indexed_at_ns": 1792863530537729200,
+    "hashes": {
+      "public/assets/xone/xone_brand_kit/xone_wordmark_4x.png": "678329d73c0f0eb9a5f8364653d42b78a74654649ef80b01e4644a2ba88cf8bd"
+    }
+  },
+  "public/assets/projects/lightbox-studio-preview.png": {
+    "size": 581239,
+    "mtime_ns": 1792309616363827400,
+    "indexed_at_ns": 1792863530540886500,
+    "hashes": {
+      "public/assets/projects/lightbox-studio-preview.png": "0f5e225745be88826cffbd263700179a4ae52d2e08fca4dd012a2f0cd39c777c"
+    }
+  },
+  "public/assets/projects/rahamen-digital-preview.png": {
+    "size": 1278189,
+    "mtime_ns": 1792309616372018400,
+    "indexed_at_ns": 1792863530547424300,
+    "hashes": {
+      "public/assets/projects/rahamen-digital-preview.png": "e029b56f123963dca725c6ca1813c67d94b0d0b15409c8f432e558b778b2c685"
+    }
+  },
+  "public/assets/projects/xone-software-solutions-preview.png": {
+    "size": 64574,
+    "mtime_ns": 1792309616373562500,
+    "indexed_at_ns": 1792863530560082300,
+    "hashes": {
+      "public/assets/projects/xone-software-solutions-preview.png": "82c2d0a3eb67825148655fed0546f630d170383f4a49ca492beede1688a77f8a"
+    }
+  },
+  "public/assets/team_photo/JB_PHOTO.jpg": {
+    "size": 107883,
+    "mtime_ns": 1792309616375091500,
+    "indexed_at_ns": 1792863530574320300,
+    "hashes": {
+      "public/assets/team_photo/jb_photo.jpg": "980c8f465149341d795ed2b6aa4f8f71a37d91ad5945deb80542e2631e2045b9"
+    }
+  },
+  "public/assets/team_photo/JOSH_PHOTO.jpg": {
+    "size": 1470968,
+    "mtime_ns": 1792309616388465600,
+    "indexed_at_ns": 1792863530578784800,
+    "hashes": {
+      "public/assets/team_photo/josh_photo.jpg": "27bb680db13902936277ba26925fccd31b8c009c05b686a34e920000bbebb6b8"
+    }
+  },
+  "public/assets/team_photo/RYAN_PHOTO.jpg": {
+    "size": 68036,
+    "mtime_ns": 1792309616390002000,
+    "indexed_at_ns": 1792863530587702400,
+    "hashes": {
+      "public/assets/team_photo/ryan_photo.jpg": "7a4b3829445dc1a2393367436b0cb1c2ffd693240126fb3dce2a8def0cbefca5"
+    }
+  }
+}

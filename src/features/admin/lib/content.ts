@@ -42,6 +42,7 @@ const hrefSchema = linkSchema;
 const itemSchema = z.object({
   title: z.string().trim().min(1).max(160),
   description: z.string().trim().max(2000),
+  styles: responsiveStyleSchema.optional(),
 });
 
 const visualAssetSchema = z.discriminatedUnion("source", [
@@ -210,6 +211,7 @@ export const blockSchema = z.discriminatedUnion("type", [
   z.object({
     ...blockBase,
     type: z.literal("projectCollection"),
+    eyebrow: z.string().trim().max(160).optional(),
     heading: z.string().trim().max(240).optional(),
     body: z.string().trim().max(2000).default(""),
     display: z.enum(["grid", "carousel"]).default("grid"),
@@ -725,6 +727,7 @@ export const defaultContent = {
         {
           id: "home-projects",
           type: "projectCollection",
+          eyebrow: "Selected work",
           display: "grid",
           columns: 3,
           heading: "Projects that show how we deliver",

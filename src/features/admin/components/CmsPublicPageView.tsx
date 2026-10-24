@@ -54,18 +54,10 @@ export function CmsPublicPageContent({
   if (defaultRenderer && !editing)
     return (
       <div className="cms-page min-h-full w-full">
-        {page === "home" && <PreFlightIntro />}
         <RestoredPublicPage page={page} />
       </div>
     );
-  return (
-    <CmsPublicBuilder
-      content={content}
-      page={page}
-      editing={editing}
-      includePrehome={!editing && page === "home"}
-    />
-  );
+  return <CmsPublicBuilder content={content} page={page} editing={editing} />;
 }
 export function getCmsPublicSections(
   content: SiteContent,
@@ -81,12 +73,10 @@ function CmsPublicBuilder({
   content,
   page,
   editing,
-  includePrehome,
 }: {
   content: SiteContent;
   page: PublicPage;
   editing: boolean;
-  includePrehome: boolean;
 }): React.ReactNode {
   const sections = getCmsPublicSections(content, page, editing);
   const frame =
@@ -103,7 +93,6 @@ function CmsPublicBuilder({
         : "";
   return (
     <div className="cms-page min-h-full w-full">
-      {includePrehome && <CmsPrehomeBlock content={content} />}
       <div className={frame}>
         <div className={inner}>
           {sections.map((section) => (
@@ -252,37 +241,48 @@ function PublicBlock({
     if (block.type === "hero") return <HomeHero content={block} />;
     if (block.type === "projectCollection")
       return (
-        <FeaturedProjectsSection
-          content={{
-            heading: block.heading,
-            body: block.body,
-            projects: block.items.map(toProject),
-          }}
-        />
+        <>
+          <CollectionItemStyles block={block} />
+          <FeaturedProjectsSection
+            content={{
+              eyebrow: block.eyebrow,
+              heading: block.heading,
+              body: block.body,
+              projects: block.items.map(toProject),
+            }}
+            editorBlockId={block.id}
+            editing={editing}
+          />
+        </>
       );
     if (block.type === "teamCollection") return null;
     if (block.type === "cta") return <HomeCtaSection content={block} />;
   }
   if (page === "services" && block.type === "serviceCollection")
     return (
-      <ServicesPageContent
-        content={{
-          heading: block.heading,
-          body: block.body,
-          items: block.items.map((item) => ({
-            id: item.title,
-            title: item.title,
-            description: item.description,
-            highlights: item.highlights,
-            icon:
-              typeof item.icon === "string"
-                ? serviceIcons[item.icon]
-                : serviceIcons.cog,
-          })),
-        }}
-      />
+      <>
+        <CollectionItemStyles block={block} />
+        <ServicesPageContent
+          content={{
+            heading: block.heading,
+            body: block.body,
+            items: block.items.map((item) => ({
+              id: item.title,
+              title: item.title,
+              description: item.description,
+              highlights: item.highlights,
+              icon:
+                typeof item.icon === "string"
+                  ? serviceIcons[item.icon]
+                  : serviceIcons.cog,
+            })),
+          }}
+          editorBlockId={block.id}
+          editing={editing}
+        />
+      </>
     );
-  if (page === "about") return <AboutBlock block={block} />;
+  if (page === "about") return <AboutBlock block={block} editing={editing} />;
   if (page === "process" && block.type === "processCollection")
     return (
       <ProcessPageContent
@@ -298,7 +298,8 @@ function PublicBlock({
         }}
       />
     );
-  if (page === "projects") return <ProjectsBlock block={block} />;
+  if (page === "projects")
+    return <ProjectsBlock block={block} editing={editing} />;
   if (page === "contact" && block.type === "contact")
     return <ContactPageContent content={block} />;
   if ((page === "privacy" || page === "terms") && block.type === "legal")
@@ -348,7 +349,13 @@ function PreflightEditorPreview({
   );
 }
 
-function AboutBlock({ block }: { block: CmsBlock }): React.ReactNode {
+function AboutBlock({
+  block,
+  editing = false,
+}: {
+  block: CmsBlock;
+  editing?: boolean;
+}): React.ReactNode {
   if (block.type === "hero")
     return (
       <header className="mb-12 text-center">
@@ -397,15 +404,33 @@ function AboutBlock({ block }: { block: CmsBlock }): React.ReactNode {
           {block.heading}
         </h2>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-          {block.items.map((item) => (
-            <Card key={item.title} className="bg-xone-light">
-              <CardHeader>
-                <CardTitle className="text-xl">{item.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">{item.description}</p>
-              </CardContent>
-            </Card>
+          {block.items.map((item, index) => (
+            <React.Fragment key={item.title}>
+              <style>
+                {responsiveCss(`${block.id}-item-${index}`, item.styles)}
+              </style>
+              <Card
+                {...(block.id
+                  ? {
+                      "data-cms-id": `${block.id}-item-${index}`,
+                    }
+                  : {})}
+                {...(editing
+                  ? {
+                      "data-cms-item-block": block.id,
+                      "data-cms-item-index": index,
+                    }
+                  : {})}
+                className="bg-xone-light"
+              >
+                <CardHeader>
+                  <CardTitle className="text-xl">{item.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-muted-foreground">{item.description}</p>
+                </CardContent>
+              </Card>
+            </React.Fragment>
           ))}
         </div>
       </section>
@@ -438,7 +463,13 @@ function AboutBlock({ block }: { block: CmsBlock }): React.ReactNode {
   return <CmsPageRenderer blocks={[block]} />;
 }
 
-function ProjectsBlock({ block }: { block: CmsBlock }): React.ReactNode {
+function ProjectsBlock({
+  block,
+  editing = false,
+}: {
+  block: CmsBlock;
+  editing?: boolean;
+}): React.ReactNode {
   if (block.type === "hero")
     return (
       <header className="mb-8 max-w-2xl sm:mb-10">
@@ -468,7 +499,14 @@ function ProjectsBlock({ block }: { block: CmsBlock }): React.ReactNode {
   if (block.type === "projectCollection")
     return (
       <div className="relative left-1/2 w-screen max-w-[100vw] -translate-x-1/2 overflow-x-hidden">
-        <ProjectsCarousel items={block.items.map(toProject)} />
+        <>
+          <CollectionItemStyles block={block} />
+          <ProjectsCarousel
+            items={block.items.map(toProject)}
+            editorBlockId={block.id}
+            editing={editing}
+          />
+        </>
       </div>
     );
   if (block.type === "cta")
@@ -498,18 +536,19 @@ function ProjectsBlock({ block }: { block: CmsBlock }): React.ReactNode {
   return <CmsPageRenderer blocks={[block]} />;
 }
 
-function CmsPrehomeBlock({
-  content,
+function CollectionItemStyles({
+  block,
 }: {
-  content: SiteContent;
+  block: Extract<
+    CmsBlock,
+    { type: "cards" | "projectCollection" | "serviceCollection" }
+  >;
 }): React.ReactNode {
-  const block = content.pages.prehome.blocks.find(
-    (candidate): candidate is Extract<CmsBlock, { type: "preflight" }> =>
-      candidate.type === "preflight",
-  );
-  return block ? (
-    <PublicBlock page="prehome" block={block} editing={false} />
-  ) : null;
+  return block.items.map((item, index) => (
+    <style key={`${block.id}-item-style-${index}`}>
+      {responsiveCss(`${block.id}-item-${index}`, item.styles)}
+    </style>
+  ));
 }
 
 function toProject(

@@ -19,6 +19,10 @@ export function SiteTheme({
   const variables = {
     "--cms-violet": settings.primaryColor,
     "--cms-cyan": settings.accentColor,
+    "--primary": theme?.buttonBackground ?? settings.primaryColor,
+    "--primary-foreground": theme?.buttonForeground ?? "#ffffff",
+    "--cms-button-bg": theme?.buttonBackground ?? settings.primaryColor,
+    "--cms-button-color": theme?.buttonForeground ?? "#ffffff",
     ...(theme
       ? {
           "--background": theme.background,
@@ -26,6 +30,10 @@ export function SiteTheme({
           "--muted-foreground": theme.muted,
           "--cms-section": theme.section,
           "--cms-card": theme.card,
+          "--primary": theme.buttonBackground,
+          "--primary-foreground": theme.buttonForeground,
+          "--cms-button-bg": theme.buttonBackground,
+          "--cms-button-color": theme.buttonForeground,
           "--cms-body-size": `${theme.bodySize}px`,
           "--cms-heading-size": `${theme.headingSize}px`,
           "--cms-body-weight": theme.bodyWeight,

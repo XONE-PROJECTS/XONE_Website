@@ -1,3 +1,4 @@
+import React from "react";
 import Link from "next/link";
 
 import {
@@ -8,14 +9,26 @@ import { featuredProjects } from "@/features/projects/data/projects";
 import type { Project } from "@/features/projects/data/projects";
 
 type FeaturedProjectsContent = {
+  eyebrow?: string;
   heading?: string;
   body?: string;
   projects?: readonly Project[];
 };
 
-export function FeaturedProjectsSection({ content }: { content?: FeaturedProjectsContent }) {
+export function FeaturedProjectsSection({
+  content,
+  editorBlockId,
+  editing = false,
+}: {
+  content?: FeaturedProjectsContent;
+  editorBlockId?: string;
+  editing?: boolean;
+}) {
   const heading = content?.heading ?? "Projects that show how we deliver";
-  const body = content?.body ?? "Real problems, structured builds, measurable outcomes — explore case studies similar to what you need.";
+  const eyebrow = content?.eyebrow ?? "Selected work";
+  const body =
+    content?.body ??
+    "Real problems, structured builds, measurable outcomes — explore case studies similar to what you need.";
   const projects = content?.projects ?? featuredProjects;
 
   return (
@@ -27,7 +40,7 @@ export function FeaturedProjectsSection({ content }: { content?: FeaturedProject
         <div className="mb-8 flex flex-col gap-4 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
           <div className="max-w-xl motion-safe:animate-fade-in-up">
             <p className="text-xs font-semibold uppercase tracking-[0.2em] text-xone-violet">
-              Selected work
+              {eyebrow}
             </p>
             <h2
               id="featured-projects-heading"
@@ -49,6 +62,15 @@ export function FeaturedProjectsSection({ content }: { content?: FeaturedProject
           {projects.map((project, index) => (
             <li
               key={project.id}
+              {...(editorBlockId
+                ? { "data-cms-id": `${editorBlockId}-item-${index}` }
+                : {})}
+              {...(editing && editorBlockId
+                ? {
+                    "data-cms-item-block": editorBlockId,
+                    "data-cms-item-index": index,
+                  }
+                : {})}
               className="motion-safe:animate-fade-in-up"
               style={
                 index > 0 ? { animationDelay: `${index * 80}ms` } : undefined

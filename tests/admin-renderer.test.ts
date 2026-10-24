@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import React from "react";
 import { renderToStaticMarkup } from "react-dom/server";
 
 import {
@@ -12,6 +13,7 @@ import {
   previewToolbarInnerClassName,
 } from "@/features/admin/components/PreviewLiveSync";
 import { cloneNode, replacePage } from "@/features/admin/lib/builder";
+import { FeaturedProjectsSection } from "@/features/home/components/FeaturedProjectsSection";
 import {
   defaultContent,
   isDefaultContent,
@@ -135,13 +137,13 @@ describe("canonical CMS page renderer", () => {
     });
 
     expect(homeEditor).toMatchObject({
-      props: { editing: true, includePrehome: false },
+      props: { editing: true },
     });
     expect(homePreview).toMatchObject({
-      props: { editing: false, includePrehome: true },
+      props: { editing: false },
     });
     expect(prehomeEditor).toMatchObject({
-      props: { editing: true, includePrehome: false },
+      props: { editing: true },
     });
   });
 
@@ -153,14 +155,13 @@ describe("canonical CMS page renderer", () => {
       page: "home",
       defaultRenderer: true,
     }) as { type: string; props: { children: unknown } };
-    const children = page.props.children as readonly {
+    const child = page.props.children as {
       type: unknown;
       props?: { children?: unknown };
-    }[];
+    };
 
     expect(page.type).toBe("div");
-    expect(children).toHaveLength(2);
-    expect(children[1]?.type).toBe(RestoredPublicPage);
+    expect(child.type).toBe(RestoredPublicPage);
     const sourcePage = RestoredPublicPage({ page: "home" }) as {
       props: { children: unknown };
     };
@@ -196,6 +197,30 @@ describe("canonical CMS page renderer", () => {
     expect(
       renderToStaticMarkup(CmsPageRenderer({ blocks: [team] })),
     ).not.toContain("Engineers you will work with");
+  });
+
+  it("marks collection items as focused editor targets", () => {
+    const rendered = FeaturedProjectsSection({
+      editorBlockId: "home-projects",
+      editing: true,
+    }) as React.ReactElement<{ children: React.ReactNode }>;
+    const sectionChildren = React.Children.toArray(
+      (
+        React.Children.toArray(
+          rendered.props.children,
+        )[0] as React.ReactElement<{ children: React.ReactNode }>
+      ).props.children,
+    );
+    const list = sectionChildren[1] as React.ReactElement<{
+      children: React.ReactNode;
+    }>;
+    const firstItem = React.Children.toArray(
+      list.props.children,
+    )[0] as React.ReactElement<Record<string, unknown>>;
+
+    expect(firstItem.props["data-cms-id"]).toBe("home-projects-item-0");
+    expect(firstItem.props["data-cms-item-block"]).toBe("home-projects");
+    expect(firstItem.props["data-cms-item-index"]).toBe(0);
   });
 
   it("keeps the preview toolbar constrained while page content stays full width", () => {
