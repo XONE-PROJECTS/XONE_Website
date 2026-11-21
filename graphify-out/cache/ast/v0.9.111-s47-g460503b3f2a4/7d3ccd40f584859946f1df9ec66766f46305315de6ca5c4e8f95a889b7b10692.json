@@ -1,0 +1,1086 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_project_info_next_md",
+      "label": "PROJECT_INFO_NEXT.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "label": "PROJECT_INFO_NEXT.md \u2014 Next.js Rebuild Brief",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_1_product_summary",
+      "label": "1. Product summary",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_2_target_tech_stack_non_negotiable",
+      "label": "2. Target tech stack (non-negotiable)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_3_suggested_new_repo_layout",
+      "label": "3. Suggested new repo layout",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L54"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_4_route_mapping_source_next",
+      "label": "4. Route mapping (source \u2192 Next)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L102"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_5_api_mapping_express_route_handlers",
+      "label": "5. API mapping (Express \u2192 Route Handlers)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L120"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_response_contracts_keep_stable",
+      "label": "Response contracts (keep stable)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L132"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_server_env_env_example",
+      "label": "Server env (`.env.example`)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L163"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_6_brand_and_design_system",
+      "label": "6. Brand and design system",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L178"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_7_forms_and_validation",
+      "label": "7. Forms and validation",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L209"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_services_estimator_approved_addition",
+      "label": "Services estimator (approved addition)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L211"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_contact_fields",
+      "label": "Contact fields",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L229"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_get_started_fields",
+      "label": "Get Started fields",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L238"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_8_homepage_sections_port_order",
+      "label": "8. Homepage sections (port order)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L263"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_9_navigation_and_footer",
+      "label": "9. Navigation and footer",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L279"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_10_deployment_vercel_only",
+      "label": "10. Deployment (Vercel only)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L289"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_11_ci_github_actions",
+      "label": "11. CI (GitHub Actions)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L314"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_12_testing_expectations",
+      "label": "12. Testing expectations",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L329"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_13_build_phases_recommended_order",
+      "label": "13. Build phases (recommended order)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L344"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_phase_0_bootstrap_day_1",
+      "label": "Phase 0 \u2014 Bootstrap (Day 1)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L346"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_phase_1_static_lead_capture_day_1_2",
+      "label": "Phase 1 \u2014 Static lead capture (Day 1\u20132)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L354"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_phase_1_1_form_apis_deferred",
+      "label": "Phase 1.1 \u2014 Form APIs (deferred)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L362"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_phase_2_core_pages_day_2_4",
+      "label": "Phase 2 \u2014 Core pages (Day 2\u20134)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L369"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_phase_3_polish_day_4_5",
+      "label": "Phase 3 \u2014 Polish (Day 4\u20135)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L375"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_14_out_of_scope_unless_product_direction_changes",
+      "label": "14. Out of scope (unless product direction changes)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L385"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_15_engineering_rules_next_version",
+      "label": "15. Engineering rules (Next version)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L396"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_16_source_repo_reference_map",
+      "label": "16. Source repo reference map",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L411"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_17_success_criteria_next_v1_done",
+      "label": "17. Success criteria (Next v1 done)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L430"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_18_opener_for_new_agent_chat_copy_paste",
+      "label": "18. Opener for new agent chat (copy-paste)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L447"
+    },
+    {
+      "id": "$graphify-root$_project_info_next_19_risks_to_plan_for",
+      "label": "19. Risks to plan for",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L462"
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_project_info_next_md",
+      "target": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_1_product_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_2_target_tech_stack_non_negotiable",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_3_suggested_new_repo_layout",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L54",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_4_route_mapping_source_next",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L102",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_5_api_mapping_express_route_handlers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L120",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_5_api_mapping_express_route_handlers",
+      "target": "$graphify-root$_project_info_next_response_contracts_keep_stable",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L132",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_5_api_mapping_express_route_handlers",
+      "target": "$graphify-root$_project_info_next_server_env_env_example",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L163",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_6_brand_and_design_system",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L178",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_7_forms_and_validation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L209",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_7_forms_and_validation",
+      "target": "$graphify-root$_project_info_next_services_estimator_approved_addition",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L211",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_7_forms_and_validation",
+      "target": "$graphify-root$_project_info_next_contact_fields",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L229",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_7_forms_and_validation",
+      "target": "$graphify-root$_project_info_next_get_started_fields",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L238",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_8_homepage_sections_port_order",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L263",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_9_navigation_and_footer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L279",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_10_deployment_vercel_only",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L289",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_11_ci_github_actions",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L314",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_12_testing_expectations",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L329",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_13_build_phases_recommended_order",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L344",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_13_build_phases_recommended_order",
+      "target": "$graphify-root$_project_info_next_phase_0_bootstrap_day_1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L346",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_13_build_phases_recommended_order",
+      "target": "$graphify-root$_project_info_next_phase_1_static_lead_capture_day_1_2",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L354",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_13_build_phases_recommended_order",
+      "target": "$graphify-root$_project_info_next_phase_1_1_form_apis_deferred",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L362",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_13_build_phases_recommended_order",
+      "target": "$graphify-root$_project_info_next_phase_2_core_pages_day_2_4",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L369",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_13_build_phases_recommended_order",
+      "target": "$graphify-root$_project_info_next_phase_3_polish_day_4_5",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L375",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_14_out_of_scope_unless_product_direction_changes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L385",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_15_engineering_rules_next_version",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L396",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_16_source_repo_reference_map",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L411",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_17_success_criteria_next_v1_done",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L430",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_18_opener_for_new_agent_chat_copy_paste",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L447",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_info_next_project_info_next_md_next_js_rebuild_brief",
+      "target": "$graphify-root$_project_info_next_19_risks_to_plan_for",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L462",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_project_info_next_1_product_summary",
+      "callee": "CONTACT_WEBHOOK_URL",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "CONTACT_WEBHOOK_URL",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L26"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_2_target_tech_stack_non_negotiable",
+      "callee": "geist",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "geist",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L44"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_4_route_mapping_source_next",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "app/page.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L106",
+      "path": "app/page.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_4_route_mapping_source_next",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "FrontEnd/src/views/Homepage.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L106",
+      "path": "FrontEnd/src/views/Homepage.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_4_route_mapping_source_next",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "features/services/components/ServicesPage.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L107",
+      "path": "features/services/components/ServicesPage.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_4_route_mapping_source_next",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "data/services.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L107",
+      "path": "data/services.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_4_route_mapping_source_next",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "features/about/components/AboutPage.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L108",
+      "path": "features/about/components/AboutPage.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_4_route_mapping_source_next",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "features/process/components/ProcessPage.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L109",
+      "path": "features/process/components/ProcessPage.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_4_route_mapping_source_next",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "data/process-steps.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L109",
+      "path": "data/process-steps.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_4_route_mapping_source_next",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "features/contact/components/ContactPageContent.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L110",
+      "path": "features/contact/components/ContactPageContent.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_4_route_mapping_source_next",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "next.config.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L111",
+      "path": "next.config.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_5_api_mapping_express_route_handlers",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "app/api/health/route.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L128",
+      "path": "app/api/health/route.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_5_api_mapping_express_route_handlers",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "app/api/contact/route.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L129",
+      "path": "app/api/contact/route.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_5_api_mapping_express_route_handlers",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "app/api/get-started/route.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L130",
+      "path": "app/api/get-started/route.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_server_env_env_example",
+      "callee": "CORS_ORIGIN",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "CORS_ORIGIN",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L172"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_6_brand_and_design_system",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "FrontEnd/src/lib/brand.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L185",
+      "path": "FrontEnd/src/lib/brand.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_6_brand_and_design_system",
+      "callee": "MissionSection",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "MissionSection",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L202"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_get_started_fields",
+      "callee": "automation",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "automation",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L243"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_get_started_fields",
+      "callee": "other",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "other",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L243"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_get_started_fields",
+      "callee": "asap",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "asap",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L244"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_get_started_fields",
+      "callee": "flexible",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "flexible",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L244"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_get_started_fields",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "contact-client.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L249",
+      "path": "contact-client.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_get_started_fields",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "contact-server.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L249",
+      "path": "contact-server.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_get_started_fields",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "BackEnd/src/schemas/contact-schema.js",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L255",
+      "path": "BackEnd/src/schemas/contact-schema.js"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_get_started_fields",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "BackEnd/src/schemas/get-started-schema.js",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L256",
+      "path": "BackEnd/src/schemas/get-started-schema.js"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_get_started_fields",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "BackEnd/src/lib/validation-helpers.js",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L257",
+      "path": "BackEnd/src/lib/validation-helpers.js"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_get_started_fields",
+      "callee": "hasControlCharacters",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "hasControlCharacters",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L257"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_get_started_fields",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "FrontEnd/src/features/contact/schemas/contact-form.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L258",
+      "path": "FrontEnd/src/features/contact/schemas/contact-form.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_get_started_fields",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "FrontEnd/src/features/get-started/schemas/get-started-form.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L259",
+      "path": "FrontEnd/src/features/get-started/schemas/get-started-form.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_8_homepage_sections_port_order",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "FrontEnd/src/views/Homepage.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L265",
+      "path": "FrontEnd/src/views/Homepage.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_8_homepage_sections_port_order",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "HeroSection.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L267",
+      "path": "HeroSection.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_8_homepage_sections_port_order",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "MissionSection.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L268",
+      "path": "MissionSection.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_8_homepage_sections_port_order",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "ServicesSection.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L269",
+      "path": "ServicesSection.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_8_homepage_sections_port_order",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "ValuePropsSection.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L270",
+      "path": "ValuePropsSection.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_8_homepage_sections_port_order",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "ProcessSection.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L271",
+      "path": "ProcessSection.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_8_homepage_sections_port_order",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "CtaSection.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L272",
+      "path": "CtaSection.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_8_homepage_sections_port_order",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "Footer.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L273",
+      "path": "Footer.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_9_navigation_and_footer",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "src/lib/brand.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L282",
+      "path": "src/lib/brand.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_9_navigation_and_footer",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "FrontEnd/src/components/Navbar.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L285",
+      "path": "FrontEnd/src/components/Navbar.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_9_navigation_and_footer",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "Footer.tsx",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L285",
+      "path": "Footer.tsx"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_10_deployment_vercel_only",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "FrontEnd/vercel.json",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L299",
+      "path": "FrontEnd/vercel.json"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_10_deployment_vercel_only",
+      "callee": "xml",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "sitemap.xml",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L310",
+      "qualifiers": ["sitemap"]
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_10_deployment_vercel_only",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "app/robots.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L310",
+      "path": "app/robots.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_10_deployment_vercel_only",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "app/sitemap.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L310",
+      "path": "app/sitemap.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_12_testing_expectations",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "FrontEnd/src/lib/api.test.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L336",
+      "path": "FrontEnd/src/lib/api.test.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_12_testing_expectations",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "BackEnd/tests/api.test.js",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L338",
+      "path": "BackEnd/tests/api.test.js"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_12_testing_expectations",
+      "callee": "supertest",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "supertest",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L338"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_phase_0_bootstrap_day_1",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "brand.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L351",
+      "path": "brand.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_phase_1_1_form_apis_deferred",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "app/api/contact/route.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L364",
+      "path": "app/api/contact/route.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_phase_1_1_form_apis_deferred",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "app/api/get-started/route.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L365",
+      "path": "app/api/get-started/route.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_phase_1_1_form_apis_deferred",
+      "callee": "CONTACT_WEBHOOK_URL",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "CONTACT_WEBHOOK_URL",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L367"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_phase_3_polish_day_4_5",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "next.config.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L379",
+      "path": "next.config.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_phase_3_polish_day_4_5",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "robots.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L380",
+      "path": "robots.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_phase_3_polish_day_4_5",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "sitemap.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L380",
+      "path": "sitemap.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_15_engineering_rules_next_version",
+      "callee": "alert",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "alert()",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L405"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_16_source_repo_reference_map",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "FrontEnd/src/lib/brand.ts",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L421",
+      "path": "FrontEnd/src/lib/brand.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_info_next_16_source_repo_reference_map",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "BackEnd/tests/api.test.js",
+      "source_file": "PROJECT_INFO_NEXT.md",
+      "source_location": "L423",
+      "path": "BackEnd/tests/api.test.js"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

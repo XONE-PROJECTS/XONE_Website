@@ -1,0 +1,372 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_readme_md",
+      "label": "README.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": "README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_readme_xone_software_development_next_js_site",
+      "label": "Xone Software Development \u2014 Next.js Site",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_readme_services_project_estimator",
+      "label": "Services project estimator",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L11"
+    },
+    {
+      "id": "$graphify-root$_readme_prerequisites",
+      "label": "Prerequisites",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L38"
+    },
+    {
+      "id": "$graphify-root$_readme_quick_start",
+      "label": "Quick start",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L43"
+    },
+    {
+      "id": "$graphify-root$_readme_scripts",
+      "label": "Scripts",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L63"
+    },
+    {
+      "id": "$graphify-root$_readme_environment_variables",
+      "label": "Environment variables",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L81"
+    },
+    {
+      "id": "$graphify-root$_readme_key_routes",
+      "label": "Key routes",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L92"
+    },
+    {
+      "id": "$graphify-root$_readme_project_structure",
+      "label": "Project structure",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L104"
+    },
+    {
+      "id": "$graphify-root$_readme_api",
+      "label": "API",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L116"
+    },
+    {
+      "id": "$graphify-root$_readme_testing",
+      "label": "Testing",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L124"
+    },
+    {
+      "id": "$graphify-root$_readme_unit_tests",
+      "label": "Unit tests",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L126"
+    },
+    {
+      "id": "$graphify-root$_readme_e2e_tests_playwright",
+      "label": "E2E tests (Playwright)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L134"
+    },
+    {
+      "id": "$graphify-root$_readme_ci",
+      "label": "CI",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L155"
+    },
+    {
+      "id": "$graphify-root$_readme_deployment_vercel",
+      "label": "Deployment (Vercel)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L159"
+    },
+    {
+      "id": "$graphify-root$_readme_source_reference",
+      "label": "Source reference",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "README.md",
+      "source_location": "L171"
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_readme_md",
+      "target": "$graphify-root$_readme_xone_software_development_next_js_site",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_readme_md",
+      "target": "$graphify-root$_project_info_next_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "target_file": "$graphify-root$/PROJECT_INFO_NEXT.md"
+    },
+    {
+      "source": "$graphify-root$_readme_md",
+      "target": "$graphify-root$_sprint_plan_v1_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "target_file": "$graphify-root$/SPRINT_PLAN_v1.md"
+    },
+    {
+      "source": "$graphify-root$_readme_md",
+      "target": "$graphify-root$_deploy_md",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L5",
+      "weight": 1.0,
+      "target_file": "$graphify-root$/DEPLOY.md"
+    },
+    {
+      "source": "$graphify-root$_readme_xone_software_development_next_js_site",
+      "target": "$graphify-root$_readme_services_project_estimator",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_readme_xone_software_development_next_js_site",
+      "target": "$graphify-root$_readme_prerequisites",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_readme_xone_software_development_next_js_site",
+      "target": "$graphify-root$_readme_quick_start",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L43",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_readme_xone_software_development_next_js_site",
+      "target": "$graphify-root$_readme_scripts",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L63",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_readme_xone_software_development_next_js_site",
+      "target": "$graphify-root$_readme_environment_variables",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L81",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_readme_xone_software_development_next_js_site",
+      "target": "$graphify-root$_readme_key_routes",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L92",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_readme_xone_software_development_next_js_site",
+      "target": "$graphify-root$_readme_project_structure",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L104",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_readme_xone_software_development_next_js_site",
+      "target": "$graphify-root$_readme_api",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L116",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_readme_xone_software_development_next_js_site",
+      "target": "$graphify-root$_readme_testing",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L124",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_readme_testing",
+      "target": "$graphify-root$_readme_unit_tests",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L126",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_readme_testing",
+      "target": "$graphify-root$_readme_e2e_tests_playwright",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L134",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_readme_xone_software_development_next_js_site",
+      "target": "$graphify-root$_readme_ci",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L155",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_readme_xone_software_development_next_js_site",
+      "target": "$graphify-root$_readme_deployment_vercel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L159",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_readme_xone_software_development_next_js_site",
+      "target": "$graphify-root$_readme_source_reference",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "README.md",
+      "source_location": "L171",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_readme_scripts",
+      "callee": "PLAYWRIGHT_PORT",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "PLAYWRIGHT_PORT",
+      "source_file": "README.md",
+      "source_location": "L77"
+    },
+    {
+      "caller_nid": "$graphify-root$_readme_environment_variables",
+      "callee": "NEXT_PUBLIC_",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "NEXT_PUBLIC_",
+      "source_file": "README.md",
+      "source_location": "L83"
+    },
+    {
+      "caller_nid": "$graphify-root$_readme_environment_variables",
+      "callee": "SITE_URL",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "SITE_URL",
+      "source_file": "README.md",
+      "source_location": "L87"
+    },
+    {
+      "caller_nid": "$graphify-root$_readme_environment_variables",
+      "callee": "CONTACT_WEBHOOK_URL",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "CONTACT_WEBHOOK_URL",
+      "source_file": "README.md",
+      "source_location": "L88"
+    },
+    {
+      "caller_nid": "$graphify-root$_readme_ci",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": ".github/workflows/ci.yml",
+      "source_file": "README.md",
+      "source_location": "L157",
+      "path": ".github/workflows/ci.yml"
+    },
+    {
+      "caller_nid": "$graphify-root$_readme_deployment_vercel",
+      "callee": "main",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "main",
+      "source_file": "README.md",
+      "source_location": "L165"
+    },
+    {
+      "caller_nid": "$graphify-root$_readme_deployment_vercel",
+      "callee": "SITE_URL",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "SITE_URL",
+      "source_file": "README.md",
+      "source_location": "L167"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0,
+  "_cached_target_files": [
+    "$graphify-root$/DEPLOY.md",
+    "$graphify-root$/PROJECT_INFO_NEXT.md",
+    "$graphify-root$/SPRINT_PLAN_v1.md"
+  ]
+}

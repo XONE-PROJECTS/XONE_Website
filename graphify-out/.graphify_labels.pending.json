@@ -1,7 +1,8 @@
 {
-  "7": "vitest",
+  "7": "repository.ts",
   "8": "cn",
-  "12": "repository.ts",
+  "12": "auth.ts",
+  "15": "content/route.ts",
   "16": "lint-staged",
   "19": "catalog.ts",
   "20": "AGENTS.md",
@@ -16,5 +17,10 @@
   "40": "DEPLOY.md",
   "41": "Testing",
   "42": "Week 4 — Phase 3 Polish + Vercel Deploy",
-  "43": "Week 2 — Phase 2 Core Pages (Part 1)"
+  "43": "Week 2 — Phase 2 Core Pages (Part 1)",
+  "44": "history/route.ts",
+  "45": "getMongoDatabase",
+  "46": "preview.ts",
+  "47": "admin/page.tsx",
+  "48": "env.ts"
 }

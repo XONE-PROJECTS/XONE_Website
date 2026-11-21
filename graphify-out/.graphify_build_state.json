@@ -1,0 +1,17 @@
+{
+  "ambiguous_scale": "",
+  "code_only": false,
+  "epoch": "v0.9.111-s47-g460503b3f2a4",
+  "excludes": [],
+  "follow_symlinks": false,
+  "full_clean": true,
+  "gitignore": true,
+  "graph_mtime_ns": 1795252924124512000,
+  "graph_size": 932784,
+  "html_present": true,
+  "no_cluster": false,
+  "rcfile": "",
+  "scan_digest": "2e0c095b0e78786784de731eb9f3208c",
+  "scan_root": "C:\\Users\\Test\\Desktop\\systems\\XONE_Website",
+  "viz_node_limit": ""
+}

@@ -1,0 +1,222 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_backlogs_v1_md",
+      "label": "BACKLOGS_v1.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_backlogs_v1_backlogs_v1_md",
+      "label": "BACKLOGS_v1.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_backlogs_v1_epic_project_foundation",
+      "label": "Epic: Project Foundation",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "$graphify-root$_backlogs_v1_epic_brand_and_content_xone",
+      "label": "Epic: Brand and Content (Xone)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L30"
+    },
+    {
+      "id": "$graphify-root$_backlogs_v1_epic_page_completion",
+      "label": "Epic: Page Completion",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L44"
+    },
+    {
+      "id": "$graphify-root$_backlogs_v1_epic_frontend_architecture",
+      "label": "Epic: Frontend Architecture",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L63"
+    },
+    {
+      "id": "$graphify-root$_backlogs_v1_epic_lead_capture_api_route_handlers_v1_1_deferred",
+      "label": "Epic: Lead Capture API (Route Handlers) \u2014 **v1.1 deferred**",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L73"
+    },
+    {
+      "id": "$graphify-root$_backlogs_v1_epic_qa_and_deploy",
+      "label": "Epic: QA and Deploy",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L85"
+    },
+    {
+      "id": "$graphify-root$_backlogs_v1_decisions_log",
+      "label": "Decisions Log",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L98"
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_backlogs_v1_md",
+      "target": "$graphify-root$_backlogs_v1_backlogs_v1_md",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_backlogs_v1_backlogs_v1_md",
+      "target": "$graphify-root$_backlogs_v1_epic_project_foundation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_backlogs_v1_backlogs_v1_md",
+      "target": "$graphify-root$_backlogs_v1_epic_brand_and_content_xone",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L30",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_backlogs_v1_backlogs_v1_md",
+      "target": "$graphify-root$_backlogs_v1_epic_page_completion",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L44",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_backlogs_v1_backlogs_v1_md",
+      "target": "$graphify-root$_backlogs_v1_epic_frontend_architecture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L63",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_backlogs_v1_backlogs_v1_md",
+      "target": "$graphify-root$_backlogs_v1_epic_lead_capture_api_route_handlers_v1_1_deferred",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L73",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_backlogs_v1_backlogs_v1_md",
+      "target": "$graphify-root$_backlogs_v1_epic_qa_and_deploy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_backlogs_v1_backlogs_v1_md",
+      "target": "$graphify-root$_backlogs_v1_decisions_log",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L98",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_backlogs_v1_epic_project_foundation",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "src/lib/env.ts",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L20",
+      "path": "src/lib/env.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_backlogs_v1_epic_project_foundation",
+      "callee": "node_modules",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "node_modules",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L21"
+    },
+    {
+      "caller_nid": "$graphify-root$_backlogs_v1_epic_brand_and_content_xone",
+      "callee": "css",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "globals.css",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L38",
+      "qualifiers": ["globals"]
+    },
+    {
+      "caller_nid": "$graphify-root$_backlogs_v1_epic_brand_and_content_xone",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "brand.ts",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L38",
+      "path": "brand.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_backlogs_v1_epic_lead_capture_api_route_handlers_v1_1_deferred",
+      "callee": "CONTACT_WEBHOOK_URL",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "CONTACT_WEBHOOK_URL",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L80"
+    },
+    {
+      "caller_nid": "$graphify-root$_backlogs_v1_epic_qa_and_deploy",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "robots.ts",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L94",
+      "path": "robots.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_backlogs_v1_epic_qa_and_deploy",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "sitemap.ts",
+      "source_file": "BACKLOGS_v1.md",
+      "source_location": "L94",
+      "path": "sitemap.ts"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

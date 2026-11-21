@@ -1,0 +1,477 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_team_instructions_md",
+      "label": "TEAM_INSTRUCTIONS.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_team_instructions_team_instructions_md",
+      "label": "TEAM_INSTRUCTIONS.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_team_instructions_senior_roles",
+      "label": "Senior Roles",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L11"
+    },
+    {
+      "id": "$graphify-root$_team_instructions_project_manager_pm",
+      "label": "Project Manager (PM)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L13"
+    },
+    {
+      "id": "$graphify-root$_team_instructions_tech_lead",
+      "label": "Tech Lead",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "$graphify-root$_team_instructions_fullstack_developer",
+      "label": "Fullstack Developer",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L51"
+    },
+    {
+      "id": "$graphify-root$_team_instructions_backend_developer_api_server",
+      "label": "Backend Developer (API / Server)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L76"
+    },
+    {
+      "id": "$graphify-root$_team_instructions_frontend_developer",
+      "label": "Frontend Developer",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L102"
+    },
+    {
+      "id": "$graphify-root$_team_instructions_qa_engineer",
+      "label": "QA Engineer",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L132"
+    },
+    {
+      "id": "$graphify-root$_team_instructions_shared_workflows",
+      "label": "Shared Workflows",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L167"
+    },
+    {
+      "id": "$graphify-root$_team_instructions_git_and_prs",
+      "label": "Git and PRs",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L169"
+    },
+    {
+      "id": "$graphify-root$_team_instructions_commits_manual_per_teammate",
+      "label": "Commits (manual, per teammate)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L178"
+    },
+    {
+      "id": "$graphify-root$_team_instructions_definition_of_done",
+      "label": "Definition of Done",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L217"
+    },
+    {
+      "id": "$graphify-root$_team_instructions_ci_cd_github_actions_vercel",
+      "label": "CI/CD (GitHub Actions + Vercel)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L229"
+    },
+    {
+      "id": "$graphify-root$_team_instructions_communication",
+      "label": "Communication",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L250"
+    },
+    {
+      "id": "$graphify-root$_team_instructions_document_map",
+      "label": "Document Map",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L256"
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_team_instructions_md",
+      "target": "$graphify-root$_team_instructions_team_instructions_md",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_team_instructions_team_instructions_md",
+      "target": "$graphify-root$_team_instructions_senior_roles",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L11",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_team_instructions_senior_roles",
+      "target": "$graphify-root$_team_instructions_project_manager_pm",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L13",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_team_instructions_senior_roles",
+      "target": "$graphify-root$_team_instructions_tech_lead",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_team_instructions_team_instructions_md",
+      "target": "$graphify-root$_team_instructions_fullstack_developer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L51",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_team_instructions_team_instructions_md",
+      "target": "$graphify-root$_team_instructions_backend_developer_api_server",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L76",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_team_instructions_team_instructions_md",
+      "target": "$graphify-root$_team_instructions_frontend_developer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L102",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_team_instructions_team_instructions_md",
+      "target": "$graphify-root$_team_instructions_qa_engineer",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L132",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_team_instructions_team_instructions_md",
+      "target": "$graphify-root$_team_instructions_shared_workflows",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L167",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_team_instructions_shared_workflows",
+      "target": "$graphify-root$_team_instructions_git_and_prs",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L169",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_team_instructions_shared_workflows",
+      "target": "$graphify-root$_team_instructions_commits_manual_per_teammate",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L178",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_team_instructions_shared_workflows",
+      "target": "$graphify-root$_team_instructions_definition_of_done",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L217",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_team_instructions_shared_workflows",
+      "target": "$graphify-root$_team_instructions_ci_cd_github_actions_vercel",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L229",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_team_instructions_shared_workflows",
+      "target": "$graphify-root$_team_instructions_communication",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L250",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_team_instructions_shared_workflows",
+      "target": "$graphify-root$_team_instructions_document_map",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L256",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_team_instructions_team_instructions_md",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": ".github/workflows/ci.yml",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L7",
+      "path": ".github/workflows/ci.yml"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_fullstack_developer",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": ".github/workflows/ci.yml",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L56",
+      "path": ".github/workflows/ci.yml"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_fullstack_developer",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "next.config.ts",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L56",
+      "path": "next.config.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_fullstack_developer",
+      "callee": "buildContactMailto",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "buildContactMailto()",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L66"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_fullstack_developer",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "src/lib/brand.ts",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L66",
+      "path": "src/lib/brand.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_backend_developer_api_server",
+      "callee": "CONTACT_WEBHOOK_URL",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "CONTACT_WEBHOOK_URL",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L82"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_backend_developer_api_server",
+      "callee": "NEXT_PUBLIC_",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "NEXT_PUBLIC_",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L93"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_frontend_developer",
+      "callee": "alert",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "alert()",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L119"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_git_and_prs",
+      "callee": "node_modules",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "node_modules",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L176"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_commits_manual_per_teammate",
+      "callee": "add",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "add",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L180"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_commits_manual_per_teammate",
+      "callee": "fix",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "fix",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L180"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_commits_manual_per_teammate",
+      "callee": "update",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "update",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L180"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_commits_manual_per_teammate",
+      "callee": "docs",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "docs",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L180"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_commits_manual_per_teammate",
+      "callee": "feat",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "feat",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L191"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_commits_manual_per_teammate",
+      "callee": "chore",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "chore",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L191"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_commits_manual_per_teammate",
+      "callee": "test",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "test",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L191"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_commits_manual_per_teammate",
+      "callee": "refactor",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "refactor",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L191"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_commits_manual_per_teammate",
+      "callee": "node_modules",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "node_modules",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L201"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_definition_of_done",
+      "callee": "any",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "any",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L221"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_ci_cd_github_actions_vercel",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "ci.yml",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L233",
+      "path": "ci.yml"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_ci_cd_github_actions_vercel",
+      "callee": "main",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "main",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L234"
+    },
+    {
+      "caller_nid": "$graphify-root$_team_instructions_ci_cd_github_actions_vercel",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "next.config.ts",
+      "source_file": "TEAM_INSTRUCTIONS.md",
+      "source_location": "L243",
+      "path": "next.config.ts"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

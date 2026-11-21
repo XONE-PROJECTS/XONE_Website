@@ -1,0 +1,694 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_agents_md",
+      "label": "AGENTS.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": "AGENTS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_agents_agents_md",
+      "label": "AGENTS.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_agents_core_stack",
+      "label": "Core Stack",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L8"
+    },
+    {
+      "id": "$graphify-root$_agents_non_negotiable_rules",
+      "label": "Non-Negotiable Rules",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L25"
+    },
+    {
+      "id": "$graphify-root$_agents_required_project_structure",
+      "label": "Required Project Structure",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L38"
+    },
+    {
+      "id": "$graphify-root$_agents_next_js_and_react_rules",
+      "label": "Next.js and React Rules",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L90"
+    },
+    {
+      "id": "$graphify-root$_agents_typescript_strict_rules",
+      "label": "TypeScript Strict Rules",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L101"
+    },
+    {
+      "id": "$graphify-root$_agents_environment_variable_protection",
+      "label": "Environment Variable Protection",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L110"
+    },
+    {
+      "id": "$graphify-root$_agents_authentication_rules",
+      "label": "Authentication Rules",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L138"
+    },
+    {
+      "id": "$graphify-root$_agents_database_connection_rules",
+      "label": "Database Connection Rules",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L148"
+    },
+    {
+      "id": "$graphify-root$_agents_validation_rules_for_text_fields",
+      "label": "Validation Rules for Text Fields",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L159"
+    },
+    {
+      "id": "$graphify-root$_agents_sql_injection_prevention_rules",
+      "label": "SQL Injection Prevention Rules",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L181"
+    },
+    {
+      "id": "$graphify-root$_agents_api_route_rules_route_handlers",
+      "label": "API Route Rules (Route Handlers)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L189"
+    },
+    {
+      "id": "$graphify-root$_agents_dto_rules",
+      "label": "DTO Rules",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L209"
+    },
+    {
+      "id": "$graphify-root$_agents_error_handling_and_logging",
+      "label": "Error Handling and Logging",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L216"
+    },
+    {
+      "id": "$graphify-root$_agents_ui_and_accessibility_rules",
+      "label": "UI and Accessibility Rules",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L223"
+    },
+    {
+      "id": "$graphify-root$_agents_testing_expectations",
+      "label": "Testing Expectations",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L234"
+    },
+    {
+      "id": "$graphify-root$_agents_ci_cd_rules",
+      "label": "CI/CD Rules",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L243"
+    },
+    {
+      "id": "$graphify-root$_agents_review_checklist",
+      "label": "Review Checklist",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L253"
+    },
+    {
+      "id": "$graphify-root$_agents_agent_instruction",
+      "label": "Agent Instruction",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L271"
+    },
+    {
+      "id": "$graphify-root$_agents_graphify",
+      "label": "graphify",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "AGENTS.md",
+      "source_location": "L290"
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_agents_md",
+      "target": "$graphify-root$_agents_agents_md",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_core_stack",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L8",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_non_negotiable_rules",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L25",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_required_project_structure",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L38",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_next_js_and_react_rules",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L90",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_typescript_strict_rules",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L101",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_environment_variable_protection",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L110",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_authentication_rules",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L138",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_database_connection_rules",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L148",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_validation_rules_for_text_fields",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L159",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_sql_injection_prevention_rules",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L181",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_api_route_rules_route_handlers",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L189",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_dto_rules",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L209",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_error_handling_and_logging",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L216",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_ui_and_accessibility_rules",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L223",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_testing_expectations",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L234",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_ci_cd_rules",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L243",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_review_checklist",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L253",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_agent_instruction",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L271",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_agents_agents_md",
+      "target": "$graphify-root$_agents_graphify",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "AGENTS.md",
+      "source_location": "L290",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_agents_core_stack",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "src/lib/brand.ts",
+      "source_file": "AGENTS.md",
+      "source_location": "L12",
+      "path": "src/lib/brand.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_core_stack",
+      "callee": "geist",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "geist",
+      "source_file": "AGENTS.md",
+      "source_location": "L13"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_non_negotiable_rules",
+      "callee": "NEXT_PUBLIC_",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "NEXT_PUBLIC_",
+      "source_file": "AGENTS.md",
+      "source_location": "L29"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_next_js_and_react_rules",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "tsconfig.json",
+      "source_file": "AGENTS.md",
+      "source_location": "L96",
+      "path": "tsconfig.json"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_next_js_and_react_rules",
+      "callee": "middleware",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "middleware",
+      "source_file": "AGENTS.md",
+      "source_location": "L99"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_next_js_and_react_rules",
+      "callee": "config",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "next.config",
+      "source_file": "AGENTS.md",
+      "source_location": "L99",
+      "qualifiers": ["next"]
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_typescript_strict_rules",
+      "callee": "strict",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "strict",
+      "source_file": "AGENTS.md",
+      "source_location": "L103"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_typescript_strict_rules",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "tsconfig.json",
+      "source_file": "AGENTS.md",
+      "source_location": "L103",
+      "path": "tsconfig.json"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_typescript_strict_rules",
+      "callee": "any",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "any",
+      "source_file": "AGENTS.md",
+      "source_location": "L104"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_typescript_strict_rules",
+      "callee": "unknown",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "unknown",
+      "source_file": "AGENTS.md",
+      "source_location": "L104"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_environment_variable_protection",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "src/lib/client-env.ts",
+      "source_file": "AGENTS.md",
+      "source_location": "L114",
+      "path": "src/lib/client-env.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_environment_variable_protection",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "src/lib/env.ts",
+      "source_file": "AGENTS.md",
+      "source_location": "L115",
+      "path": "src/lib/env.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_environment_variable_protection",
+      "callee": "env",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "process.env",
+      "source_file": "AGENTS.md",
+      "source_location": "L115",
+      "qualifiers": ["process"]
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_environment_variable_protection",
+      "callee": "NEXT_PUBLIC_",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "NEXT_PUBLIC_",
+      "source_file": "AGENTS.md",
+      "source_location": "L115"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_environment_variable_protection",
+      "callee": "CONTACT_WEBHOOK_URL",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "CONTACT_WEBHOOK_URL",
+      "source_file": "AGENTS.md",
+      "source_location": "L136"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_environment_variable_protection",
+      "callee": "CORS_ORIGIN",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "CORS_ORIGIN",
+      "source_file": "AGENTS.md",
+      "source_location": "L136"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_authentication_rules",
+      "callee": "HttpOnly",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "HttpOnly",
+      "source_file": "AGENTS.md",
+      "source_location": "L146"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_authentication_rules",
+      "callee": "Secure",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "Secure",
+      "source_file": "AGENTS.md",
+      "source_location": "L146"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_authentication_rules",
+      "callee": "SameSite",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "SameSite",
+      "source_file": "AGENTS.md",
+      "source_location": "L146"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_database_connection_rules",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "src/lib/db.ts",
+      "source_file": "AGENTS.md",
+      "source_location": "L152",
+      "path": "src/lib/db.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_validation_rules_for_text_fields",
+      "callee": "trim",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "trim()",
+      "source_file": "AGENTS.md",
+      "source_location": "L173"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_ui_and_accessibility_rules",
+      "callee": "nav",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "nav",
+      "source_file": "AGENTS.md",
+      "source_location": "L228"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_ui_and_accessibility_rules",
+      "callee": "main",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "main",
+      "source_file": "AGENTS.md",
+      "source_location": "L228"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_ui_and_accessibility_rules",
+      "callee": "section",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "section",
+      "source_file": "AGENTS.md",
+      "source_location": "L228"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_ui_and_accessibility_rules",
+      "callee": "footer",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "footer",
+      "source_file": "AGENTS.md",
+      "source_location": "L228"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_ui_and_accessibility_rules",
+      "callee": "button",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "button",
+      "source_file": "AGENTS.md",
+      "source_location": "L228"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_ui_and_accessibility_rules",
+      "callee": "a",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "a",
+      "source_file": "AGENTS.md",
+      "source_location": "L228"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_ui_and_accessibility_rules",
+      "callee": "alt",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "alt",
+      "source_file": "AGENTS.md",
+      "source_location": "L229"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_ui_and_accessibility_rules",
+      "callee": "alert",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "alert()",
+      "source_file": "AGENTS.md",
+      "source_location": "L231"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_ci_cd_rules",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": ".github/workflows/ci.yml",
+      "source_file": "AGENTS.md",
+      "source_location": "L247",
+      "path": ".github/workflows/ci.yml"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_ci_cd_rules",
+      "callee": "main",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "main",
+      "source_file": "AGENTS.md",
+      "source_location": "L248"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_ci_cd_rules",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "package.json",
+      "source_file": "AGENTS.md",
+      "source_location": "L251",
+      "path": "package.json"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_review_checklist",
+      "callee": "NEXT_PUBLIC_",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "NEXT_PUBLIC_",
+      "source_file": "AGENTS.md",
+      "source_location": "L257"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_review_checklist",
+      "callee": "buildContactMailto",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "buildContactMailto()",
+      "source_file": "AGENTS.md",
+      "source_location": "L260"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_review_checklist",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "src/lib/brand.ts",
+      "source_file": "AGENTS.md",
+      "source_location": "L260",
+      "path": "src/lib/brand.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_agents_review_checklist",
+      "callee": "log",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "console.log",
+      "source_file": "AGENTS.md",
+      "source_location": "L267",
+      "qualifiers": ["console"]
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

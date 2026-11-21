@@ -1,0 +1,253 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_project_overview_md",
+      "label": "PROJECT_OVERVIEW.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_project_overview_project_overview_md",
+      "label": "PROJECT_OVERVIEW.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_project_overview_brand",
+      "label": "Brand",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L3"
+    },
+    {
+      "id": "$graphify-root$_project_overview_project_purpose",
+      "label": "Project Purpose",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L9"
+    },
+    {
+      "id": "$graphify-root$_project_overview_status_v1_shipped",
+      "label": "Status: v1 shipped",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L15"
+    },
+    {
+      "id": "$graphify-root$_project_overview_current_state",
+      "label": "Current State",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L19"
+    },
+    {
+      "id": "$graphify-root$_project_overview_tech_summary",
+      "label": "Tech Summary",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L36"
+    },
+    {
+      "id": "$graphify-root$_project_overview_timeline_4_weeks_complete",
+      "label": "Timeline (4 weeks) \u2014 complete",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L50"
+    },
+    {
+      "id": "$graphify-root$_project_overview_security_posture_v1",
+      "label": "Security posture (v1)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L61"
+    },
+    {
+      "id": "$graphify-root$_project_overview_open_decisions_post_v1",
+      "label": "Open decisions (post-v1)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L78"
+    },
+    {
+      "id": "$graphify-root$_project_overview_success_criteria",
+      "label": "Success criteria",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L84"
+    },
+    {
+      "id": "$graphify-root$_project_overview_related_documentation",
+      "label": "Related Documentation",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L88"
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_project_overview_md",
+      "target": "$graphify-root$_project_overview_project_overview_md",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_overview_project_overview_md",
+      "target": "$graphify-root$_project_overview_brand",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L3",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_overview_project_overview_md",
+      "target": "$graphify-root$_project_overview_project_purpose",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L9",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_overview_project_overview_md",
+      "target": "$graphify-root$_project_overview_status_v1_shipped",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L15",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_overview_project_overview_md",
+      "target": "$graphify-root$_project_overview_current_state",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L19",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_overview_project_overview_md",
+      "target": "$graphify-root$_project_overview_tech_summary",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L36",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_overview_project_overview_md",
+      "target": "$graphify-root$_project_overview_timeline_4_weeks_complete",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L50",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_overview_project_overview_md",
+      "target": "$graphify-root$_project_overview_security_posture_v1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L61",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_overview_project_overview_md",
+      "target": "$graphify-root$_project_overview_open_decisions_post_v1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L78",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_overview_project_overview_md",
+      "target": "$graphify-root$_project_overview_success_criteria",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L84",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_project_overview_project_overview_md",
+      "target": "$graphify-root$_project_overview_related_documentation",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L88",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_project_overview_current_state",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "robots.ts",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L28",
+      "path": "robots.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_overview_current_state",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "sitemap.ts",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L28",
+      "path": "sitemap.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_overview_current_state",
+      "callee": "SITE_URL",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "SITE_URL",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L28"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_overview_current_state",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "next.config.ts",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L29",
+      "path": "next.config.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_project_overview_open_decisions_post_v1",
+      "callee": "SITE_URL",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "SITE_URL",
+      "source_file": "PROJECT_OVERVIEW.md",
+      "source_location": "L81"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -1,0 +1,392 @@
+{
+  "nodes": [
+    {
+      "id": "$graphify-root$_sprint_plan_v1_md",
+      "label": "SPRINT_PLAN_v1.md",
+      "file_type": "document",
+      "node_kind": "page",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_sprint_plan_v1_md",
+      "label": "SPRINT_PLAN_v1.md",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L1"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_program_goal",
+      "label": "Program Goal",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L14"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_week_1_phase_0_bootstrap_phase_1_static_lead_capture",
+      "label": "Week 1 \u2014 Phase 0 Bootstrap + Phase 1 Static Lead Capture",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L31"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_theme",
+      "label": "Theme",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L33"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_week_1_exit_criteria",
+      "label": "Week 1 Exit Criteria",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L53"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_week_2_phase_2_core_pages_part_1",
+      "label": "Week 2 \u2014 Phase 2 Core Pages (Part 1)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L66"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_theme_68",
+      "label": "Theme",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L68"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_week_2_exit_criteria",
+      "label": "Week 2 Exit Criteria",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L85"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_week_3_phase_2_polish_phase_3_start",
+      "label": "Week 3 \u2014 Phase 2 Polish + Phase 3 Start",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L95"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_theme_97",
+      "label": "Theme",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L97"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_week_3_exit_criteria",
+      "label": "Week 3 Exit Criteria",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L111"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_week_4_phase_3_polish_vercel_deploy",
+      "label": "Week 4 \u2014 Phase 3 Polish + Vercel Deploy",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L120"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_theme_122",
+      "label": "Theme",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L122"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_week_4_exit_criteria",
+      "label": "Week 4 Exit Criteria",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L137"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_v1_1_backlog_post_launch_optional",
+      "label": "v1.1 Backlog (post-launch, optional)",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L146"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_role_focus_by_week",
+      "label": "Role Focus by Week",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L157"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_timeline_overview",
+      "label": "Timeline Overview",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L170"
+    },
+    {
+      "id": "$graphify-root$_sprint_plan_v1_risks_and_mitigations",
+      "label": "Risks and Mitigations",
+      "file_type": "document",
+      "node_kind": "heading",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L181"
+    }
+  ],
+  "edges": [
+    {
+      "source": "$graphify-root$_sprint_plan_v1_md",
+      "target": "$graphify-root$_sprint_plan_v1_sprint_plan_v1_md",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L1",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_sprint_plan_v1_md",
+      "target": "$graphify-root$_sprint_plan_v1_program_goal",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L14",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_sprint_plan_v1_md",
+      "target": "$graphify-root$_sprint_plan_v1_week_1_phase_0_bootstrap_phase_1_static_lead_capture",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L31",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_week_1_phase_0_bootstrap_phase_1_static_lead_capture",
+      "target": "$graphify-root$_sprint_plan_v1_theme",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L33",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_week_1_phase_0_bootstrap_phase_1_static_lead_capture",
+      "target": "$graphify-root$_sprint_plan_v1_week_1_exit_criteria",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L53",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_sprint_plan_v1_md",
+      "target": "$graphify-root$_sprint_plan_v1_week_2_phase_2_core_pages_part_1",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L66",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_week_2_phase_2_core_pages_part_1",
+      "target": "$graphify-root$_sprint_plan_v1_theme_68",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L68",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_week_2_phase_2_core_pages_part_1",
+      "target": "$graphify-root$_sprint_plan_v1_week_2_exit_criteria",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L85",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_sprint_plan_v1_md",
+      "target": "$graphify-root$_sprint_plan_v1_week_3_phase_2_polish_phase_3_start",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L95",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_week_3_phase_2_polish_phase_3_start",
+      "target": "$graphify-root$_sprint_plan_v1_theme_97",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L97",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_week_3_phase_2_polish_phase_3_start",
+      "target": "$graphify-root$_sprint_plan_v1_week_3_exit_criteria",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L111",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_sprint_plan_v1_md",
+      "target": "$graphify-root$_sprint_plan_v1_week_4_phase_3_polish_vercel_deploy",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L120",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_week_4_phase_3_polish_vercel_deploy",
+      "target": "$graphify-root$_sprint_plan_v1_theme_122",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L122",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_week_4_phase_3_polish_vercel_deploy",
+      "target": "$graphify-root$_sprint_plan_v1_week_4_exit_criteria",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L137",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_sprint_plan_v1_md",
+      "target": "$graphify-root$_sprint_plan_v1_v1_1_backlog_post_launch_optional",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L146",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_sprint_plan_v1_md",
+      "target": "$graphify-root$_sprint_plan_v1_role_focus_by_week",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L157",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_sprint_plan_v1_md",
+      "target": "$graphify-root$_sprint_plan_v1_timeline_overview",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L170",
+      "weight": 1.0
+    },
+    {
+      "source": "$graphify-root$_sprint_plan_v1_sprint_plan_v1_md",
+      "target": "$graphify-root$_sprint_plan_v1_risks_and_mitigations",
+      "relation": "contains",
+      "confidence": "EXTRACTED",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L181",
+      "weight": 1.0
+    }
+  ],
+  "raw_calls": [
+    {
+      "caller_nid": "$graphify-root$_sprint_plan_v1_theme",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "env.ts",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L40",
+      "path": "env.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_sprint_plan_v1_theme",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "brand.ts",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L42",
+      "path": "brand.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_sprint_plan_v1_week_2_exit_criteria",
+      "callee": "md",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "md",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L89"
+    },
+    {
+      "caller_nid": "$graphify-root$_sprint_plan_v1_theme_97",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "robots.ts",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L107",
+      "path": "robots.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_sprint_plan_v1_theme_97",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "sitemap.ts",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L107",
+      "path": "sitemap.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_sprint_plan_v1_theme_97",
+      "callee": "",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "next.config.ts",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L108",
+      "path": "next.config.ts"
+    },
+    {
+      "caller_nid": "$graphify-root$_sprint_plan_v1_week_4_exit_criteria",
+      "callee": "main",
+      "is_member_call": false,
+      "language": "markdown",
+      "context": "main",
+      "source_file": "SPRINT_PLAN_v1.md",
+      "source_location": "L141"
+    }
+  ],
+  "input_tokens": 0,
+  "output_tokens": 0
+}

@@ -44,42 +44,17 @@ export function ProjectCard({
       >
         {project.title}
       </h3>
-      {!isCompact ? (
-        <div className="mt-1 min-h-[3.75rem]">
-          {project.teamCredits ? (
-            <ul className="space-y-0.5 text-xs leading-snug">
-              {project.teamCredits.map((member) => (
-                <li key={member.name}>
-                  <span className="font-medium text-xone-violet">
-                    {member.name}
-                  </span>
-                  <span className="text-muted-foreground">
-                    {" "}
-                    — {member.role}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p
-              className={cn(
-                "text-xs font-medium text-xone-violet",
-                !project.leadEngineer && "invisible",
-              )}
-              aria-hidden={!project.leadEngineer}
-            >
-              Led by {project.leadEngineer ?? "Engr. Ryan Rey Magdalita"}
-            </p>
-          )}
-        </div>
-      ) : project.leadEngineer ? (
-        <p className="mt-1 text-xs font-medium text-xone-violet">
-          Led by {project.leadEngineer}
-        </p>
-      ) : project.teamCredits?.[0] ? (
-        <p className="mt-1 text-xs font-medium text-xone-violet">
-          Led by {project.teamCredits[0].name}
-        </p>
+      {!isCompact && project.teamCredits ? (
+        <ul className="mt-1 space-y-0.5 text-xs leading-snug">
+          {project.teamCredits.map((member) => (
+            <li key={member.name}>
+              <span className="font-medium text-xone-violet">
+                {member.name}
+              </span>
+              <span className="text-muted-foreground"> — {member.role}</span>
+            </li>
+          ))}
+        </ul>
       ) : null}
 
       {!isCompact && project.previewImageSrc ? (
